@@ -1,0 +1,19 @@
+.card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.cancel-order-btn {
+    margin-top: 10px;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.cancel-order-btn:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}

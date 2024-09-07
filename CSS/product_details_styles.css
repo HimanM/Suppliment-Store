@@ -1,0 +1,27 @@
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.left-container, .right-container {
+    flex: 1;
+    padding: 10px;
+}
+
+.left-container img {
+    width: 100%;
+    max-width: 300px;
+}
+
+.reviews-section {
+    margin: 20px;
+}
+
+.review {
+    margin-bottom: 10px;
+}
+
+hr {
+    border: 1px solid #ddd;
+}
