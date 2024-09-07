@@ -1,6 +1,6 @@
 <?php
 include 'PHP/db_config.php'; // Database connection
-
+session_start();
 // Retrieve content ID from query string
 $content_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 

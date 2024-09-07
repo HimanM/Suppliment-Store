@@ -20,6 +20,25 @@ $orders = [];
 while ($row = $result->fetch_assoc()) {
     $orders[] = $row;
 }
+
+// Fetch ordered items for each order
+$order_items = [];
+if (!empty($orders)) {
+    $order_ids = array_column($orders, 'id');
+    $placeholders = implode(',', array_fill(0, count($order_ids), '?'));
+    
+    $sql_items = "SELECT oi.*, p.name AS product_name FROM order_items oi
+                  JOIN products p ON oi.product_id = p.id
+                  WHERE oi.order_id IN ($placeholders)";
+    $stmt_items = $conn->prepare($sql_items);
+    $stmt_items->bind_param(str_repeat('i', count($order_ids)), ...$order_ids);
+    $stmt_items->execute();
+    $result_items = $stmt_items->get_result();
+
+    while ($row = $result_items->fetch_assoc()) {
+        $order_items[$row['order_id']][] = $row;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +47,9 @@ while ($row = $result->fetch_assoc()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Orders</title>
-    <link rel="stylesheet" href="CSS/order_styles.css">
-    <link rel="stylesheet" href="CSS/login_styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/login_styles.css">
+    <link rel="stylesheet" href="CSS/order_styles.css">
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
@@ -43,7 +62,7 @@ while ($row = $result->fetch_assoc()) {
         <?php else: ?>
             <?php foreach ($orders as $order): ?>
                 <div class="col-md-6 mb-4">
-                    <div class="card">
+                    <div class="card fixed-height-card">
                         <div class="card-body">
                             <h5 class="card-title">Order #<?php echo $order['id']; ?></h5>
                             <p><strong>Status:</strong> <?php echo $order['status']; ?></p>
@@ -52,6 +71,21 @@ while ($row = $result->fetch_assoc()) {
                             <p><strong>Shipping Address:</strong> <?php echo $order['shipping_address']; ?></p>
                             <p><strong>Billing Address:</strong> <?php echo $order['billing_address']; ?></p>
                             
+                            <h6>Items:</h6>
+                            <ul>
+                                <?php foreach ($order_items[$order['id']] as $item): ?>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <?php echo htmlspecialchars($item['product_name']); ?> 
+                                            (Quantity: <?php echo $item['quantity']; ?>)
+                                        </span>
+                                        <?php if ($order['status'] === 'shipped' || $order['status'] === 'delivered'): ?>
+                                            <a href="product_details.php?id=<?php echo $item['product_id']; ?>" class="btn btn-primary btn-sm">Review</a>
+                                        <?php endif; ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+
                             <?php if ($order['status'] !== 'shipped' && $order['status'] !== 'cancelled'): ?>
                                 <button class="btn btn-danger cancel-order-btn" data-order-id="<?php echo $order['id']; ?>">Cancel Order</button>
                             <?php else: ?>

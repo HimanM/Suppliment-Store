@@ -1,6 +1,6 @@
 <?php
 include 'PHP/db_config.php'; // Database connection
-
+session_start();
 // Fetch content by type
 $sql = "SELECT c.*, u.username FROM content c JOIN users u ON c.author_id = u.id ORDER BY c.created_at DESC";
 $result = $conn->query($sql);
