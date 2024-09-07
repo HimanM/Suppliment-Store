@@ -14,6 +14,9 @@
           <a class="nav-link" href="products.php">Products</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="display_content.php">Information</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
         <li class="nav-item">
@@ -27,6 +30,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="products.php">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="display_content.php">Information</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>

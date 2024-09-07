@@ -1,0 +1,9 @@
+.img-fluid {
+    max-height: 500px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.container {
+    margin-top: 50px;
+}
