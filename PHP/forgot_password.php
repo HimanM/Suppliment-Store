@@ -1,7 +1,7 @@
 <?php
     include 'db_config.php';
 
-    $email = $_POST['emailForgotPassword'];
+    $email = $_POST['email'];
 
     // Check if the email exists
     $query = "SELECT * FROM users WHERE email = ?";
