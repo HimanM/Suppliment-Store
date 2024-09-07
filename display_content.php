@@ -45,7 +45,7 @@ while ($row = $result->fetch_assoc()) {
                 <div class="col-md-4">
                     <div class="card">
                         <?php if (!empty($article['image'])): ?>
-                            <img src="images/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
+                            <img src="images/content/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($article['title']); ?></h5>
@@ -63,7 +63,7 @@ while ($row = $result->fetch_assoc()) {
                 <div class="col-md-4">
                     <div class="card">
                         <?php if (!empty($article['image'])): ?>
-                            <img src="images/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
+                            <img src="images/content/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($guide['title']); ?></h5>
@@ -81,7 +81,7 @@ while ($row = $result->fetch_assoc()) {
                 <div class="col-md-4">
                     <div class="card">
                         <?php if (!empty($article['image'])): ?>
-                            <img src="images/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
+                            <img src="images/content/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($post['title']); ?></h5>
