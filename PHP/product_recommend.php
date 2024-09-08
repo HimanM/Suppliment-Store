@@ -107,6 +107,6 @@ echo "\nRecommended Products:\n";
 print_r($recommended_products);
 echo "</pre>";
 
-// Optionally, you can remove the debug code later and return a JSON response
+// Remove the debug code later and return a JSON response
 // echo json_encode(["status" => "success"]);
 ?>
