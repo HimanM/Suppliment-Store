@@ -1,4 +1,5 @@
 <?php
+    include 'PHP/db_config.php';
     session_start();
 ?>
 <!DOCTYPE html>
@@ -41,6 +42,12 @@
         <!-- Products will be dynamically inserted here -->
     </div>
 
+    <?php if (isset($_SESSION['user_id'])): ?>
+    <h2>Product Recommendations</h2>
+    <div id="recommended-product-cards" class="product-cards">
+        <!-- Products will be dynamically inserted here -->
+    </div>
+    <?php endif; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="JS/login_script.js"></script>
 </body>

@@ -42,6 +42,19 @@
       <!-- Conditional rendering based on login status -->
       <?php if (isset($_SESSION['user_id'])): ?>
         <!-- User is logged in -->
+
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary position-relative" id="notificationIcon">
+                <i class="bi bi-bell"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    0
+                </span>
+            </button>
+            <ul class="dropdown-menu" id="notificationDropdown">
+                <!-- Notifications will be dynamically loaded here -->
+            </ul>
+        </div>
+
         <div class="dropdown">
           <button id="profileBtn" class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person"></i> Profile

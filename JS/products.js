@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const minPriceInput = document.getElementById('min-price');
     const maxPriceInput = document.getElementById('max-price');
     const productCards = document.getElementById('product-cards');
+    const recommendedProductCards = document.getElementById('recommended-product-cards');
 
 
     minPriceInput.addEventListener('input', function () {
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.onload = function () {
             if (xhr.status === 200) {
                 const products = JSON.parse(xhr.responseText);
-                displayProducts(products);
+                displayProducts(products, productCards);
             } else {
                 console.error('Failed to fetch products');
             }
@@ -35,30 +36,43 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.send();
     }
 
+
     // Display fetched products on the page
-    function displayProducts(products) {
-        productCards.innerHTML = '';
-        products.forEach(product => {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            
-            // Create a star rating based on the product rating
-            const ratingStars = getStars(product.rating);
+    function displayProducts(products, Cards) {
+        // Clear the Cards container
+        Cards.innerHTML = '';
     
-            card.innerHTML = `
-                <img src="images/${product.image_url}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p>${product.description}</p>
-                <p>$${product.price}</p>
-                <div class="rating">${ratingStars}</div>
-                <form class="add-to-cart-form" data-product-id="${product.id}">
-                    <input type="number" name="quantity" min="1" value="1">
-                    <button type="submit">Add to Cart</button>
-                </form>
-                <a href="product_details.php?id=${product.id}">More Info</a>
-            `;
-            productCards.appendChild(card);
-        });
+        // Check if there are products
+        if (products.length === 0) {
+            // Create and display a message if no products are found
+            const noItemsMessage = document.createElement('p');
+            noItemsMessage.textContent = 'Items not found';
+            noItemsMessage.className = 'no-items-message';
+            Cards.appendChild(noItemsMessage);
+        } else {
+            // Otherwise, create and display the product cards
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                // Create a star rating based on the product rating
+                const ratingStars = getStars(product.rating);
+        
+                card.innerHTML = `
+                    <img src="images/${product.image_url}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p>$${product.price}</p>
+                    <div class="rating">${ratingStars}</div>
+                    <form class="add-to-cart-form" data-product-id="${product.id}">
+                        <input type="number" name="quantity" min="1" value="1">
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                    <a href="product_details.php?id=${product.id}">More Info</a>
+                `;
+                Cards.appendChild(card);
+            });
+        }
     }
     
     // Function to generate star rating
@@ -136,6 +150,21 @@ document.addEventListener('DOMContentLoaded', function () {
     minPriceInput.addEventListener('input', fetchProducts);
     maxPriceInput.addEventListener('input', fetchProducts);
 
+
+    function fetchRecommendedProducts() {
+        fetch('PHP/fetch_recommended_products.php')
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data) && data.length > 0) {
+                    displayProducts(data, recommendedProductCards);
+                } else {
+                    console.log("No recommended products available or User not logged in");
+                }
+            })
+            .catch(error => console.error('Error fetching recommended products:', error));
+    }
     // Fetch products on initial page load
     fetchProducts();
+    fetchRecommendedProducts();
+    
 });

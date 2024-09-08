@@ -17,23 +17,81 @@ document.addEventListener("DOMContentLoaded", function() {
     const registerSection = document.getElementById('register-section');
     const forgotPasswordSection = document.getElementById('forgot-password-section');
 
+    // Notification Sections
+    const notificationIcon = document.getElementById('notificationIcon');
+    const notificationDropdown = document.getElementById('notificationDropdown');
+
+
+    fetch('PHP/check_login_status.php')
+        .then(response => response.json())
+        .then(data => {
+            // If user is logged in, modify the navbar to show profile options
+            if (data.loggedIn) {
+                fetchNotification()
+                // Initialize Bootstrap dropdown manually
+                const dropdownTrigger = new bootstrap.Dropdown(notificationIcon);
+
+                // Handle dropdown visibility
+                notificationIcon.addEventListener('click', function (event) {
+                    dropdownTrigger.toggle();
+                });
+
+            }
+        })
+        .catch(error => console.error('Error fetching login status:', error));
+
+    // Fetch notifications periodically
+    function fetchNotification(){
+        setInterval(() => {
+        fetch('PHP/get_notifications.php')
+            .then(response => response.json())
+            .then(data => {
+                let notificationCount = data.length;
+                if (notificationCount > 0) {
+                    notificationIcon.querySelector('.badge').textContent = notificationCount;
+                    let dropdownContent = '';
+                    data.forEach(notification => {
+                        dropdownContent += `<li>${notification.message} <button onclick="deleteNotification(${notification.id})">Delete</button></li>`;
+                    });
+                    notificationDropdown.innerHTML = dropdownContent;
+                } else {
+                    notificationDropdown.innerHTML = '<li>No new notifications</li>';
+                }
+            });
+        }, 5000);
+    }
+
+    // Function to delete notifications
+    window.deleteNotification = function(id) {
+        fetch(`PHP/delete_notification.php?id=${id}`)
+            .then(response => response.text())
+            .then(() => {
+                // Remove the notification from the dropdown
+                setTimeout(() => {
+                    notificationIcon.querySelector('.badge').textContent = '0';
+                    notificationDropdown.innerHTML = '<li>No new notifications</li>';
+                }, 1000);
+            });
+    };
+
+    
     // Show the login modal and blur the background content
     loginBtn.onclick = function() {
         loginModal.classList.add('show');
-        mainContent.classList.add('blur-background');
+        // mainContent.classList.add('blur-background');
     };
 
     // Close the modal when clicking the close button
     closeBtn.onclick = function() {
         loginModal.classList.remove('show');
-        mainContent.classList.remove('blur-background');
+        // mainContent.classList.remove('blur-background');
     };
 
     // Close the modal when clicking outside of it
     window.onclick = function(event) {
         if (event.target === loginModal) {
             loginModal.classList.remove('show');
-            mainContent.classList.remove('blur-background');
+            // mainContent.classList.remove('blur-background');
         }
     };
 
@@ -81,4 +139,5 @@ document.addEventListener("DOMContentLoaded", function() {
             dropdownMenu.classList.toggle('show');
         });
     }
+
 });
