@@ -1,0 +1,15 @@
+#message-box {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    z-index: 1000;
+    display: none;
+    min-width: 300px;
+    text-align: center;
+}
+#message-box.success {
+    background-color: green;
+    color: white;
+}
