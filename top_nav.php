@@ -79,6 +79,7 @@
 
 <div id="loginModal" class="login-modal">
     <div class="login-container">
+        <div id="message-box" class="message-box" style="display: none;"></div>
         <span id="closeBtn" class="close">&times;</span>
 
         <!-- Login Section -->
@@ -87,6 +88,7 @@
             <form action="PHP/login.php" method="POST">
                 <input type="text" name="emailOrUsername" class="form-control" placeholder="Username or Email" required>
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                 <button type="submit" class="btn-primary">Login</button>
             </form>
             <p>Forgot your password? <button id="show-forgot-password">Forgot Password</button></p>
@@ -101,6 +103,7 @@
                 <input type="text" name="fullname" class="form-control" placeholder="Full Name" required>
                 <input type="email" name="email" class="form-control" placeholder="Email" required>
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                 <button type="submit" class="btn-primary">Register</button>
             </form>
             <p>Already have an account? <button id="show-login-from-register">Login</button></p>
@@ -111,6 +114,7 @@
             <h2>Forgot Password</h2>
             <form action="PHP/forgot_password.php" method="POST">
                 <input type="email" name="email" class="form-control" placeholder="Email" required>
+                <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                 <button type="submit" class="btn-primary">Send Reset Link</button>
             </form>
             <p>Remember your password? <button id="show-login-from-forgot">Login</button></p>

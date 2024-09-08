@@ -4,6 +4,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailOrUsername = $_POST['emailOrUsername'];
         $password = $_POST['password'];
+        $return_url = isset($_POST['return_url']) ? $_POST['return_url'] : '../index.php';
 
         // Query to find the user by email or username
         $stmt = $conn->prepare("SELECT id, username, email, password FROM users WHERE username=? OR email=?");
@@ -21,12 +22,12 @@
                 session_start();
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
-                header("Location: ../index.php");
+                header("Location: $return_url?success=true&message=login_success");
             } else {
-                echo "Invalid password.";
+                header("Location: $return_url?success=false&error=invalid_password");
             }
         } else {
-            echo "User not found.";
+            header("Location: $return_url?success=false&error=email_not_found");
         }
         $stmt->close();
     }

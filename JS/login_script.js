@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+
     // Get the modal elements
     const loginModal = document.getElementById('loginModal');
     const loginBtn = document.getElementById('loginBtn');
@@ -138,6 +139,64 @@ document.addEventListener("DOMContentLoaded", function() {
             const dropdownMenu = profileBtn.nextElementSibling;
             dropdownMenu.classList.toggle('show');
         });
+    }
+
+    function getQueryParams() {
+        let params = {};
+        const queryString = window.location.search;
+        if (queryString) {
+            const pairs = queryString.substring(1).split("&");
+            pairs.forEach(pair => {
+                const [key, value] = pair.split("=");
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            });
+        }
+        return params;
+    }
+    
+    function displayMessage(message, type) {
+        const messageBox = document.createElement('div');
+        messageBox.className = `message-box ${type}`;
+        messageBox.textContent = message;
+        document.body.appendChild(messageBox);
+    
+        // Style the message box
+        messageBox.style.position = 'fixed';
+        messageBox.style.top = '20px';
+        messageBox.style.left = '50%';
+        messageBox.style.transform = 'translateX(-50%)';
+        messageBox.style.padding = '10px 20px';
+        messageBox.style.backgroundColor = type === 'success' ? 'green' : 'red';
+        messageBox.style.color = 'white';
+        messageBox.style.fontSize = '16px';
+        messageBox.style.zIndex = '9999';
+        messageBox.style.borderRadius = '5px';
+        messageBox.style.boxShadow = '0px 4px 6px rgba(0,0,0,0.1)';
+    
+        // Remove the message after 3 seconds
+        setTimeout(() => {
+            messageBox.remove();
+        }, 3000);
+    }
+
+    const params = getQueryParams();
+
+    if (params.success === 'false') {
+        if (params.error === 'register_error') {
+            displayMessage('Registration Error Occured', 'error');
+        } else if (params.error === 'invalid_password') {
+            displayMessage('Incorrect password. Please try again.', 'error');
+        } else if (params.error === 'email_not_found') {
+            displayMessage('No user found with this email.', 'error');
+        }
+    } else if (params.success === 'true') {
+        if (params.message === 'register_success') {
+            displayMessage('Registration successful!', 'success');
+        } else if (params.message === 'login_success') {
+            displayMessage('Logged In...', 'success');
+        }else if (params.message === 'email_sent') {
+            displayMessage('Email Sent...', 'success');
+        }
     }
 
 });
