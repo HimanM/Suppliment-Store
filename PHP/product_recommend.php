@@ -1,6 +1,5 @@
 <?php
 include 'db_config.php';
-session_start();
 
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401); // Unauthorized
@@ -94,19 +93,8 @@ if (!empty($recommended_products)) {
         }
     }
 }
-
-// For debugging purposes
-echo "<pre>";
-echo "Current Recommendations:\n";
-print_r($current_recommendations);
-
-echo "\nUser Categories:\n";
-print_r($categories);
-
-echo "\nRecommended Products:\n";
-print_r($recommended_products);
-echo "</pre>";
-
-// Remove the debug code later and return a JSON response
-// echo json_encode(["status" => "success"]);
+$message = "User Product recommend script executed";
+echo '<script>';
+echo 'console.log(' . json_encode($message) . ');';
+echo '</script>';
 ?>

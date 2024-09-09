@@ -49,6 +49,8 @@ $user_result = $stmt_user->get_result();
 $user = $user_result->fetch_assoc();
 $user_email = $user['email'];
 
+
+
 // Prepare email content
 $order_items_text = "";
 while ($item = $items_result->fetch_assoc()) {
@@ -112,8 +114,11 @@ while ($item = $items_result->fetch_assoc()) {
             </li>
         <?php endwhile; ?>
     </ul>
-
+    <?php
+        include 'PHP/product_recommend.php';
+    ?>
     <p>We will notify you once your order is processed and shipped.</p>
     <a href="index.php">Continue Shopping</a>
 </body>
 </html>
+
