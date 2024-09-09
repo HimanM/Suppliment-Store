@@ -17,7 +17,7 @@ $attachment = null;
 if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ERR_OK) {
     $fileTmpPath = $_FILES['attachment']['tmp_name'];
     $fileName = $_FILES['attachment']['name'];
-    $destination = "../images/uploads/" . $fileName;
+    $destination = "../images/disputeDocs/" . $fileName;
     move_uploaded_file($fileTmpPath, $destination);
     $attachment = $fileName;
 }

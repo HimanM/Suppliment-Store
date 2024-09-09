@@ -1,0 +1,5 @@
+/* disputes_overview.css */
+.scrollable-container {
+    max-height: 600px;
+    overflow-y: auto;
+}
