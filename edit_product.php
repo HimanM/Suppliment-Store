@@ -1,10 +1,8 @@
 <?php
-include '../PHP/db_config.php';
-session_start();
+include 'PHP/check_role_admin.php';
 
-// Check if the user is an admin
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
+if (!$authorized) {
+    echo "Unauthorized access";
     exit();
 }
 
@@ -96,9 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title><?= $is_editing ? 'Edit' : 'Add' ?> Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/edit_product.css">
+    <link rel="stylesheet" href="CSS/login_styles.css">
+    <link rel="stylesheet" href="CSS/edit_product.css">
 </head>
 <body>
+<?php include 'top_nav.php'; ?>
     <div class="container mt-4">
         <h2><?= $is_editing ? 'Edit' : 'Add' ?> Product</h2>
         <form action="" method="POST" enctype="multipart/form-data">
@@ -137,5 +137,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-primary"><?= $is_editing ? 'Update' : 'Add' ?> Product</button>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="JS/login_script.js"></script>
 </body>
 </html>

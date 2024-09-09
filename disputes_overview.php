@@ -1,6 +1,10 @@
 <?php
-include '../PHP/db_config.php';
-session_start();
+include 'PHP/check_role_admin.php';
+
+if (!$authorized) {
+    echo "Unauthorized access";
+    exit();
+}
 
 // Check if the user is an admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
@@ -19,8 +23,9 @@ $disputes = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Pending Disputes</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/disputes_overview.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/login_styles.css">
+    <link rel="stylesheet" href="CSS/disputes_overview.css">
 
     <style>
         .scrollable-container {
@@ -30,6 +35,7 @@ $disputes = $result->fetch_all(MYSQLI_ASSOC);
     </style>
 </head>
 <body>
+<?php include 'top_nav.php'; ?>
     <div class="container mt-4">
         <h2>Pending Disputes</h2>
         <div class="scrollable-container">
@@ -46,5 +52,8 @@ $disputes = $result->fetch_all(MYSQLI_ASSOC);
             <?php endif; ?>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="JS/login_script.js"></script>
 </body>
 </html>

@@ -1,8 +1,13 @@
 <?php
-include '../PHP/db_config.php';
-include '../PHP/api_handler.php'; // Include the API handler script
-include '../PHP/set_notification.php';
-session_start();
+include 'PHP/check_role_admin.php';
+include 'PHP/api_handler.php'; // Include the API handler script
+include 'PHP/set_notification.php';
+
+
+if (!$authorized) {
+    echo "Unauthorized access";
+    exit();
+}
 
 // Check if the user is an admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
@@ -82,8 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Dispute Detail</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/dispute_detail.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/login_styles.css">
+    <link rel="stylesheet" href="CSS/dispute_detail.css">
 
     <script>
         function confirmAction(message, formId) {
@@ -105,6 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
+<?php include 'top_nav.php'; ?>
     <div class="container mt-4">
         <h2>Dispute Details</h2>
         <!-- Display success message if email was sent -->
@@ -145,5 +152,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         <form id="statusUpdateForm" action="" method="POST"></form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="JS/login_script.js"></script>
 </body>
 </html>

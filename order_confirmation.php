@@ -87,9 +87,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/login_styles.css">
+    <link rel="stylesheet" href="CSS/order_confirmation_styles.css">
 </head>
 <body>
+<?php include 'top_nav.php'; ?>
     <h1>Order Confirmation</h1>
     <p>Thank you for your purchase! Your order details are below:</p>
 
@@ -118,6 +121,10 @@
     ?>
     <p>We will notify you once your order is processed and shipped.</p>
     <a href="index.php">Continue Shopping</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="JS/login_script.js"></script>
 </body>
 </html>
 

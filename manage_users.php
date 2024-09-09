@@ -1,10 +1,8 @@
 <?php
-include '../PHP/db_config.php';
-session_start();
+include 'PHP/check_role_admin.php';
 
-// Check if the user is an admin
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
+if (!$authorized) {
+    echo "Unauthorized access";
     exit();
 }
 
@@ -48,7 +46,8 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <title>Manage Users</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/manage_users.css">
+    <link rel="stylesheet" href="CSS/login_styles.css">
+    <link rel="stylesheet" href="CSS/manage_users.css">
     <script>
         function confirmAction(message, form) {
             if (confirm(message)) {
@@ -64,6 +63,7 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
     </style>
 </head>
 <body>
+<?php include 'top_nav.php'; ?>
     <div class="container mt-4">
         <h2>Manage Users</h2>
         <div class="scrollable-table">
@@ -103,5 +103,8 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
             </table>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="JS/login_script.js"></script>
 </body>
 </html>

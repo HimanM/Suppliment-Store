@@ -10,9 +10,8 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="products.php">Products</a>
-        </li>
+
+        <!-- User nav -->
         <?php if (!($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'nutritional_expert')):?>
           <li class="nav-item">
             <a class="nav-link" href="display_content.php">Information</a>
@@ -20,13 +19,50 @@
           <li class="nav-item">
             <a class="nav-link" href="recommendations.php">Get help</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.php">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.php">Cart</a>
+          </li>
+
+
+        <!-- Admin nav -->
+        <?php elseif($_SESSION['role'] == 'admin'): ?>
+          <li class="nav-item">
+            <a class="nav-link" href="manage_users.php">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="manage_products.php">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="disputes_overview.php">Disputes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="manage_orders.php">Orders</a>
+          </li>
+
+          <!-- nutritional_expert nav -->
+        <?php else: ?>
+          <li class="nav-item">
+            <a class="nav-link" href="display_content.php">Information</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="recommendations.php">Get help</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.php">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.php">Cart</a>
+          </li>
         <?php endif; ?>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php">Cart</a>
-        </li>
       </ul>
     <?php else: ?>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -43,7 +79,7 @@
           <a class="nav-link" href="#">Contact</a>
         </li>
       </ul>
-      <?php endif; ?>
+    <?php endif; ?>
       <!-- Conditional rendering based on login status -->
       <?php if (isset($_SESSION['user_id'])): ?>
         <!-- User is logged in -->
@@ -65,14 +101,17 @@
             <i class="bi bi-person"></i> Profile
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-            <li><a class="dropdown-item" href="disputes.php">Dispute Report</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="view_order.php">Orders</a></li>
-            <?php if ($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert'):?>
-              <li><a class="dropdown-item" href="Admin & Nutritional_expert\view_content.php">Edit Content</a></li>
-              <li><a class="dropdown-item" href="Admin & Nutritional_expert\admin_chat.php">Recommend/Chat</a></li>
+          <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+            <?php if (!($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert')):?>
+              <li><a class="dropdown-item" href="disputes.php">Dispute Report</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="view_order.php">Orders</a></li>
+
+            <?php elseif ($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert'):?>
+              <li><a class="dropdown-item" href="view_content.php">Edit Content</a></li>
+              <li><a class="dropdown-item" href="admin_chat.php">Recommend/Chat</a></li>
             <?php endif; ?>
+            
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-danger" href="PHP/logout.php">Logout</a></li>
           </ul>

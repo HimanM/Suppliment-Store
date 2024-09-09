@@ -1,5 +1,5 @@
 <?php
-include '../PHP/check_role.php';
+include 'PHP/check_role.php';
 
 if (!$authorized) {
     echo "Unauthorized access";
@@ -117,10 +117,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title><?= $isEdit ? 'Edit Content' : 'Add Content' ?></title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/add_content_styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/login_styles.css">
+    <link rel="stylesheet" href="CSS/add_content_styles.css">
 </head>
 <body>
+<?php include 'top_nav.php'; ?>
     <h2><?= $isEdit ? 'Edit Content' : 'Add Content' ?></h2>
     <div class="content-form-container">
         <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) . ($isEdit ? '?id=' . $contentId : '') ?>" method="POST" enctype="multipart/form-data">
@@ -142,5 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit"><?= $isEdit ? 'Update Content' : 'Add Content' ?></button>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="JS/login_script.js"></script>
 </body>
 </html>

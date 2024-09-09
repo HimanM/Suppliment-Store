@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fetch chat messages for the selected user
     function fetchMessages(userId) {
-        fetch(`../PHP/get_user_messages.php?user_id=${userId}`)
+        fetch(`PHP/get_user_messages.php?user_id=${userId}`)
             .then(response => response.json())
             .then(messages => {
                 chatBox.innerHTML = '';
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         const message = messageInput.value;
 
-        fetch('../PHP/send_message_to_user.php', {
+        fetch('PHP/send_message_to_user.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

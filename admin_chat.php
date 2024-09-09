@@ -1,10 +1,7 @@
 <?php
-include '../PHP/db_config.php';
-session_start();
+include 'PHP/check_role.php';
 
-// Ensure the user is admin or nutritional expert
-if (!isset($_SESSION['user_id']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'nutritional_expert')) {
-    http_response_code(403); // Forbidden
+if (!$authorized) {
     echo "Unauthorized access";
     exit();
 }
@@ -22,11 +19,13 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Admin Chat Panel</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/admin_chat_styles.css"> <!-- Add your CSS file here -->
-    <script src="../JS/admin_chat.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/login_styles.css">
+    <link rel="stylesheet" href="CSS/admin_chat_styles.css"> <!-- Add your CSS file here -->
+    <script src="JS/admin_chat.js" defer></script>
 </head>
 <body>
+<?php include 'top_nav.php'; ?>
     <div class="container mt-4">
         <h2>Chat with Users</h2>
         <div class="row">
@@ -55,5 +54,8 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="JS/login_script.js"></script>
 </body>
 </html>

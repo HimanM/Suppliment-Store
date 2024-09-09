@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData();
         formData.append('content_type', contentType);
 
-        fetch('../PHP/fetch_content.php', {
+        fetch('PHP/fetch_content.php', {
             method: 'POST',
             body: formData
         })
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function () {
                 const contentId = this.dataset.id;
-                window.location.href = `../Admin & Nutritional_expert/add_content.php?id=${contentId}`;
+                window.location.href = `add_content.php?id=${contentId}`;
             });
         });
 
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData();
         formData.append('content_id', contentId);
 
-        fetch('../Admin & Nutritional_expert/delete_content.php', {
+        fetch('PHP/delete_content.php', {
             method: 'POST',
             body: formData
         })
