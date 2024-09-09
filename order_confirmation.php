@@ -1,86 +1,81 @@
 <?php
-include 'PHP/db_config.php'; // Database connection
-session_start();
+    include 'PHP/db_config.php'; // Database connection
+    include 'PHP/api_handler.php';
+    session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit();
-}
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: login.php');
+        exit();
+    }
 
-$order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+    $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
 
-if ($order_id <= 0) {
-    echo "Invalid order ID.";
-    exit();
-}
+    if ($order_id <= 0) {
+        echo "Invalid order ID.";
+        exit();
+    }
 
-$user_id = $_SESSION['user_id'];
+    $user_id = $_SESSION['user_id'];
 
-// Fetch order details
-$sql_order = "SELECT * FROM orders WHERE id = ? AND user_id = ?";
-$stmt_order = $conn->prepare($sql_order);
-$stmt_order->bind_param("ii", $order_id, $user_id);
-$stmt_order->execute();
-$order_result = $stmt_order->get_result();
+    // Fetch order details
+    $sql_order = "SELECT * FROM orders WHERE id = ? AND user_id = ?";
+    $stmt_order = $conn->prepare($sql_order);
+    $stmt_order->bind_param("ii", $order_id, $user_id);
+    $stmt_order->execute();
+    $order_result = $stmt_order->get_result();
 
-if ($order_result->num_rows === 0) {
-    echo "Order not found.";
-    exit();
-}
+    if ($order_result->num_rows === 0) {
+        echo "Order not found.";
+        exit();
+    }
 
-$order = $order_result->fetch_assoc();
+    $order = $order_result->fetch_assoc();
 
-// Fetch order items
-$sql_items = "SELECT oi.quantity, oi.price, p.name 
-              FROM order_items oi 
-              JOIN products p ON oi.product_id = p.id 
-              WHERE oi.order_id = ?";
-$stmt_items = $conn->prepare($sql_items);
-$stmt_items->bind_param("i", $order_id);
-$stmt_items->execute();
-$items_result = $stmt_items->get_result();
+    // Fetch order items
+    $sql_items = "SELECT oi.quantity, oi.price, p.name 
+                FROM order_items oi 
+                JOIN products p ON oi.product_id = p.id 
+                WHERE oi.order_id = ?";
+    $stmt_items = $conn->prepare($sql_items);
+    $stmt_items->bind_param("i", $order_id);
+    $stmt_items->execute();
+    $items_result = $stmt_items->get_result();
 
-// Fetch user email
-$sql_user = "SELECT email FROM users WHERE id = ?";
-$stmt_user = $conn->prepare($sql_user);
-$stmt_user->bind_param("i", $user_id);
-$stmt_user->execute();
-$user_result = $stmt_user->get_result();
-$user = $user_result->fetch_assoc();
-$user_email = $user['email'];
+    // Fetch user email
+    $sql_user = "SELECT email FROM users WHERE id = ?";
+    $stmt_user = $conn->prepare($sql_user);
+    $stmt_user->bind_param("i", $user_id);
+    $stmt_user->execute();
+    $user_result = $stmt_user->get_result();
+    $user = $user_result->fetch_assoc();
+    $user_email = $user['email'];
 
 
 
-// Prepare email content
-$order_items_text = "";
-while ($item = $items_result->fetch_assoc()) {
-    $order_items_text .= htmlspecialchars($item['name']) . " (Quantity: " . $item['quantity'] . ") - $" . number_format($item['price'], 2) . "\n";
-}
+    // Prepare email content
+    $order_items_text = "";
+    while ($item = $items_result->fetch_assoc()) {
+        $order_items_text .= htmlspecialchars($item['name']) . " (Quantity: " . $item['quantity'] . ") - $" . number_format($item['price'], 2) . "\n";
+    }
 
-// $email_subject = "Order Confirmation - Order #" . $order['id'];
-// $email_body = "Dear Customer,\n\n" .
-//               "Thank you for your purchase! Your order details are below:\n\n" .
-//               "Order ID: " . $order['id'] . "\n" .
-//               "Order Date: " . $order['created_at'] . "\n" .
-//               "Total: $" . number_format($order['total'], 2) . "\n" .
-//               "Shipping Address: " . htmlspecialchars($order['shipping_address']) . "\n" .
-//               "Billing Address: " . htmlspecialchars($order['billing_address']) . "\n" .
-//               "Payment Status: " . ucfirst($order['payment_status']) . "\n\n" .
-//               "Order Items:\n" .
-//               $order_items_text . "\n\n" .
-//               "We will notify you once your order is processed and shipped.\n\n" .
-//               "Best regards,\nYour Company";
+    $email_subject = "Order Confirmation - Order #" . $order['id'];
+    $email_body = "Dear Customer,\n\n" .
+                "Thank you for your purchase! Your order details are below:\n\n" .
+                "Order ID: " . $order['id'] . "\n" .
+                "Order Date: " . $order['created_at'] . "\n" .
+                "Total: $" . number_format($order['total'], 2) . "\n" .
+                "Shipping Address: " . htmlspecialchars($order['shipping_address']) . "\n" .
+                "Billing Address: " . htmlspecialchars($order['billing_address']) . "\n" .
+                "Payment Status: " . ucfirst($order['payment_status']) . "\n\n" .
+                "Order Items:\n" .
+                $order_items_text . "\n\n" .
+                "We will notify you once your order is processed and shipped.\n\n" .
+                "Best regards,\nSuppliment Store";
 
-// // Call the API to send the email
-// $api_url = "https://send_mail?user_email=" . urlencode($user_email) . "&content=" . urlencode($email_body);
-// $response = file_get_contents($api_url);
-
-// // Optionally check the response from the API
-// if ($response === FALSE) {
-//     // Handle error
-//     error_log("Failed to send email to $user_email");
-// }
+    // Call the function to send the mail
+    send_mail_api($user_email, $email_subject, $email_body );
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
