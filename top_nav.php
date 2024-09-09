@@ -66,6 +66,7 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+            <li><a class="dropdown-item" href="disputes.php">Dispute Report</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="view_order.php">Orders</a></li>
             <?php if ($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert'):?>
