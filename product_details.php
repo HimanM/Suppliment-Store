@@ -7,11 +7,15 @@ session_start();
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 // Fetch product details
-$sql = "SELECT * FROM products WHERE id = ?";
-$stmt = $conn->prepare($sql);
+$query = "SELECT products.*, inventory.stock AS stock 
+              FROM products 
+              LEFT JOIN inventory ON products.id = inventory.product_id 
+              WHERE products.id = ?";
+$stmt = $conn->prepare($query);
 $stmt->bind_param("i", $product_id);
 $stmt->execute();
-$product = $stmt->get_result()->fetch_assoc();
+$result = $stmt->get_result();
+$product = $result->fetch_assoc();
 
 // Check if product exists
 if (!$product) {
