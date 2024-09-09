@@ -9,8 +9,8 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $disputeType = $_POST['dispute_type'];
 $message = $_POST['message'];
-$orderId = $_POST['orderId'] ?? null;
-$productId = $_POST['productId'] ?? null;
+$orderId = $_POST['order_id'] ?? null;
+$productId = $_POST['product_id'] ?? null;
 $attachment = null;
 
 // Handle file upload
