@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`,`product_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -49,6 +49,7 @@ DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
   `body` text NOT NULL,
   `author_id` int NOT NULL,
   `type` enum('article','guide','blog_post') NOT NULL,
@@ -56,16 +57,47 @@ CREATE TABLE IF NOT EXISTS `content` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `author_id` (`author_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `content`
 --
 
-INSERT INTO `content` (`id`, `title`, `body`, `author_id`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'The Importance of Protein in Your Diet', 'Protein is essential for muscle repair and growth...', 3, 'article', '2024-09-05 23:40:24', '2024-09-05 23:40:24'),
-(2, 'How to Choose the Right Multivitamin', 'When selecting a multivitamin, consider...', 3, 'guide', '2024-09-05 23:40:24', '2024-09-05 23:40:24'),
-(3, 'Benefits of Omega-3 Fatty Acids', 'Omega-3s are crucial for heart and brain health...', 3, 'blog_post', '2024-09-05 23:40:24', '2024-09-05 23:40:24');
+INSERT INTO `content` (`id`, `title`, `image_url`, `body`, `author_id`, `type`, `created_at`, `updated_at`) VALUES
+(2, 'How to Choose the Right Multivitamin', NULL, 'When selecting a multivitamin, consider...', 3, 'blog_post', '2024-09-05 23:40:24', '2024-09-09 00:37:12'),
+(3, 'Benefits of Omega-3 Fatty Acids', NULL, 'Omega-3s are crucial for heart and brain health...', 3, 'blog_post', '2024-09-05 23:40:24', '2024-09-05 23:40:24'),
+(5, 'test 2 ', '', 'admib no 7', 7, 'guide', '2024-09-09 00:42:01', '2024-09-09 00:42:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `disputes`
+--
+
+DROP TABLE IF EXISTS `disputes`;
+CREATE TABLE IF NOT EXISTS `disputes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `dispute_type` enum('general','order','product') DEFAULT NULL,
+  `order_id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `message` text,
+  `attachment` varchar(255) DEFAULT NULL,
+  `status` enum('pending','resolved') DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `order_id` (`order_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `disputes`
+--
+
+INSERT INTO `disputes` (`id`, `user_id`, `dispute_type`, `order_id`, `product_id`, `message`, `attachment`, `status`, `created_at`, `updated_at`) VALUES
+(9, 5, 'order', 4, 0, 'i have a problem about this order', NULL, 'resolved', '2024-09-09 07:01:08', '2024-09-09 07:34:46');
 
 -- --------------------------------------------------------
 
@@ -86,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `inventory` (
 --
 
 INSERT INTO `inventory` (`product_id`, `stock`, `last_updated`) VALUES
-(1, 100, '2024-09-05 23:40:24'),
+(1, 99, '2024-09-09 05:07:03'),
 (2, 199, '2024-09-07 01:31:10'),
 (3, 150, '2024-09-05 23:40:24'),
 (4, 80, '2024-09-05 23:40:24');
@@ -107,15 +139,40 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`),
   KEY `sender_id` (`sender_id`),
   KEY `receiver_id` (`receiver_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `messages`
 --
 
 INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `sent_at`) VALUES
-(1, 1, 3, 'Hi, could you suggest a good protein supplement for beginners?', '2024-09-05 23:40:24'),
-(2, 3, 1, 'I recommend starting with whey protein, it’s great for beginners and pros alike.', '2024-09-05 23:40:24');
+(1, 5, 3, 'Hi, could you suggest a good protein supplement for beginners?', '2024-09-05 23:40:24'),
+(2, 3, 5, 'I recommend starting with whey protein, it’s great for beginners and pros alike.', '2024-09-05 23:40:24'),
+(3, 5, 3, 'ok thanks', '2024-09-08 05:18:09'),
+(4, 7, 0, 'hello', '2024-09-09 01:07:12'),
+(5, 7, 5, 'hi', '2024-09-09 01:07:30'),
+(6, 5, 3, 'hello test message', '2024-09-09 03:05:19'),
+(7, 7, 5, 'hello again from admin', '2024-09-09 03:10:37'),
+(8, 7, 5, 'hello again from admin', '2024-09-09 03:11:21'),
+(9, 8, 3, 'hello', '2024-09-09 03:24:28'),
+(10, 7, 8, 'hello doe', '2024-09-09 03:24:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `message` text NOT NULL,
+  `is_read` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -136,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `payment_status` enum('pending','paid','failed') DEFAULT 'pending',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `orders`
@@ -146,8 +203,9 @@ INSERT INTO `orders` (`id`, `user_id`, `total`, `status`, `created_at`, `updated
 (1, 1, 59.98, 'pending', '2024-09-05 23:40:24', '2024-09-05 23:40:24', '', '', 'pending'),
 (2, 1, 29.99, 'shipped', '2024-09-05 23:40:24', '2024-09-05 23:40:24', '', '', 'pending'),
 (3, 2, 15.49, 'delivered', '2024-09-05 23:40:24', '2024-09-05 23:40:24', '', '', 'pending'),
-(4, 5, 15.49, 'cancelled', '2024-09-06 07:53:08', '2024-09-06 21:46:45', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', 'paid'),
-(5, 5, 15.49, 'shipped', '2024-09-07 01:31:10', '2024-09-07 01:33:08', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', 'paid');
+(4, 5, 15.49, 'shipped', '2024-09-06 07:53:08', '2024-09-09 06:49:33', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', 'paid'),
+(5, 5, 15.49, 'shipped', '2024-09-07 01:31:10', '2024-09-07 01:33:08', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', 'paid'),
+(6, 7, 29.99, 'pending', '2024-09-09 01:22:07', '2024-09-09 01:22:07', 'some addr', 'some addr', 'paid');
 
 -- --------------------------------------------------------
 
@@ -165,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `order_items`
@@ -176,7 +234,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) 
 (2, 2, 2, 1, 15.49),
 (3, 3, 3, 1, 12.99),
 (4, 4, 2, 1, 15.49),
-(5, 5, 2, 1, 15.49);
+(5, 5, 2, 1, 15.49),
+(6, 6, 1, 1, 29.99);
 
 -- --------------------------------------------------------
 
@@ -192,7 +251,6 @@ CREATE TABLE IF NOT EXISTS `products` (
   `detailed_description` text,
   `price` decimal(10,2) NOT NULL,
   `category` varchar(50) NOT NULL,
-  `stock` int DEFAULT '0',
   `image_url` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -205,11 +263,11 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `detailed_description`, `price`, `category`, `stock`, `image_url`, `created_at`, `updated_at`, `brand`, `rating`) VALUES
-(1, 'Whey Protein', 'High-quality whey protein powder for muscle recovery.', NULL, 29.99, 'Protein', 100, 'whey_protein.jpg', '2024-09-05 23:40:24', '2024-09-07 00:49:07', 'brand1', 5.00),
-(2, 'Multivitamin', 'Daily multivitamin supplement for overall health.', NULL, 15.49, 'Vitamins', 200, 'multivitamin.jpg', '2024-09-05 23:40:24', '2024-09-07 01:41:58', 'brand1', 2.50),
-(3, 'Omega-3 Fish Oil', 'Omega-3 fish oil capsules to support heart health.', NULL, 12.99, 'Oils', 150, 'omega3_fish_oil.jpg', '2024-09-05 23:40:24', '2024-09-07 00:49:07', 'brand2', 5.00),
-(4, 'Creatine Monohydrate', 'Creatine for enhanced performance and strength.', NULL, 19.99, 'Performance', 80, 'creatine_monohydrate.jpg', '2024-09-05 23:40:24', '2024-09-06 05:22:41', 'brand2', 0.00);
+INSERT INTO `products` (`id`, `name`, `description`, `detailed_description`, `price`, `category`, `image_url`, `created_at`, `updated_at`, `brand`, `rating`) VALUES
+(1, 'Whey Protein', 'High-quality whey protein powder for muscle recovery.', 'detailed description', 29.99, 'Protein', 'pfp.png', '2024-09-05 23:40:24', '2024-09-09 05:07:03', 'brand1', 5.00),
+(2, 'Multivitamin', 'Daily multivitamin supplement for overall health.', NULL, 15.49, 'Vitamins', 'multivitamin.jpg', '2024-09-05 23:40:24', '2024-09-07 01:41:58', 'brand1', 2.50),
+(3, 'Omega-3 Fish Oil', 'Omega-3 fish oil capsules to support heart health.', NULL, 12.99, 'Oils', 'omega3_fish_oil.jpg', '2024-09-05 23:40:24', '2024-09-07 00:49:07', 'brand2', 5.00),
+(4, 'Creatine Monohydrate', 'Creatine for enhanced performance and strength.', NULL, 19.99, 'Performance', 'creatine_monohydrate.jpg', '2024-09-05 23:40:24', '2024-09-06 05:22:41', 'brand2', 0.00);
 
 -- --------------------------------------------------------
 
@@ -256,9 +314,11 @@ CREATE TABLE IF NOT EXISTS `recommendations` (
 --
 
 INSERT INTO `recommendations` (`user_id`, `product_id`, `recommended_at`) VALUES
-(1, 1, '2024-09-05 23:40:24'),
-(1, 4, '2024-09-05 23:40:24'),
-(2, 2, '2024-09-05 23:40:24');
+(5, 1, '2024-09-05 23:40:24'),
+(5, 4, '2024-09-05 23:40:24'),
+(2, 2, '2024-09-05 23:40:24'),
+(5, 2, '2024-09-08 06:42:13'),
+(7, 1, '2024-09-09 01:22:19');
 
 -- --------------------------------------------------------
 
@@ -308,20 +368,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `role`, `password`, `created_at`, `offer_notifications`) VALUES
-(1, 'john_doe', 'John Doe', 'john.doe@example.com', 'registered', 'hashed_password_1', '2024-09-05 23:40:24', 'no'),
-(2, 'admin_user', 'Admin User', 'admin@example.com', 'admin', 'hashed_password_2', '2024-09-05 23:40:24', 'no'),
+(8, 'john_doe', 'john doe', 'john.doe@example.com', 'nutritional_expert', '$2y$10$Up7x0tr3ucSc0f7D1zEs8.tP/IeSwthDLjj//0n2oUyeLR7V16ob2', '2024-09-09 03:24:11', 'yes'),
 (3, 'jane_smith', 'Jane Smith', 'jane.smith@example.com', 'nutritional_expert', 'hashed_password_3', '2024-09-05 23:40:24', 'no'),
-(4, 'guest_user', 'Guest User', 'guest.user@example.com', 'unregistered', 'hashed_password_4', '2024-09-05 23:40:24', 'no'),
-(5, 'Himan', 'Himan Manduja', 'hghimanmanduja@gmail.com', 'registered', '$2y$10$PErG.7yD4BZSLk47TZmuVu2ASQrR1wxvVeODipyAXXNsPs5MOQ7Bm', '2024-09-06 00:44:38', 'no');
+(5, 'Himan', 'Himan Manduja', 'hghimanmanduja@gmail.com', 'registered', '$2y$10$PErG.7yD4BZSLk47TZmuVu2ASQrR1wxvVeODipyAXXNsPs5MOQ7Bm', '2024-09-06 00:44:38', 'no'),
+(7, 'admin', 'admin', 'admin@admin.com', 'admin', '$2y$10$LRYBh75259kMxLj/cWmITOLSSIygGyIjWMcArByZ/yi3cEVEUohfa', '2024-09-09 00:29:57', 'no');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
