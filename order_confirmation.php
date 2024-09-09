@@ -1,6 +1,8 @@
 <?php
     include 'PHP/db_config.php'; // Database connection
     include 'PHP/api_handler.php';
+    include 'PHP/set_notification.php';
+    
     session_start();
 
     if (!isset($_SESSION['user_id'])) {
@@ -72,8 +74,10 @@
                 "We will notify you once your order is processed and shipped.\n\n" .
                 "Best regards,\nSuppliment Store";
 
+    $message = "Order Placed - Order #" . $order['id'];
     // Call the function to send the mail
     send_mail_api($user_email, $email_subject, $email_body );
+    setNotification($user_id, $message)
 ?>
 
 
