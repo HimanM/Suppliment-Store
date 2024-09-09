@@ -57,13 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `message=${encodeURIComponent(message)}&receiver_id=${selectedUserId}`
+            body: `message=${encodeURIComponent(message)}&receiver_id=${currentUserId}`
         })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     messageInput.value = '';  // Clear the input field
-                    fetchMessages(selectedUserId);  // Refresh the chat box
+                    fetchMessages(currentUserId);  // Refresh the chat box
                 } else {
                     console.error('Error sending message:', data.error);
                 }

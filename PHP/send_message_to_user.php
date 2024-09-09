@@ -1,6 +1,6 @@
 <?php
 include 'db_config.php';
-include 'PHP/set_notification.php';
+include 'set_notification.php';
 session_start();
 
 // Ensure the admin or expert is logged in
@@ -20,7 +20,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("iis", $sender_id, $receiver_id, $message);
 
 if ($stmt->execute()) {
-    setNotification($receiver_id, "You Have A New Message")
+    setNotification($receiver_id, "You Have A New Message");
     echo json_encode(["success" => "Message sent"]);
 } else {
     http_response_code(500); // Internal Server Error
