@@ -7,7 +7,21 @@
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $query = "INSERT INTO users (username, full_name, email, role, password) VALUES (?, ?, ?, 'registered', ?, 'no')";
+    // // Check if username already exists
+    $query = "SELECT id FROM users WHERE username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        // Username exists, redirect with error
+        header("Location: $return_url?success=false&error=username_taken");
+        echo("username taken");
+        exit();
+    } 
+
+    $query = "INSERT INTO users (username, full_name, email, role, password, offer_notifications) VALUES (?, ?, ?, 'registered', ?, 'no')";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ssss", $username, $fullName, $email, $password);
 

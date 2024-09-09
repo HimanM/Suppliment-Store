@@ -7,7 +7,7 @@
         $return_url = isset($_POST['return_url']) ? $_POST['return_url'] : '../index.php';
 
         // Query to find the user by email or username
-        $stmt = $conn->prepare("SELECT id, username, email, password FROM users WHERE username=? OR email=?");
+        $stmt = $conn->prepare("SELECT id, username, email, password, role FROM users WHERE username=? OR email=?");
         $stmt->bind_param("ss", $emailOrUsername, $emailOrUsername);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -21,6 +21,7 @@
                 // Start session and redirect to dashboard or home page
                 session_start();
                 $_SESSION['user_id'] = $user['id'];
+                $_SESSION['role'] = $user['role'];
                 $_SESSION['username'] = $user['username'];
                 header("Location: $return_url?success=true&message=login_success");
             } else {

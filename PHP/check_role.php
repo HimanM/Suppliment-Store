@@ -3,15 +3,13 @@ session_start();
 include 'db_config.php';
 
 
-//TODO edit this, this for debugging
-// if (!isset($_SESSION['user_id'])) {
-//     header("Location: login.php");
-//     exit();
-// }
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
 
-// $user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 
-$user_id = '3';
 
 $sql = "SELECT role FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);

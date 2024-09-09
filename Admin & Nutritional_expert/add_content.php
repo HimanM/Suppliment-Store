@@ -83,9 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare($sql);
         
         if ($imageUpdated) {
-            $stmt->bind_param("sssisi", $title, $body, $type, $image_url, $author_id, $contentId);
+            $stmt->bind_param("ssssi", $title, $body, $type, $image_url, $contentId);
         } else {
-            $stmt->bind_param("sssii", $title, $body, $type, $author_id, $contentId);
+            $stmt->bind_param("sssi", $title, $body, $type, $contentId);
         }
 
         if ($stmt->execute()) {
@@ -117,27 +117,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title><?= $isEdit ? 'Edit Content' : 'Add Content' ?></title>
-    <link rel="stylesheet" href="CSS/content_styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/add_content_styles.css">
 </head>
 <body>
     <h2><?= $isEdit ? 'Edit Content' : 'Add Content' ?></h2>
-    <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) . ($isEdit ? '?id=' . $contentId : '') ?>" method="POST" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($title) ?>" required><br><br>
-        <textarea name="body" placeholder="Content Body" required><?= htmlspecialchars($body) ?></textarea><br><br>
-        <select name="type" required>
-            <option value="article" <?= $type == 'article' ? 'selected' : '' ?>>Article</option>
-            <option value="guide" <?= $type == 'guide' ? 'selected' : '' ?>>Guide</option>
-            <option value="blog_post" <?= $type == 'blog_post' ? 'selected' : '' ?>>Blog Post</option>
-        </select><br><br>
-        
-        <!-- Show current image if editing -->
-        <?php if ($isEdit && $image_url): ?>
-            <p>Current Image:</p>
-            <img src="../images/content/<?= htmlspecialchars($image_url) ?>" alt="<?= htmlspecialchars($title) ?>" width="150"><br><br>
-        <?php endif; ?>
-        
-        <input type="file" name="image" accept="image/jpeg, image/png"><br><br>
-        <button type="submit"><?= $isEdit ? 'Update Content' : 'Add Content' ?></button>
-    </form>
+    <div class="content-form-container">
+        <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) . ($isEdit ? '?id=' . $contentId : '') ?>" method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($title) ?>" required><br><br>
+            <textarea name="body" placeholder="Content Body" required><?= htmlspecialchars($body) ?></textarea><br><br>
+            <select name="type" required>
+                <option value="article" <?= $type == 'article' ? 'selected' : '' ?>>Article</option>
+                <option value="guide" <?= $type == 'guide' ? 'selected' : '' ?>>Guide</option>
+                <option value="blog_post" <?= $type == 'blog_post' ? 'selected' : '' ?>>Blog Post</option>
+            </select><br><br>
+            
+            <!-- Show current image if editing -->
+            <?php if ($isEdit && $image_url): ?>
+                <p>Current Image:</p>
+                <img src="../images/content/<?= htmlspecialchars($image_url) ?>" alt="<?= htmlspecialchars($title) ?>" width="150"><br><br>
+            <?php endif; ?>
+            
+            <input type="file" name="image" accept="image/jpeg, image/png"><br><br>
+            <button type="submit"><?= $isEdit ? 'Update Content' : 'Add Content' ?></button>
+        </form>
+    </div>
 </body>
 </html>

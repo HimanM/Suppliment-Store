@@ -15,7 +15,8 @@ if (!$authorized) {
 </head>
 <body>
     <h2>Manage Content</h2>
-
+    <button onclick="window.location.href='add_content.php'">Add New Content</button>
+    <br>
     <!-- Content Type Filter -->
     <label for="content_type">Filter by content type:</label>
     <select name="content_type" id="content_type">

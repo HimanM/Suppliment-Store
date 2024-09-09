@@ -63,6 +63,9 @@
             <li><a class="dropdown-item" href="profile.php">Profile</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="view_order.php">Orders</a></li>
+            <?php if ($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert'):?>
+              <li><a class="dropdown-item" href="Admin & Nutritional_expert\view_content.php">Edit Content</a></li>
+            <?php endif; ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-danger" href="PHP/logout.php">Logout</a></li>
           </ul>
