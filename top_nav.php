@@ -44,6 +44,9 @@
           <li class="nav-item">
             <a class="nav-link" href="manage_orders.php">Orders</a>
           </li>
+          <li class="nav-item">
+              <a class="nav-link" href="send_promotion.php" target="_blank">Promo Emails</a>
+          </li>
 
           <!-- nutritional_expert nav -->
         <?php else: ?>
