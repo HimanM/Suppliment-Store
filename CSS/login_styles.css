@@ -85,7 +85,7 @@ p {
     display: none;
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 0; /* Aligns the right edge of the dropdown with the button */
     z-index: 1000;
     width: 200px;
     padding: 0.5rem 0;
@@ -94,10 +94,8 @@ p {
     border: 1px solid #dee2e6;
     border-radius: 0.375rem;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-.dropdown-menu.show {
-    display: block;
+    overflow: hidden; /* Ensure it doesn’t create scrollbars inside */
+    white-space: nowrap; /* Prevent wrapping of text */
 }
 
 .dropdown-item {
