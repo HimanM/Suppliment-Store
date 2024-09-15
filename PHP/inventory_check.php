@@ -1,5 +1,5 @@
 <?php
-// Include set_notification function
+// Include set_notification functio
 include 'set_notification.php';
 include 'check_role_admin.php';
 
