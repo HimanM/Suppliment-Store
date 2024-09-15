@@ -62,6 +62,18 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 5000);
     }
 
+    setInterval(function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "PHP/inventory_check.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText); // Optionally display the response
+            }
+        };
+        xhr.send();
+    }, 60000); 
+
+
     // Function to delete notifications
     window.deleteNotification = function(id) {
         fetch(`PHP/delete_notification.php?id=${id}`)
