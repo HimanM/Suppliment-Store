@@ -1,27 +1,4 @@
-<?php
-include 'PHP/check_role.php';
 
-if (!$authorized) {
-    echo "Unauthorized access";
-    exit();
-}
-
-// Fetch all users who have sent or received messages
-$sql = "SELECT DISTINCT users.username, users.id FROM users
-        INNER JOIN messages ON users.id = messages.sender_id OR users.id = messages.receiver_id
-        WHERE users.role = 'registered'";
-$result = $conn->query($sql);
-$users = $result->fetch_all(MYSQLI_ASSOC);
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Chat Panel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/login_styles.css">
-    <link rel="stylesheet" href="CSS/admin_chat_styles.css"> <!-- Add your CSS file here -->
     <script src="JS/admin_chat.js" defer></script>
 </head>
 <body>
