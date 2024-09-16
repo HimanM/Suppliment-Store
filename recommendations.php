@@ -17,18 +17,30 @@ $user_id = $_SESSION['user_id'];
     <link rel="stylesheet" href="CSS/recommendations.css">
 </head>
 <body>
-<?php include 'top_nav.php'; ?>
+    <?php include 'top_nav.php'; ?>
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-6 chat-section">
-                <h2>Chat with Nutritional Expert</h2>
-                <div class="chat-box" id="chatBox"></div>
-                <form id="chatForm">
-                    <textarea id="messageInput" placeholder="Type your message..." required></textarea>
-                    <button type="submit" class="btn btn-primary mt-2">Send</button>
-                </form>
+    <div class="chat">
+        <div class="card-container">
+        <div class="card-header">
+            <img src="images\uploads\pfp.png" alt="Himan" class="img-avatar"></img>
+            <div class="text-chat">Chat with Expert</div>
+        </div>
+        <div class="chat-box">
+            <div class="messages-container">
+                <!-- <div class="message-box left">
+                    <p>Hello, How are you?</p>
+                </div>
+                <div class="message-box right">
+                    <p>I'm good, thanks for asking! How about you?</p>
+                </div> -->
             </div>
+            <div class="message-input">
+            <form id ="chatForm">
+                <textarea id = "messageInput" placeholder="Type your message here" class="message-send"></textarea>
+                <button type="submit" class="button-send">Send</button>
+            </form>
+            </div>
+        </div>
         </div>
     </div>
     

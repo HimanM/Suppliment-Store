@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const chatForm = document.querySelector('#chatForm');
     const messageInput = document.querySelector('#messageInput');
-    const chatBox = document.querySelector('.chat-box');
+    const chatBox = document.querySelector('.messages-container');
 
     // Fetch and display chat messages
     function fetchMessages() {
@@ -11,18 +11,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 chatBox.innerHTML = '';
                 messages.forEach(message => {
                     const messageDiv = document.createElement('div');
-                    messageDiv.classList.add('chat-message');
+                    messageDiv.classList.add('chat-message-box');
 
                     if (message.sender_id == currentUser) {
-                        messageDiv.innerHTML = `<p><strong>You:</strong> ${message.message}</p>`;
+                        
+                        messageDiv.classList.add('right');
+                        messageDiv.innerHTML = `<p>${message.message}</p>`;
                     } else {
-                        messageDiv.innerHTML = `<p><strong>Expert:</strong> ${message.message}</p>`;
+                        messageDiv.classList.add('left');
+                        messageDiv.innerHTML = `<p>${message.message}</p>`;
                     }
 
                     chatBox.appendChild(messageDiv);
                 });
             })
             .catch(error => console.error('Error fetching messages:', error));
+            updateScroll();
     }
 
     // Send a new message
@@ -47,8 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(error => console.error('Error sending message:', error));
+            updateScroll();
     });
 
+    function updateScroll(){
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
     // Fetch messages on page load
     fetchMessages();
+    
 });
