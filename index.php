@@ -19,6 +19,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="CSS/login_styles.css">
     <title>Supplement Store</title>
+    <style>
+        body {
+            background-image: url("./images/bg1.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+        }
+        .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+   
+}
+
+.container h1 {
+    font-size: 3rem; /* Larger font size */
+    font-weight: bold;
+    color: white; /* White color for the text */
+    margin: 0;
+}
+
+.container p {
+    font-size: 1.5rem; /* Slightly larger font size for paragraph */
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+        </style>
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
