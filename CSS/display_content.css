@@ -10,3 +10,54 @@
 .container {
     margin-top: 50px;
 }
+
+/* General styles for the card component */
+.card {
+    margin-bottom: 20px; /* Space between cards */
+    border: 1px solid #e0e0e0; /* Light border for card definition */
+    border-radius: 0.5rem; /* Rounded corners */
+    transition: transform 0.3s ease; /* Smooth transform transition */
+}
+
+/* Hover effect for card */
+.card:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+}
+
+/* Adjusting the card image */
+.card-img-top {
+    height: 200px; /* Fixed height for image */
+    object-fit: cover; /* Cover the area without distortion */
+}
+
+/* Container styling */
+.container {
+    margin-top: 50px; /* Space above the container */
+}
+
+/* Responsive adjustments for the card body */
+.card-body {
+    display: flex; /* Use flexbox for card content alignment */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Space between title and button */
+}
+
+/* Adjust button styles */
+.btn-primary {
+    margin-top: auto; /* Push button to the bottom of the card */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 100%; /* Full width on smaller screens */
+        max-width: 100%; /* Ensure full width */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .col-md-4 {
+        flex: 0 0 48%; /* Two cards per row */
+        max-width: 48%; /* Limit width for two columns */
+    }
+}
