@@ -1,3 +1,38 @@
+/* Center navigation and make it transparent */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.377); /* 50% transparency */
+    padding: 10px;
+}
+
+/* Center the navbar links */
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Centers the navigation links */
+    flex: 1; /* Fills the available space */
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+/* Style for navbar links */
+.nav-link {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: white; /* White font color */
+    text-transform: uppercase;
+    transition: all 0.3s ease; /* Smooth hover effect */
+    text-decoration: none;
+}
+
+/* Hover effect */
+.nav-link:hover {
+    background-color: black;
+    color: red; /* Red text on hover */
+    padding: 5px 10px; /* Padding for hover effect */
+    border-radius: 5px; /* Rounded corners */
+}
+
 
 /* Base styles for the body */
 body {

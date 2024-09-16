@@ -1,87 +1,83 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index.php">Supplement Store</a>
+    <a class="navbar-brand" href="index.php">SUPPLEMENT STORE</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-    <?php if (isset($_SESSION['user_id'])): ?>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-        </li>
-
-        <!-- User nav -->
-        <?php if (!($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'nutritional_expert')):?>
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="display_content.php">Information</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="recommendations.php">Get help</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products.php">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cart.php">Cart</a>
-          </li>
-
-
-        <!-- Admin nav -->
-        <?php elseif($_SESSION['role'] == 'admin'): ?>
-          <li class="nav-item">
-            <a class="nav-link" href="manage_users.php">Users</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manage_products.php">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="disputes_overview.php">Disputes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manage_orders.php">Orders</a>
-          </li>
-          <li class="nav-item">
+          <!-- User nav -->
+          <?php if (!($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'nutritional_expert')):?>
+            <li class="nav-item">
+              <a class="nav-link" href="display_content.php">Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="recommendations.php">Get help</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.php">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cart.php">Cart</a>
+            </li>
+          <?php elseif($_SESSION['role'] == 'admin'): ?>
+            <!-- Admin nav -->
+            <li class="nav-item">
+              <a class="nav-link" href="manage_users.php">Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manage_products.php">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="disputes_overview.php">Disputes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manage_orders.php">Orders</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="send_promotion.php" target="_blank">Promo Emails</a>
-          </li>
-
-          <!-- nutritional_expert nav -->
-        <?php else: ?>
+            </li>
+          <?php else: ?>
+            <!-- Nutritional expert nav -->
+            <li class="nav-item">
+              <a class="nav-link" href="display_content.php">Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="recommendations.php">Get help</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.php">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cart.php">Cart</a>
+            </li>
+          <?php endif; ?>
+        </ul>
+      <?php else: ?>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="display_content.php">Information</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="recommendations.php">Get help</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="products.php">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="display_content.php">Information</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cart.php">Cart</a>
+            <a class="nav-link" href="#">Contact</a>
           </li>
-        <?php endif; ?>
-      </ul>
-    <?php else: ?>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="products.php">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="display_content.php">Information</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
+        </ul>
     <?php endif; ?>
       <!-- Conditional rendering based on login status -->
       <?php if (isset($_SESSION['user_id'])): ?>
