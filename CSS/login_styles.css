@@ -3,6 +3,13 @@
     background-color: rgba(110, 110, 110, 0.377); /* 50% transparency */
     padding: 10px;
 }
+/* Style for navbar brand */
+.navbar-brand {
+    font-weight: bolder; /* Makes the text bolder */
+    color: white !important; /* White font color */
+    font-size: 1.5rem; /* Adjust the font size if needed */
+    text-transform: uppercase; /* Optional: Make the text uppercase */
+}
 
 /* Center the navbar links */
 .navbar-nav {
