@@ -1,6 +1,6 @@
 /* Center navigation and make it transparent */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.377); /* 50% transparency */
+    background-color: rgba(110, 110, 110, 0.377); /* 50% transparency */
     padding: 10px;
 }
 
