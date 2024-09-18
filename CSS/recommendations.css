@@ -3,8 +3,9 @@
 }
 
 .chat .card-container{
-    background-color: #fff;
+    backdrop-filter: blur(10px);
     border-radius: 10px;
+    border: 1px solid white;
     padding: 15px;
     margin: 20px;
     display: flex;
