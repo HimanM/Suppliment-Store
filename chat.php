@@ -14,7 +14,7 @@ $user_id = $_SESSION['user_id'];
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="CSS/login_styles.css">
-    <link rel="stylesheet" href="CSS/recommendations.css">
+    <link rel="stylesheet" href="CSS/chat.css">
 </head>
 <body>
     <?php include 'top_nav.php'; ?>
