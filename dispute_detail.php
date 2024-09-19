@@ -9,11 +9,6 @@ if (!$authorized) {
     exit();
 }
 
-// Check if the user is an admin
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit();
-}
 
 // Fetch the dispute details
 $dispute_id = isset($_GET['id']) ? intval($_GET['id']) : null;
