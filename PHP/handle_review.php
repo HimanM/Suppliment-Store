@@ -16,7 +16,7 @@
             $stmt->bind_param("di", $avg_rating, $product_id);
             $stmt->execute();
         }
-        echo "Ratings updated successfully!";
+        echo "<script>console.log('Ratings updated successfully!');</script>";
     } else {
         echo "No ratings found.";
     }

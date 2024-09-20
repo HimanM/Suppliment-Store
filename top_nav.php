@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+  <div class="container-xl">
     <a class="navbar-brand" href="index.php">Supplement Store</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -103,7 +103,7 @@
           <button id="profileBtn" class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person"></i> Profile
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <li><a class="dropdown-item" href="profile.php">Profile</a></li>
             <?php if (!($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert')):?>
               <li><a class="dropdown-item" href="disputes.php">Dispute Report</a></li>
