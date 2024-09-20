@@ -89,13 +89,12 @@
 
         <div class="dropdown">
             <button class="btn btn-outline-secondary position-relative" id="notificationIcon">
-                <i class="bi bi-bell"></i>
+                <i class="far fa-envelope fa-lg mb-1"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     0
                 </span>
             </button>
             <ul class="dropdown-menu" id="notificationDropdown">
-                <!-- Notifications will be dynamically loaded here -->
             </ul>
         </div>
 
