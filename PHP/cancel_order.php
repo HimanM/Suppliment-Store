@@ -62,19 +62,15 @@ $user_result = $stmt_user->get_result();
 $user = $user_result->fetch_assoc();
 $user_email = $user['email'];
 
-// // Prepare email content
-// $email_body = "Dear Customer,\n\n" .
-//               "Your order #{$order['id']} has been cancelled.\n\n" .
-//               "Order Total: $" . number_format($order['total'], 2) . "\n\n" .
-//               "We apologize for any inconvenience.\n\n" .
-//               "Best regards,\nYour Company";
+// Prepare email content
+$email_subject = "Order#{$order['id']} Cancelled"
+$email_body = "Dear Customer,\n\n" .
+              "Your order #{$order['id']} has been cancelled.\n\n" .
+              "Order Total: $" . number_format($order['total'], 2) . "\n\n" .
+              "We apologize for any inconvenience.\n\n" .
+              "Best regards,\nYour Suppliment Store";
 
-// // Call the API to send the cancellation email
-// $api_url = "https://send_mail?user_email=" . urlencode($user_email) . "&content=" . urlencode($email_body);
-// $response = file_get_contents($api_url);
-
-// if ($response === FALSE) {
-//     error_log("Failed to send cancellation email to $user_email");
-// }
+// Call the API to send the cancellation email
+send_mail_api($user_email, $email_subject, $email_body )
 
 echo json_encode(['status' => 'success', 'message' => 'Order cancelled and stock updated.']);
