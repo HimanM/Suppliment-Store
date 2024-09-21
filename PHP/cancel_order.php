@@ -1,5 +1,6 @@
 <?php
 include 'db_config.php'; // Database connection
+include 'api_handler.php'; 
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -63,14 +64,16 @@ $user = $user_result->fetch_assoc();
 $user_email = $user['email'];
 
 // Prepare email content
-$email_subject = "Order#{$order['id']} Cancelled"
-$email_body = "Dear Customer,\n\n" .
-              "Your order #{$order['id']} has been cancelled.\n\n" .
-              "Order Total: $" . number_format($order['total'], 2) . "\n\n" .
+$email_subject = "Order#{$order['id']} Cancelled";
+$order_id = $order['id'];
+$order_total = number_format($order['total'], 2);
+
+$email_body = "Dear Customer,\n\nYour order #{$order_id} has been cancelled.\n\n" .
+              "Order Total: $$order_total\n\n" .
               "We apologize for any inconvenience.\n\n" .
-              "Best regards,\nYour Suppliment Store";
+              "Best regards,\nYour Supplement Store";
 
 // Call the API to send the cancellation email
-send_mail_api($user_email, $email_subject, $email_body )
+send_mail_api($user_email, $email_subject, $email_body );
 
 echo json_encode(['status' => 'success', 'message' => 'Order cancelled and stock updated.']);
