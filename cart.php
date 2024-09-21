@@ -49,10 +49,10 @@ while ($row = $result->fetch_assoc()) {
     <?php else: ?>
         <?php foreach ($cart_items as $item): ?>
             <div class="cart-item" data-product-id="<?php echo $item['product_id']; ?>">
-                <img src="images/<?php echo $item['image_url']; ?>" alt="<?php echo $item['name']; ?>">
+                <img src="images/uploads/<?php echo $item['image_url']; ?>" alt="<?php echo $item['name']; ?>">
                 <h3><?php echo $item['name']; ?></h3>
                 <p>$<?php echo $item['price']; ?></p>
-                <input type="number" class="quantity" value="<?php echo $item['quantity']; ?>" min="1">
+                <input type="number" class="quantity" value="<?php echo $item['quantity']; ?>" min="1" max="10">
                 <button class="remove-from-cart">Remove</button>
             </div>
         <?php endforeach; ?>

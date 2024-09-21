@@ -15,39 +15,58 @@
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <div class="product-filter">
-        <input type="text" id="search" placeholder="Search products...">
-        
-        <select id="category">
-            <option value="">All Categories</option>
-            <option value="Supplement">Supplement</option>
-            <option value="Vitamins">Vitamins</option>
-            <option value="Protein">Protein</option>
-            <option value="Oils">Oils</option>
-            <!-- Add more categories as needed -->
-        </select>
-        
-        <select id="brand">
-            <option value="">All Brands</option>
-            <option value="brand1">Brand 1</option>
-            <option value="brand2">Brand 2</option>
-            <!-- Add more brands as needed -->
-        </select>
-        
-        <input type="number" id="min-price" min="1" placeholder="Min Price">
-        <input type="number" id="max-price" min="1" max = "100 "placeholder="Max Price">
+    <div class= "container mt-5">
+        <div class="container my-2">
+        <div class="row product-filter g-2">
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="search" placeholder="Search products...">
+            </div>
+
+            <div class="col-md-3">
+                <select id="category" class="form-select">
+                    <option value="">All Categories</option>
+                    <option value="Supplement">Supplement</option>
+                    <option value="Vitamins">Vitamins</option>
+                    <option value="Protein">Protein</option>
+                    <option value="Oils">Oils</option>
+                    <!-- Add more categories as needed -->
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <select id="brand" class="form-select">
+                    <option value="">All Brands</option>
+                    <option value="brand1">Brand 1</option>
+                    <option value="brand2">Brand 2</option>
+                    <!-- Add more brands as needed -->
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <div class="row g-2">
+                    <div class="col">
+                        <input type="number" id="min-price" class="form-control" min="1" placeholder="Min Price">
+                    </div>
+                    <div class="col">
+                        <input type="number" id="max-price" class="form-control" min="1" placeholder="Max Price">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div id="product-cards" class="product-cards">
-        <!-- Products will be dynamically inserted here -->
-    </div>
 
-    <?php if (isset($_SESSION['user_id'])): ?>
-    <h2>Product Recommendations</h2>
-    <div id="recommended-product-cards" class="product-cards">
-        <!-- Products will be dynamically inserted here -->
+        <div id="product-cards" class="product-cards">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+
+        <?php if (isset($_SESSION['user_id'])): ?>
+        <h2>Product Recommendations</h2>
+        <div id="recommended-product-cards" class="product-cards">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="JS/login_script.js"></script>
