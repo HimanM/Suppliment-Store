@@ -44,8 +44,8 @@ while ($row = $result->fetch_assoc()) {
             <?php foreach ($articles as $article): ?>
                 <div class="col-md-4">
                     <div class="card">
-                        <?php if (!empty($article['image'])): ?>
-                            <img src="images/content/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
+                        <?php if (!empty($article['image_url'])): ?>
+                            <img src="images/content/<?php echo htmlspecialchars($article['image_url']); ?>" class="card-img-top" alt="Image">
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($article['title']); ?></h5>
@@ -62,8 +62,8 @@ while ($row = $result->fetch_assoc()) {
             <?php foreach ($guides as $guide): ?>
                 <div class="col-md-4">
                     <div class="card">
-                        <?php if (!empty($article['image'])): ?>
-                            <img src="images/content/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
+                        <?php if (!empty($guide['image_url'])): ?>
+                            <img src="images/content/<?php echo htmlspecialchars($guide['image_url']); ?>" class="card-img-top" alt="Image">
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($guide['title']); ?></h5>
@@ -80,8 +80,8 @@ while ($row = $result->fetch_assoc()) {
             <?php foreach ($blog_posts as $post): ?>
                 <div class="col-md-4">
                     <div class="card">
-                        <?php if (!empty($article['image'])): ?>
-                            <img src="images/content/<?php echo htmlspecialchars($article['image']); ?>" class="card-img-top" alt="Image">
+                        <?php if (!empty($post['image_url'])): ?>
+                            <img src="images/content/<?php echo htmlspecialchars($post['image_url']); ?>" class="card-img-top" alt="Image">
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($post['title']); ?></h5>

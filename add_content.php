@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Handle image upload
     $imageUpdated = false;
     if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
-        $target_dir = "../images/content/";
+        $target_dir = "images/content/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Show current image if editing -->
             <?php if ($isEdit && $image_url): ?>
                 <p>Current Image:</p>
-                <img src="../images/content/<?= htmlspecialchars($image_url) ?>" alt="<?= htmlspecialchars($title) ?>" width="150"><br><br>
+                <img src="images/content/<?= htmlspecialchars($image_url) ?>" alt="<?= htmlspecialchars($title) ?>" width="150"><br><br>
             <?php endif; ?>
             
             <input type="file" name="image" accept="image/jpeg, image/png"><br><br>

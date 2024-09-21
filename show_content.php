@@ -35,8 +35,8 @@ if (!$content) {
         <div class="row">
             <div class="col-md-8">
                 <h1><?php echo htmlspecialchars($content['title']); ?></h1>
-                <?php if (!empty($content['image'])): ?>
-                    <img src="images/content/<?php echo htmlspecialchars($content['image']); ?>" alt="Image" class="img-fluid">
+                <?php if (!empty($content['image_url'])): ?>
+                    <img src="images/content/<?php echo htmlspecialchars($content['image_url']); ?>" alt="Image" class="img-fluid">
                 <?php endif; ?>
                 <p><?php echo htmlspecialchars($content['body']); ?></p>
                 <p><strong>Author:</strong> <?php echo htmlspecialchars($content['username']); ?></p>

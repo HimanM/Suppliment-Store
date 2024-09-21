@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const ratingStars = getStars(product.rating);
         
                 card.innerHTML = `
-                    <img src="images/${product.image_url}" alt="${product.name}">
+                    <img src="images/uploads/${product.image_url}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
                     <p>$${product.price}</p>

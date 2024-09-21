@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_url = $product['image_url'];  // Default to existing image if not updated
     if (!empty($_FILES['image']['name'])) {
         $image_name = basename($_FILES['image']['name']);
-        $target_dir = "../images/uploads/";
+        $target_dir = "images/uploads/";
         $target_file = $target_dir . $image_name;
 
         // Move uploaded file

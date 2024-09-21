@@ -48,7 +48,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                     <td><?= htmlspecialchars($product['price']) ?></td>
                     <td><?= htmlspecialchars($product['category']) ?></td>
                     <td><?= htmlspecialchars($product['inventory_stock']) ?></td>
-                    <td><img src="../images/uploads/<?= htmlspecialchars($product['image_url']) ?>" alt="Product Image" width="50"></td>
+                    <td><img src="images/uploads/<?= htmlspecialchars($product['image_url']) ?>" alt="Product Image" width="50"></td>
                     <td>
                         <a href="edit_product.php?id=<?= $product['id'] ?>" class="btn btn-primary">Edit</a>
                     </td>

@@ -80,7 +80,7 @@ if ($is_logged_in) {
     <div class="row">
         <!-- Product Image and Name -->
         <div class="col-md-4">
-            <img src="images/<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid">
+            <img src="images/uploads/<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid">
             <h2><?php echo htmlspecialchars($product['name']); ?></h2>
             <p>Rating: <?php echo str_repeat('★', intval($product['rating'])) . str_repeat('☆', 5 - intval($product['rating'])); ?></p>
         </div>
