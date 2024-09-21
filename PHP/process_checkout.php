@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 $shipping_address = $_POST['shipping_address'];
-$billing_address = $_POST['billing_address'];
+$billing_address = $shipping_address;
 $payment_status = 'paid'; // Assuming payment is processed
 $order_status = 'pending'; // Order status upon checkout
 
