@@ -32,49 +32,58 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Send a new message
-    chatForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const message = messageInput.value;
-
-        fetch('PHP/send_message.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `message=${encodeURIComponent(message)}`
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    messageInput.value = '';  // Clear the input field
-                    fetchMessages();  // Refresh the chat box
-                } else {
-                    console.error('Error sending message:', data.error);
-                }
+    if(chatForm){
+        
+        // Fetch messages on page load
+        fetchMessages();
+        chatForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const message = messageInput.value;
+    
+            fetch('PHP/send_message.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `message=${encodeURIComponent(message)}`
             })
-            .catch(error => console.error('Error sending message:', error));
-            updateScroll();
-    });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        messageInput.value = '';  // Clear the input field
+                        fetchMessages();  // Refresh the chat box
+                    } else {
+                        console.error('Error sending message:', data.error);
+                    }
+                })
+                .catch(error => console.error('Error sending message:', error));
+                updateScroll();
+        });
+    }
 
     function updateScroll(){
         chatBox.scrollTop = chatBox.scrollHeight;
     }
-    // Fetch messages on page load
-    fetchMessages();
+    
 
     // Toggle chat visibility
-    chatIcon.addEventListener("click", function () {
-        if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
-            chatContainer.style.display = "block";
-        } else {
-            chatContainer.style.display = "none";
-        }
-    });
+    if(chatIcon){
+        chatIcon.addEventListener("click", function () {
+            if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
+                chatContainer.style.display = "block";
+            } else {
+                chatContainer.style.display = "none";
+            }
+        });
+    }
+    
 
     // Hide chat when clicking outside of it
     document.addEventListener("click", function (event) {
-        if (!chatContainer.contains(event.target) && !chatIcon.contains(event.target)) {
-            chatContainer.style.display = "none";
+        if(chatContainer){
+            if (!chatContainer.contains(event.target) && !chatIcon.contains(event.target)) {
+                chatContainer.style.display = "none";
+            }
         }
     });
     

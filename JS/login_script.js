@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
         loginModal.classList.add('show');
         // mainContent.classList.add('blur-background');
     };
+    
 
     // Close the modal when clicking the close button
     closeBtn.onclick = function() {
