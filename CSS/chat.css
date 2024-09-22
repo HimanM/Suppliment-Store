@@ -94,3 +94,30 @@
     background-color: #f1f1f1;
     color: #333;
 }
+
+/* Chat Icon */
+/* Position the chat icon */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.chat-icon i {
+    font-size: 24px;
+}
+
+.chat {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    display: none;
+    z-index: 999;
+}

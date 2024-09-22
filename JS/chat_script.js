@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const chatForm = document.querySelector('#chatForm');
     const messageInput = document.querySelector('#messageInput');
     const chatBox = document.querySelector('.messages-container');
+    const chatIcon = document.getElementById("chatIcon");
+    const chatContainer = document.getElementById("chatContainer");
 
     // Fetch and display chat messages
     function fetchMessages() {
@@ -59,5 +61,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // Fetch messages on page load
     fetchMessages();
+
+    // Toggle chat visibility
+    chatIcon.addEventListener("click", function () {
+        if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
+            chatContainer.style.display = "block";
+        } else {
+            chatContainer.style.display = "none";
+        }
+    });
+
+    // Hide chat when clicking outside of it
+    document.addEventListener("click", function (event) {
+        if (!chatContainer.contains(event.target) && !chatIcon.contains(event.target)) {
+            chatContainer.style.display = "none";
+        }
+    });
     
 });
