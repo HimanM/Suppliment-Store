@@ -28,7 +28,7 @@
           <li class="nav-item">
             <a class="nav-link" href="cart.php">Cart</a>
           </li>
-
+          <?php include 'chatbox.php'; ?>
 
         <!-- Admin nav -->
         <?php elseif($_SESSION['role'] == 'admin'): ?>

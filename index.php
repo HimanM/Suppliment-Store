@@ -24,7 +24,6 @@
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-<?php include 'chatbox.php'; ?>
 
 <div class="container">
     <h1>Welcome to Supplement Store</h1>
