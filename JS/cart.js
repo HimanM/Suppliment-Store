@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const cartItems = document.getElementById('cart-items');
-    const cartTotalDiv = document.getElementById('cart-total');
+    const cartTotalDiv = document.querySelector('.cart-total');
     const checkoutBtn = document.getElementById('checkout-btn');
-
 
     function updateCart(productId, quantity) {
         const xhr = new XMLHttpRequest();
@@ -13,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const response = JSON.parse(xhr.responseText);
                 if (response.status === 'success') {
                     console.log('Cart updated successfully');
+                    updateCartTotal(); // Update total after updating quantity
                 } else {
                     console.error('Failed to update cart');
                 }
@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (response.status === 'success') {
                     document.querySelector(`.cart-item[data-product-id="${productId}"]`).remove();
                     updateCartTotal(); // Update total after removing item
+                    checkCartEmpty(); // Check if cart is empty after removal
                 } else {
                     console.error('Failed to remove item from cart');
                 }
@@ -49,20 +50,33 @@ document.addEventListener('DOMContentLoaded', function () {
         const cartItemsList = document.querySelectorAll('.cart-item');
 
         cartItemsList.forEach(item => {
-            const price = parseFloat(item.querySelector('p').innerText.replace('$', ''));
-            const quantity = parseInt(item.querySelector('.quantity').value, 10);
+            const priceElement = item.querySelector('#item-price');
+            const price = parseFloat(priceElement.innerText.replace('$', '').trim());
+
+            const quantityElement = item.querySelector('.quantity');
+            const quantity = parseInt(quantityElement.value, 10);
+            console.log(quantity, price);
             total += price * quantity;
         });
 
         // Update the cart total in the DOM
         if (cartItemsList.length > 0) {
-            document.querySelector('#cart-total h2').innerText = `Total: $${total.toFixed(2)}`;
+            cartTotalDiv.querySelector('strong').innerText = `$${total.toFixed(2)}`;
         } else {
-            // If no items are left, hide the cart total and checkout button
+            // Hide the cart total and checkout button if no items are left
             cartTotalDiv.style.display = 'none';
+            checkoutBtn.style.display = 'none';
         }
     }
 
+    function checkCartEmpty() {
+        const cartItemsList = document.querySelectorAll('.cart-item');
+        if (cartItemsList.length === 0) {
+            document.querySelector('.card-body').innerHTML = "<p>Your cart is empty.</p>";
+        }
+    }
+
+    // Event listener for changing quantity
     cartItems.addEventListener('input', function (event) {
         if (event.target.classList.contains('quantity')) {
             const quantityInput = event.target;
@@ -71,18 +85,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (quantity > 0) {
                 updateCart(productId, quantity);
-                updateCartTotal(); // Update total on quantity change
+            } else {
+                removeFromCart(productId); // Remove if quantity is zero or less
             }
         }
     });
 
+    // Event listener for removing items from the cart
     cartItems.addEventListener('click', function (event) {
-        if (event.target.classList.contains('remove-from-cart')) {
+        if (event.target.closest('.remove-from-cart')) {
             const productId = event.target.closest('.cart-item').getAttribute('data-product-id');
             removeFromCart(productId);
         }
     });
 
+    // Checkout button functionality
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', function () {
             window.location.href = 'checkout.php'; // Redirect to checkout page

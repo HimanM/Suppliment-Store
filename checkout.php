@@ -32,80 +32,194 @@ while ($row = $result->fetch_assoc()) {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="CSS/login_styles.css">
     <link rel="stylesheet" href="CSS/checkout_styles.css">
-</head>
-<body>
-<?php include 'top_nav.php'; ?>
-<div class="container my-4">
-    <h1 class="mb-4">Checkout</h1>
+  </head>
+  
+  <body>
+  <?php include 'top_nav.php'; ?>
+    <div class= "container">
+      <div class="py-5 text-center">
+        <h1>Checkout Form</h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
 
-    <!-- Checkout Items Section -->
-    <div id="checkout-items" class="mb-4">
-        <h2 class="h5">Your Items</h2>
-        <ul class="list-group">
+        <div class="col-md-4 order-2">
+          
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class=text-muted>Your Cart</span>
+            <span class="badge rounded-pill bg-secondary"><?php echo count($cart_items); ?></span>
+          </h4>
+          
+          <div class="card" style="">
             <?php foreach ($cart_items as $item): ?>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <img src="images/uploads/<?php echo $item['image_url']; ?>" alt="<?php echo $item['name']; ?>" class="checkout-image me-3" style="width: 50px; height: 50px; object-fit: cover;">
-                        <div>
-                            <h6 class="mb-1"><?php echo $item['name']; ?></h6>
-                            <p class="mb-0">Price: $<?php echo number_format($item['price'], 2); ?></p>
-                            <p class="mb-0">Quantity: <?php echo $item['quantity']; ?></p>
-                        </div>
-                    </div>
-                </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-1 mx-1"><?php echo $item['name']; ?></h6>
+                  <small class="text-muted mx-1">Quantity: <?php echo $item['quantity']; ?></small>
+                </div>
+                <span class="text-muted my-1 mx-1">Price: $<?php echo number_format($item['price'], 2); ?></span>
+              </li>
             <?php endforeach; ?>
-        </ul>
+          </div>
+
+          <div class="card-footer d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong><?php echo number_format($total, 2); ?></strong>
+          </div>
+
+        </div>
+         
+        <form class="col-md-8 order-1" action="PHP/process_checkout.php" method="POST">
+          <h4 class="mb-3">Billing Address</h4>
+          <div class="row">
+            <div class="col mb-4">
+              <label for="First name"> First Name </label>
+              <input type="text" class="form-control" placeholder="First name" aria-label="First name"  required>
+            </div>
+            <div class="col mb-4">
+              <label for="La\st name"> Last Name </label>
+              <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"  required>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label for="email">Email (optional)</label>
+            <input type="text" class="form-control" placeholder="you@example.com" aria-label="email">
+          </div>
+          
+          <div class="mb-4">
+            <label for="Address">Address</label>
+            <input type="text" class="form-control" placeholder="1234 Main St" aria-label="Address" id="shipping_address" name="shipping_address"  required>
+          </div>
+          
+          <div class="mb-4">
+            <label for="Address2">Address 2 (optional)</label>
+            <input type="text" class="form-control" placeholder="Appartment or suite" aria-label="Address2">
+          </div>
+          
+          <div class="row">
+             <div class="col">
+              <label for="country">Country</label>
+              <select class="form-select">
+                <option selected>Choose...</option>
+                <option value="1">Sri Lanka</option>
+                <option value="2">Japan</option>
+                <option value="3">Australlia</option>
+            </select>
+            </div>
+             <div class="col">
+              <label for="state">State</label>
+              <select class="form-select">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+            </div>
+             <div class="col mb-4">
+              <label for="zip">Zip Code</label>
+              <input type="text" class="form-control" aria-label="zip">
+            </div>
+            
+            <hr class="mb-4">
+            
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Shipping address is the same as my billing address
+              </label>
+            </div>
+            
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+              <label class="form-check-label" for="flexCheckChecked">
+                Save this information for next time
+              </label>
+            </div>
+            
+            <hr class="mb-4">
+            
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+              <label class="form-check-label" for="flexRadioDefault1">
+                Credit card (Default)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Debit card
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+              <label class="form-check-label" for="flexRadioDefault3">
+                Paypal
+              </label>
+            </div>
+            
+            <div class="row">
+              <div class="col mb-4">
+                <label for="Card1">
+                  Name on card
+                </label>
+                <input type="text" class="form-control"aria-label="card1" required>
+                <small class="text-muted">
+                  Full name, as displayed on the card
+                </small>
+              </div>
+              
+              <div class="col mb-4">
+                <label for="Card2">
+                  Credit card Nummber
+                </label>
+                <input type="text" class="form-control" placeholder = "1234-5678-9012" aria-label="Card2" required>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col mb-3">
+                <label for="Card3">
+                  Expiry Date
+                </label>
+                <input type="text" class="form-control"aria-label="card3" required>
+              </div>
+              
+              <div class="col mb-3">
+                <label for="Card4">
+                  CVV
+                </label>
+                <input type="text" class="form-control"  aria-label="Card4" required>
+              </div>
+            </div>
+            
+          </div>
+        
+        <hr class="mb-4">
+        
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit">
+            Continue to Checkout
+          </button>
+        </div>
+      </form>
     </div>
-
-    <!-- Total Section -->
-    <div id="checkout-total" class="mb-4">
-        <h2 class="h5">Total: $<?php echo number_format($total, 2); ?></h2>
-    </div>
-
-    <!-- Shipping Address Section -->
-    <form action="PHP/process_checkout.php" method="POST" class="mb-4">
-        <h3>Shipping Address</h3>
-        <div class="mb-3">
-            <label for="shipping_address" class="form-label">Address</label>
-            <input type="text" id="shipping_address" name="shipping_address" class="form-control" required>
-        </div>
-
-        <h3>Billing Address</h3>
-        <div class="mb-3">
-            <label for="billing_address" class="form-label">Address</label>
-            <input type="text" id="billing_address" name="billing_address" class="form-control" required>
-        </div>
-
-        <h3>Payment Details</h3>
-        <div class="border rounded p-3 mb-3">
-            <h4 class="h6">Credit Card Information</h4>
-            <div class="mb-3">
-                <label for="card_number" class="form-label">Card Number</label>
-                <input type="text" id="card_number" name="card_number" class="form-control" pattern="\d{16}" required>
-            </div>
-            <div class="mb-3">
-                <label for="exp_date" class="form-label">Expiration Date (MM/YY)</label>
-                <input type="text" id="exp_date" name="exp_date" class="form-control" placeholder="MM/YY" required>
-            </div>
-            <div class="mb-3">
-                <label for="cvv" class="form-label">CVV</label>
-                <input type="text" id="cvv" name="cvv" class="form-control" pattern="\d{3}" required>
-            </div>
-        </div>
-
-        <input type="hidden" name="total" value="<?php echo $total; ?>">
-        <button type="submit" class="btn btn-primary">Complete Purchase</button>
-    </form>
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="JS/login_script.js"></script>
-</body>
+  </div>
+    
+    
+    
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="JS/login_script.js"></script>
+    
+  </body>
 </html>

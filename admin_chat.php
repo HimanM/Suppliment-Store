@@ -20,36 +20,61 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <title>Admin Chat Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/login_styles.css">
-    <link rel="stylesheet" href="CSS/admin_chat_styles.css"> <!-- Add your CSS file here -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="CSS/login_styles.css"><!-- Add your CSS file here -->
+    <link rel="stylesheet" href="CSS/admin_chat_styles.css">
     <script src="JS/admin_chat.js" defer></script>
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <div class="container mt-4">
-        <h2>Chat with Users</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <h3>Users</h3>
-                <ul class="list-group">
-                    <?php foreach ($users as $user): ?>
-                        <li class="list-group-item">
-                            <a href="#" class="user-link" data-user-id="<?= $user['id'] ?>" data-username="<?= $user['username'] ?>">
-                                <?= $user['username'] ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-            <div class="col-md-8 chat-section">
-                <h3>Chat</h3>
-                <div id="chatContainer" class="chat-container d-none">
-                    <button id="closeChat" class="btn btn-danger">Close Chat</button>
-                    <div id="chatBox" class="chat-box"></div>
-                    <form id="chatForm">
-                        <textarea id="messageInput" class="form-control" placeholder="Type your message..." required></textarea>
-                        <button type="submit" class="btn btn-primary mt-2">Send</button>
-                    </form>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card chat-app">
+                    <div id="plist" class="people-list">
+                        <ul class="list-unstyled chat-list mt-2 mb-0">
+                            <?php foreach ($users as $user): ?>
+                                <li class="clearfix user-link" data-user-id="<?= $user['id'] ?>" data-username="<?= $user['username'] ?>">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                    <div class="about">
+                                        <div class="name"><?= $user['username'] ?></div>                                   
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <div class="chat">
+                        <div class="chat-header clearfix">
+                            <div class="row d-none" id="chatContainer">
+                                <div class="col-lg-6">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                    </a>
+                                    <div class="chat-about">
+                                        <h6 class="m-b-0" id="userName"></h6>
+                                        <button id="closeChat" class="btn btn-danger">Close Chat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-history">
+                            <ul class="m-b-0" id = "chatBox">
+                                <!-- Display Messages here -->
+                            </ul>
+                        </div>
+                        <div class="chat-message clearfix d-none" id= "chatInputField">
+                        <form id="chatForm">
+                                <div class="input-group mb-0">
+                                    <div class="input-group-prepend">
+                                        <button type="submit" class="input-group-text">
+                                            <i class="fa fa-send"></i>
+                                        </button>
+                                    </div>
+                                    <input id="messageInput" type="text" class="form-control" placeholder="Enter text here...">                            
+                                </div>
+                            </form>   
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

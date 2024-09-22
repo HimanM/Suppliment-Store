@@ -1,0 +1,117 @@
+
+
+/* Hide chat container by default */
+#chatContainer.d-none {
+    display: none;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1; /* Light background color */
+}
+
+.container {
+    margin-top: 20px;
+}
+
+/* User list styles */
+.list-group-item {
+    cursor: pointer; /* Change cursor to pointer for links */
+}
+
+.user-link {
+    text-decoration: none; /* Remove underline */
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.user-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Chat section styles */
+.chat-section {
+    background-color: #ffffff; /* White background for chat */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    padding: 15px; /* Padding for inner spacing */
+    height: 400px; /* Fixed height for chat section */
+    overflow: hidden; /* Hide overflowing content */
+    display: flex;
+    flex-direction: column; /* Vertical layout */
+}
+
+/* Chat container */
+.chat-container {
+    position: relative; /* Positioning for close button */
+    flex-grow: 1; /* Allow chat box to grow */
+    overflow-y: auto; /* Enable scrolling if needed */
+    padding-bottom: 10px; /* Space for last message */
+}
+
+/* Chat box styles for chat bubbles */
+.chat-box {
+    padding: 10px;
+}
+
+/* Chat bubbles */
+.message {
+    border-radius: 15px; /* Rounded corners for bubbles */
+    padding: 10px 15px; /* Padding for bubble */
+    margin: 5px 0; /* Margin between messages */
+    max-width: 70%; /* Limit width of bubbles */
+    position: relative; /* For pseudo-element positioning */
+}
+
+/* Sender bubble styles */
+.message.admin {
+    background-color: #007bff; /* Admin message color */
+    color: white; /* White text */
+    align-self: flex-end; /* Align to the right */
+}
+
+/* User bubble styles */
+.message.user {
+    background-color: #e5e5ea; /* User message color */
+    color: black; /* Black text */
+    align-self: flex-start; /* Align to the left */
+}
+
+/* Pseudo-element for triangle effect */
+.message::after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position above the bubble */
+    left: 10px; /* Default left position */
+    border-width: 6px; /* Triangle size */
+    border-style: solid;
+}
+
+/* Adjust triangle position based on sender */
+.message.admin::after {
+    left: auto; /* Remove left position */
+    right: 10px; /* Position to the right for admin */
+    border-color: transparent transparent #007bff transparent; /* Triangle color */
+}
+
+.message.user::after {
+    left: 10px; /* Position to the left for user */
+    border-color: transparent transparent #e5e5ea transparent; /* Triangle color */
+}
+
+/* Close button styles */
+#closeChat {
+    margin-bottom: 10px; /* Space below the button */
+}
+
+/* Textarea styles */
+#messageInput {
+    resize: none; /* Disable resizing */
+}
+
+/* Responsive design for chat panel */
+@media (max-width: 768px) {
+    .chat-section {
+        height: auto; /* Adjust height for smaller screens */
+    }
+}

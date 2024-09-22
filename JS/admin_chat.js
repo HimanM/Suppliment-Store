@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     const chatContainer = document.getElementById('chatContainer');
+    const chatInputContainer = document.getElementById('chatInputField');
     const chatBox = document.getElementById('chatBox');
     const chatForm = document.getElementById('chatForm');
     const messageInput = document.getElementById('messageInput');
     const closeChatBtn = document.getElementById('closeChat');
     let currentUserId = null;
+    let currentUserName = null;
 
     // Fetch chat messages for the selected user
     function fetchMessages(userId) {
@@ -13,13 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(messages => {
                 chatBox.innerHTML = '';
                 messages.forEach(message => {
-                    const messageDiv = document.createElement('div');
-                    messageDiv.classList.add('chat-message');
+                    const messageDiv = document.createElement('li');
+                    messageDiv.classList.add('clearfix');
 
                     if (message.sender_id == userId) {
-                        messageDiv.innerHTML = `<p><strong>User:</strong> ${message.message}</p>`;
+                        messageDiv.innerHTML = `<div class="message my-message"> ${message.message}</div>`;
                     } else {
-                        messageDiv.innerHTML = `<p><strong>You:</strong> ${message.message}</p>`;
+                        messageDiv.innerHTML = `<div class="message other-message float-right"> ${message.message}</div>`;
                     }
 
                     chatBox.appendChild(messageDiv);
@@ -33,7 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             currentUserId = this.dataset.userId;
+            currentUserName = this.dataset.username;
             chatContainer.classList.remove('d-none');
+            chatInputContainer.classList.remove('d-none');
+            document.getElementById("userName").textContent = currentUserName;
             fetchMessages(currentUserId);
         });
     });
@@ -41,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Close chat container
     closeChatBtn.addEventListener('click', function() {
         chatContainer.classList.add('d-none');
+        chatInputContainer.classList.add('d-none');
         currentUserId = null;
         chatBox.innerHTML = '';
         messageInput.value = '';
