@@ -1,6 +1,7 @@
 .card {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    max-height: 546px;
 }
 
 .card:hover {
@@ -16,4 +17,13 @@
 .cancel-order-btn:hover {
     background-color: #c82333;
     border-color: #bd2130;
+}
+
+.order-items{
+    height: 100px;
+    overflow-y: auto;
+}
+
+.order-info{
+    text-align: left;
 }

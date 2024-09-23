@@ -67,27 +67,31 @@ if (!empty($orders)) {
                     <div class="card fixed-height-card">
                         <div class="card-body">
                             <h5 class="card-title">Order #<?php echo $order['id']; ?></h5>
-                            <p><strong>Status:</strong> <?php echo $order['status']; ?></p>
-                            <p><strong>Payment Status:</strong> <?php echo $order['payment_status']; ?></p>
-                            <p><strong>Total:</strong> $<?php echo number_format($order['total'], 2); ?></p>
-                            <p><strong>Shipping Address:</strong> <?php echo $order['shipping_address']; ?></p>
-                            <p><strong>Billing Address:</strong> <?php echo $order['billing_address']; ?></p>
-                            
+                            <hr class="my-4">
+                            <div class="container">
+                                <p class = "order-info"><strong>Status:</strong> <?php echo $order['status']; ?></p>
+                                <p class = "order-info"><strong>Payment Status:</strong> <?php echo $order['payment_status']; ?></p>
+                                <p class = "order-info"><strong>Total:</strong> $<?php echo number_format($order['total'], 2); ?></p>
+                                <p class = "order-info"><strong>Shipping Address:</strong> <?php echo $order['shipping_address']; ?></p>
+                                <p class = "order-info"><strong>Billing Address:</strong> <?php echo $order['billing_address']; ?></p>
+                            </div>
+                            <hr class="my-4">
                             <h6>Items:</h6>
-                            <ul>
-                                <?php foreach ($order_items[$order['id']] as $item): ?>
-                                    <li class="d-flex justify-content-between align-items-center">
-                                        <span>
-                                            <?php echo htmlspecialchars($item['product_name']); ?> 
-                                            (Quantity: <?php echo $item['quantity']; ?>)
-                                        </span>
-                                        <?php if ($order['status'] === 'shipped' || $order['status'] === 'delivered'): ?>
-                                            <a href="product_details.php?id=<?php echo $item['product_id']; ?>" class="btn btn-primary btn-sm">Review</a>
-                                        <?php endif; ?>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-
+                            <div class="container order-items">
+                                <ul>
+                                    <?php foreach ($order_items[$order['id']] as $item): ?>
+                                        <li class="d-flex justify-content-between align-items-center">
+                                            <span>
+                                                <?php echo htmlspecialchars($item['product_name']); ?> 
+                                                (Quantity: <?php echo $item['quantity']; ?>)
+                                            </span>
+                                            <?php if ($order['status'] === 'shipped' || $order['status'] === 'delivered'): ?>
+                                                <a href="product_details.php?id=<?php echo $item['product_id']; ?>" class="btn btn-primary btn-sm">Review</a>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
                             <?php if ($order['status'] !== 'shipped' && $order['status'] !== 'cancelled'): ?>
                                 <button class="btn btn-danger cancel-order-btn" data-order-id="<?php echo $order['id']; ?>">Cancel Order</button>
                             <?php else: ?>

@@ -50,57 +50,59 @@ while ($row = $result_products->fetch_assoc()) {
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-<div class="container">
-    <h2>Submit a Dispute</h2>
+<div class="container mt-5">
+    <div class="container mb-4 p-4 glass-card">
+        <h2>Submit a Dispute</h2>
 
-    <!-- Success message box -->
-    <div id="message-box" class="success">Dispute successfully submitted!</div>
-    <div id="dispute-form">
-        <form action="PHP/submit_dispute.php" method="POST" enctype="multipart/form-data">
-            <!-- Dispute Type -->
-            <div class="form-group">
-                <label>Dispute Type</label><br>
-                <input type="radio" name="dispute_type" value="general" checked> General <br>
-                <input type="radio" name="dispute_type" value="order"> Order <br>
-                <input type="radio" name="dispute_type" value="product"> Product
-            </div>
+        <!-- Success message box -->
+        <div id="message-box" class="success">Dispute successfully submitted!</div>
+        <div id="dispute-form">
+            <form action="PHP/submit_dispute.php" method="POST" enctype="multipart/form-data">
+                <!-- Dispute Type -->
+                <div class="form-group">
+                    <label>Dispute Type</label><br>
+                    <input type="radio" name="dispute_type" value="general" checked> General <br>
+                    <input type="radio" name="dispute_type" value="order"> Order <br>
+                    <input type="radio" name="dispute_type" value="product"> Product
+                </div>
 
-            <!-- Order Dropdown (hidden by default) -->
-            <div class="form-group" id="order-dropdown" style="display:none;">
-                <label>Select Order</label>
-                <select name="order_id" class="form-control">
-                    <option value="">Select Order</option>
-                    <?php foreach ($orders as $order): ?>
-                        <option value="<?= $order['id']; ?>">Order #<?= $order['id']; ?> - <?= $order['created_at']; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+                <!-- Order Dropdown (hidden by default) -->
+                <div class="form-group" id="order-dropdown" style="display:none;">
+                    <label>Select Order</label>
+                    <select name="order_id" class="form-control">
+                        <option value="">Select Order</option>
+                        <?php foreach ($orders as $order): ?>
+                            <option value="<?= $order['id']; ?>">Order #<?= $order['id']; ?> - <?= $order['created_at']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-            <!-- Product Dropdown (hidden by default) -->
-            <div class="form-group" id="product-dropdown" style="display:none;">
-                <label>Select Product</label>
-                <select name="product_id" class="form-control">
-                    <option value="">Select Product</option>
-                    <?php foreach ($products as $product): ?>
-                        <option value="<?= $product['id']; ?>"><?= $product['name']; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+                <!-- Product Dropdown (hidden by default) -->
+                <div class="form-group" id="product-dropdown" style="display:none;">
+                    <label>Select Product</label>
+                    <select name="product_id" class="form-control">
+                        <option value="">Select Product</option>
+                        <?php foreach ($products as $product): ?>
+                            <option value="<?= $product['id']; ?>"><?= $product['name']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-            <!-- Message -->
-            <div class="form-group">
-                <label>Message</label>
-                <textarea name="message" class="form-control" required></textarea>
-            </div>
+                <!-- Message -->
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" class="form-control" required></textarea>
+                </div>
 
-            <!-- Attachments -->
-            <div class="form-group">
-                <label>Attachments (optional)</label>
-                <input type="file" name="attachment" class="form-control">
-            </div>
+                <!-- Attachments -->
+                <div class="form-group">
+                    <label>Attachments (optional)</label>
+                    <input type="file" name="attachment" class="form-control">
+                </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Submit Dispute</button>
-        </form>
+                <button type="submit" class="btn btn-primary mt-3">Submit Dispute</button>
+            </form>
+        </div>
     </div>
 </div>
 

@@ -72,36 +72,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <div class="container">
-        <h1>Edit Profile</h1>
-        
-        <?php if ($message): ?>
-            <div class="alert alert-info"><?php echo $message; ?></div>
-        <?php endif; ?>
-        
-        <form action="profile.php" method="POST">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="<?php echo $user['full_name']; ?>" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email']; ?>" required>
-            </div>
-            <div class="mb-3">
-                <label for="current_password" class="form-label">Current Password (to change password):</label>
-                <input type="password" class="form-control" id="current_password" name="current_password">
-            </div>
-            <div class="mb-3">
-                <label for="new_password" class="form-label">New Password:</label>
-                <input type="password" class="form-control" id="new_password" name="new_password">
-            </div>
-            <div class="form-check mb-3">
-                <input type="checkbox" class="form-check-input" id="offer_notifications" name="offer_notifications" <?php echo ($user['offer_notifications'] == 'yes') ? 'checked' : ''; ?>>
-                <label class="form-check-label" for="offer_notifications">Receive news and offers</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
+    <div class="container mt-5">
+        <div class="container mb-4 p-4 glass-card">
+            <h1>Edit Profile</h1>
+            
+            <?php if ($message): ?>
+                <div class="alert alert-info"><?php echo $message; ?></div>
+            <?php endif; ?>
+            
+            <form action="profile.php" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo $user['full_name']; ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email']; ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="current_password" class="form-label">Current Password (to change password):</label>
+                    <input type="password" class="form-control" id="current_password" name="current_password">
+                </div>
+                <div class="mb-3">
+                    <label for="new_password" class="form-label">New Password:</label>
+                    <input type="password" class="form-control" id="new_password" name="new_password">
+                </div>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="offer_notifications" name="offer_notifications" <?php echo ($user['offer_notifications'] == 'yes') ? 'checked' : ''; ?>>
+                    <label class="form-check-label" for="offer_notifications">Receive news and offers</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
