@@ -1,3 +1,4 @@
+
 .card {
     margin-bottom: 20px;
 }
@@ -14,9 +15,12 @@
 /* General styles for the card component */
 .card {
     margin-bottom: 20px; /* Space between cards */
-    border: 1px solid #e0e0e0; /* Light border for card definition */
-    border-radius: 0.5rem; /* Rounded corners */
-    transition: transform 0.3s ease; /* Smooth transform transition */
+    transition: transform 0.3s ease;
+    max-height: 200px;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid white;
+    background: rgba(255, 255, 255, );
 }
 
 /* Hover effect for card */
@@ -27,6 +31,8 @@
 /* Adjusting the card image */
 .card-img-top {
     height: 200px; /* Fixed height for image */
+    width: 200px;
+    padding: 10px;
     object-fit: cover; /* Cover the area without distortion */
 }
 

@@ -3,6 +3,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    /* background-image: url("../images/background.jpg");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-attachment: fixed;  */
     background-color: #f4f4f4;
 }
 
@@ -189,3 +194,73 @@ footer {
     background-color: #f8f9fa;
     padding: 1.5rem 0;
 }
+
+
+/* Glass Morphism Styling */
+.glass-card {
+    background: rgba(255, 255, 255, 0.2); /* Transparent white background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to mimic glass edge */
+    border-radius: 15px; /* Smooth rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.glass-card img {
+    border-radius: 10px;
+}
+
+/* Glassmorphism for input fields */
+.glass-input {
+    background: rgba(255, 255, 255, 0.15); /* Slightly lighter and more transparent */
+    backdrop-filter: blur(5px); /* Slight blur */
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: #000; /* Dark text for readability */
+    padding: 10px;
+    margin-bottom: 15px;
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+/* Placeholder styling */
+.glass-input::placeholder {
+    color: rgba(0, 0, 0, 0.5); /* Semi-transparent placeholder text */
+}
+
+/* Glassmorphism effect when input is focused */
+.glass-input:focus {
+    background: rgba(255, 255, 255, 0.2); /* Maintain glass effect on focus */
+    color: #000; /* Keep text color readable */
+    outline: none; /* Remove the default outline */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Slightly more visible border */
+}
+
+
+
+
+/* Testing  */
+/* .form-control, .form-select {
+    background: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: #ffffff; 
+    padding: 10px;
+    margin-bottom: 15px;
+    transition: background 0.3s ease, color 0.3s ease;
+} */
+
+/* Placeholder styling */
+/* .form-control::placeholder {
+    color: rgba(192, 192, 192, 0.5);
+} */
+
+/* Glassmorphism effect when input is focused */
+/* .form-control:focus ,.form-select:focus {
+    background: rgba(255, 255, 255, 0.2); 
+    color: #000; 
+    outline: none; 
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+} */
