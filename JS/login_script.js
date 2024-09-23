@@ -52,11 +52,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     notificationIcon.querySelector('.badge').textContent = notificationCount;
                     let dropdownContent = '';
                     data.forEach(notification => {
-                        dropdownContent += `<li>${notification.message} <button onclick="deleteNotification(${notification.id})">Delete</button></li>`;
+                        dropdownContent += `<li class="notification-item">
+    <span class="notification-message">${notification.message}</span>
+    <button class="delete-btn" onclick="deleteNotification(${notification.id})">Delete</button>
+</li>`;
                     });
                     notificationDropdown.innerHTML = dropdownContent;
                 } else {
-                    notificationDropdown.innerHTML = '<li>No new notifications</li>';
+                    notificationDropdown.innerHTML = '<li class="notification-item">No new notifications</li>';
                 }
             });
         }, 5000);
@@ -82,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Remove the notification from the dropdown
                 setTimeout(() => {
                     notificationIcon.querySelector('.badge').textContent = '0';
-                    notificationDropdown.innerHTML = '<li>No new notifications</li>';
+                    notificationDropdown.innerHTML = '<li class="notification-item">No new notifications</li>';
                 }, 1000);
             });
     };

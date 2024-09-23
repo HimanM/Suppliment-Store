@@ -90,7 +90,7 @@ p {
     margin-right: 10px; 
 }
 /* Profile Button and Dropdown Menu */
-.dropdown-menu {
+.dropdown-menu.profile {
     display: none;
     position: absolute;
     top: 100%;
@@ -134,35 +134,6 @@ p {
     background-color: #f8d7da;
 }
 
-
-/* Set a max-width for the dropdown to avoid it bleeding out */
-#notificationDropdown {
-    max-width: 300px; /* Adjust the width as needed */
-    overflow-x: hidden; /* Prevent horizontal overflow */
-    padding: 0; /* Remove any default padding */
-}
-
-/* Style for each notification item */
-#notificationDropdown li {
-    white-space: normal; /* Ensure the text wraps instead of bleeding out */
-    padding: 10px; /* Add padding inside each item */
-    border-bottom: 1px solid #ddd; /* Optional: add a border between items */
-    text-align: left; /* Align the content to the left */
-    word-wrap: break-word; /* Break long words if necessary */
-    list-style-type: none; /* Remove bullet points */
-}
-
-/* Style the delete button */
-#notificationDropdown li button {
-    float: right; /* Float the delete button to the right */
-    margin-left: 10px; /* Add some space between the button and the notification message */
-}
-
-/* Optional: Hover effect on notifications */
-#notificationDropdown li:hover {
-    background-color: #f1f1f1; /* Add a hover effect */
-}
-
 .message-box {
     position: fixed;
     top: 20px;
@@ -194,6 +165,56 @@ footer {
     background-color: #f8f9fa;
     padding: 1.5rem 0;
 }
+
+/* Notification Item Styles */
+#notificationDropdown{
+    margin: 0px;
+    border: none;
+    padding: 0;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa; /* Light background */
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.notification-item:hover {
+    background-color: #e9ecef;
+}
+
+/* Notification Message Style */
+.notification-message {
+    flex-grow: 1;
+    font-size: 14px;
+    color: #333;
+    margin-right: 15px; /* Space between message and button */
+}
+
+/* Notification Delete Button */
+.delete-btn {
+    background-color: #dc3545; /* Red background */
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+
 
 
 /* Glass Morphism Styling */
@@ -264,3 +285,5 @@ footer {
     outline: none; 
     border: 1px solid rgba(255, 255, 255, 0.4); 
 } */
+
+
