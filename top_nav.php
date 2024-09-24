@@ -142,8 +142,9 @@
                 <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                 <button type="submit" class="btn-primary">Login</button>
             </form>
-            <p>Forgot your password? <button id="show-forgot-password">Forgot Password</button></p>
-            <p>New here? <button id="show-register">Register</button></p>
+            <hr class="my-4">
+            <p class="login-text">Forgot your password? <button id="show-forgot-password" class="btn btn-link login-sub-btn">Forgot Password</button></p>
+            <p class="login-text">New here? <button id="show-register" class="btn btn-link login-sub-btn">Register</button></p>
         </div>
 
         <!-- Register Section -->
@@ -157,7 +158,8 @@
                 <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                 <button type="submit" class="btn-primary">Register</button>
             </form>
-            <p>Already have an account? <button id="show-login-from-register">Login</button></p>
+            <hr class="my-4">
+            <p class="login-text">Already have an account? <button class="btn btn-link login-sub-btn" id="show-login-from-register">Login</button></p>
         </div>
 
         <!-- Forgot Password Section -->
@@ -168,8 +170,9 @@
                 <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                 <button type="submit" class="btn-primary">Send Reset Link</button>
             </form>
-            <p>Remember your password? <button id="show-login-from-forgot">Login</button></p>
-            <p>New here? <button id="show-register-from-forgot">Register</button></p>
+            <hr class="my-4">
+            <p class="login-text">Remember your password? <button class="btn btn-link login-sub-btn" id="show-login-from-forgot">Login</button></p>
+            <p class="login-text">New here? <button  class="btn btn-link login-sub-btn" id="show-register-from-forgot">Register</button></p>
         </div>
     </div>
 </div>

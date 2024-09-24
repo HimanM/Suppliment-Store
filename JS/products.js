@@ -65,8 +65,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p>$${product.price}</p>
                     <div class="rating">${ratingStars}</div>
                     <form class="add-to-cart-form" data-product-id="${product.id}">
-                        <input type="number" name="quantity" min="1" value="1" class="form-control" max="10">
-                        <button type="submit">Add to Cart</button>
+                        <div class="quantity-cart-container">
+                            <input type="number" name="quantity" min="1" value="1" class="form-control quantity-input" max="10">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </div>
                     </form>
                     <a href="product_details.php?id=${product.id}">More Info</a>
                 `;

@@ -64,7 +64,7 @@ body {
 .form-control {
     margin-bottom: 15px;
     padding: 10px;
-    width: calc(100% - 22px); /* Adjust width to account for padding */
+    width: 100%;
 }
 
 .btn-primary {
@@ -258,6 +258,32 @@ footer {
 }
 
 
+/* Login Section 2 */
+
+.login-sub-btn {
+    color: #007bff; /* Bootstrap primary color */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-sub-btn:hover {
+    color: #0056b3; /* Darker blue for hover effect */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+.login-sub-btn:focus {
+    outline: none; /* Remove outline on focus */
+}
+
+.login-text {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
 
 
 /* Testing  */
