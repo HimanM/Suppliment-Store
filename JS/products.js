@@ -18,8 +18,35 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch products based on the current filter inputs
     function fetchProducts() {
         const search = searchInput.value;
-        const category = categorySelect.value;
-        const brand = brandSelect.value;
+        
+        
+        // Only assign category and brand if they exist in the query parameters
+        let category = '';
+        let brand = '';
+        if (categorySelect.value) {
+            category = categorySelect.value;
+        } 
+        else
+        {
+            let queryParams = getQueryParams();
+            if (queryParams.category) {
+                category = queryParams.category;
+                categorySelect.value = queryParams.category;
+            } 
+        }
+        if (brandSelect.value) {
+            brand = brandSelect.value;
+        } 
+        else
+        {
+            let queryParams = getQueryParams();
+            if (queryParams.brand) {
+                brand = queryParams.brand;
+                brandSelect.value = queryParams.brand;
+            } 
+        }
+        
+        console.log(category);
         const minPrice = minPriceInput.value || 0;
         const maxPrice = maxPriceInput.value || Number.MAX_SAFE_INTEGER;
 
@@ -36,7 +63,15 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.send();
     }
 
-
+    // Function to get query parameters from the URL
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            category: params.get('category') || '',
+            brand: params.get('brand') || ''
+        };
+    }
+    
     // Display fetched products on the page
     function displayProducts(products, Cards) {
         // Clear the Cards container

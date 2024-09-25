@@ -41,7 +41,7 @@ if (!empty($search) && !empty($category) && !empty($brand)) {
 } elseif (!empty($search) && !empty($category)) {
     $stmt->bind_param("ssss", $searchTerm, $category, $min_price, $max_price);
 } elseif (!empty($category) && !empty($brand)) {
-    $stmt->bind_param("sss", $category, $brand, $min_price, $max_price);
+    $stmt->bind_param("ssss", $category, $brand, $min_price, $max_price);
 } elseif (!empty($search)) {
     $stmt->bind_param("sss", $searchTerm, $min_price, $max_price);
 } elseif (!empty($category)) {

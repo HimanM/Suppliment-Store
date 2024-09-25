@@ -1,5 +1,6 @@
 .hero {
-    background-image: url('https://via.placeholder.com/1920x600');
+    position: relative; /* Make sure the hero is positioned relative */
+    background-image: url('../images/hero.png');
     background-size: cover;
     background-position: center;
     height: 600px;
@@ -9,7 +10,25 @@
     justify-content: center;
     color: white;
     text-align: center;
+    overflow: hidden; /* To hide any overflow of the overlay */
 }
+
+.hero::before {
+    content: ""; /* Required for the pseudo-element */
+    position: absolute; /* Position it absolutely within .hero */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Adjust the alpha value for darkness */
+    z-index: 1; /* Make sure it appears on top of the background */
+}
+
+.hero > * {
+    position: relative; /* Ensure the text is above the overlay */
+    z-index: 2; /* Higher z-index than the overlay */
+}
+
 .hero h1 {
     font-size: 4rem;
 }

@@ -31,7 +31,7 @@
         <div class="container">
             <h1>Welcome to Your Ultimate Supplement Store</h1>
             <p>Premium products to support your health and wellness journey</p>
-            <a href="#" class="btn btn-primary btn-lg">Shop Now</a>
+            <a href="products.php" class="btn btn-primary btn-lg">Shop Now</a>
         </div>
     </section>
 
