@@ -1,0 +1,19 @@
+/* Custom styling for the order confirmation details */
+.order-detail {
+    margin-bottom: 10px;
+    text-align: start; /* Override global p tag settings */
+}
+
+.lead {
+    text-align: left; /* Override text alignment for lead paragraphs */
+}
+
+/* Adjust the order items list */
+.list-group-item {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.order-details{
+    padding: 20px;
+}

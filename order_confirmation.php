@@ -95,34 +95,41 @@
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <h1>Order Confirmation</h1>
-    <p>Thank you for your purchase! Your order details are below:</p>
+    <div class="container mt-5 p-2 glass-card">
+        <div class="container order-details">
+            <h1 class="text-center mb-4">Order Confirmation</h1>
+            <p class="lead">Thank you for your purchase! Your order details are below:</p>
 
-    <h2>Order #<?php echo $order['id']; ?></h2>
-    <p><strong>Order Date:</strong> <?php echo $order['created_at']; ?></p>
-    <p><strong>Total:</strong> $<?php echo number_format($order['total'], 2); ?></p>
-    <p><strong>Shipping Address:</strong> <?php echo htmlspecialchars($order['shipping_address']); ?></p>
-    <p><strong>Billing Address:</strong> <?php echo htmlspecialchars($order['billing_address']); ?></p>
-    <p><strong>Payment Status:</strong> <?php echo ucfirst($order['payment_status']); ?></p>
+            <h2 class="mb-3">Order #<?php echo $order['id']; ?></h2>
+            
+            <p class="order-detail"><strong>Order Date:</strong> <?php echo $order['created_at']; ?></p>
+            <p class="order-detail"><strong>Total:</strong> $<?php echo number_format($order['total'], 2); ?></p>
+            <p class="order-detail"><strong>Shipping Address:</strong> <?php echo htmlspecialchars($order['shipping_address']); ?></p>
+            <p class="order-detail"><strong>Billing Address:</strong> <?php echo htmlspecialchars($order['billing_address']); ?></p>
+            <p class="order-detail"><strong>Payment Status:</strong> <?php echo ucfirst($order['payment_status']); ?></p>
 
-    <h3>Order Items:</h3>
-    <ul>
-        <?php
-        // Reset items result pointer to the beginning for HTML display
-        $items_result->data_seek(0);
-        while ($item = $items_result->fetch_assoc()): ?>
-            <li>
-                <?php echo htmlspecialchars($item['name']); ?> 
-                (Quantity: <?php echo $item['quantity']; ?>) 
-                - $<?php echo number_format($item['price'], 2); ?>
-            </li>
-        <?php endwhile; ?>
-    </ul>
-    <?php
-        include 'PHP/product_recommend.php';
-    ?>
-    <p>We will notify you once your order is processed and shipped.</p>
-    <a href="index.php">Continue Shopping</a>
+            <h3 class="mt-4 mb-3">Order Items:</h3>
+            <ul class="list-group mb-4">
+                <?php
+                // Reset items result pointer to the beginning for HTML display
+                $items_result->data_seek(0);
+                while ($item = $items_result->fetch_assoc()): ?>
+                    <li class="list-group-item">
+                        <?php echo htmlspecialchars($item['name']); ?> 
+                        (Quantity: <?php echo $item['quantity']; ?>) 
+                        - $<?php echo number_format($item['price'], 2); ?>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        </div>
+        
+        <?php include 'PHP/product_recommend.php'; ?>
+        
+        <p class="lead">We will notify you once your order is processed and shipped.</p>
+        
+        <a href="index.php" class="btn btn-primary mt-3">Continue Shopping</a>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

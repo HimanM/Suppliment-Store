@@ -1,9 +1,19 @@
-.img-fluid {
-    max-height: 500px;
+.content-image {
+    max-width: 250px; /* Adjust this width as needed */
+    height: auto;
     object-fit: cover;
-    margin-bottom: 20px;
+    float: left;
+    margin: 5px;
 }
 
-.container {
-    margin-top: 50px;
+.content-title, .content-layout{
+    padding: 20px;
+}
+
+.square{
+    width: fit-content;
+}
+.body-p{
+    text-align: start;
+    font-size: 18px;
 }

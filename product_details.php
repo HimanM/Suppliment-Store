@@ -94,7 +94,7 @@ if ($is_logged_in) {
                     <p class="product-description">Description: <?php echo htmlspecialchars($product['description']); ?></p>
                 <?php endif; ?>
                 <?php if (!empty($product['detailed_description'])): ?>
-                    <p class="product-detailed-description">Details: <?php echo htmlspecialchars($product['detailed_description']); ?></p>
+                    <p class="product-detailed-description" style="text-align:start">Details: <?php echo htmlspecialchars($product['detailed_description']); ?></p>
                 <?php endif; ?>
             </div>
             <hr>

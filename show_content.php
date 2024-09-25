@@ -33,19 +33,29 @@ if (!$content) {
 <body>
     <?php include 'top_nav.php'; ?>
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-8">
-                <h1><?php echo htmlspecialchars($content['title']); ?></h1>
-                <?php if (!empty($content['image_url'])): ?>
-                    <img src="images/content/<?php echo htmlspecialchars($content['image_url']); ?>" alt="Image" class="img-fluid">
-                <?php endif; ?>
-                <p><?php echo htmlspecialchars($content['body']); ?></p>
+    <div class="container mt-5 glass-card">
+    <div class="row">
+        <!-- Product Content -->
+        <div class="col-md-12">
+            <!-- Title and Author on the right of the image -->
+            <div class="content-title">
+                <h1 style="text-align:center"><?php echo htmlspecialchars($content['title']); ?></h1>
                 <p><strong>Author:</strong> <?php echo htmlspecialchars($content['username']); ?></p>
+            </div>
+            <div class="content-layout">
+                <!-- Image on the left -->
+                <div class ="square">
+                    <?php if (!empty($content['image_url'])): ?>
+                        <img src="images/content/<?php echo htmlspecialchars($content['image_url']); ?>" alt="Image" class="img-fluid content-image me-3">
+                    <?php endif; ?>
+                </div>
+                <p class="body-p" ><?php echo nl2br(htmlspecialchars($content['body'])); ?></p>
                 <p><strong>Published on:</strong> <?php echo date('F j, Y', strtotime($content['created_at'])); ?></p>
+               
             </div>
         </div>
     </div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="JS/login_script.js"></script>
