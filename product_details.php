@@ -80,38 +80,42 @@ if ($is_logged_in) {
 
 <div class="container mt-5">
     <div class="row">
-        <!-- Product Image and Name -->
+        <!-- Product Image -->
         <div class="col-md-4">
-            <img src="images/uploads/<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid">
-            <h2><?php echo htmlspecialchars($product['name']); ?></h2>
-            <p>Rating: <?php echo str_repeat('★', intval($product['rating'])) . str_repeat('☆', 5 - intval($product['rating'])); ?></p>
+            <img src="images/uploads/<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="align-self-center img-fluid product-image">  
+            <p class="product-p">Rating: <?php echo str_repeat('★', intval($product['rating'])) . str_repeat('☆', 5 - intval($product['rating'])); ?></p>
         </div>
 
         <!-- Product Details -->
         <div class="col-md-8">
-            <p>Price: $<?php echo number_format($product['price'], 2); ?></p>
-            <?php if (!empty($product['description'])): ?>
-                <p>Description: <?php echo htmlspecialchars($product['description']); ?></p>
-            <?php endif; ?>
-            <?php if (!empty($product['detailed_description'])): ?>
-                <p>Details: <?php echo htmlspecialchars($product['detailed_description']); ?></p>
-            <?php endif; ?>
-
+            <h2 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h2>
+            <div class="container product-description-container">
+                <?php if (!empty($product['description'])): ?>
+                    <p class="product-description">Description: <?php echo htmlspecialchars($product['description']); ?></p>
+                <?php endif; ?>
+                <?php if (!empty($product['detailed_description'])): ?>
+                    <p class="product-detailed-description">Details: <?php echo htmlspecialchars($product['detailed_description']); ?></p>
+                <?php endif; ?>
+            </div>
+            <hr>
             <!-- Add to Cart Form -->
-            <?php if ($product['stock'] > 0): ?>
-                <hr>
-                <h3>Add to Cart</h3>
-                <form id="add-to-cart-form" method="POST" action="PHP/add_to_cart.php">
-                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" min="1" max="<?php echo htmlspecialchars($product['stock']); ?>" value="1" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </form>
-            <?php else: ?>
-                <p class="text-danger">Out of stock</p>
-            <?php endif; ?>
+            <div class="container add-to-cart">
+                <?php if ($product['stock'] > 0): ?>
+                    <form id="add-to-cart-form" method="POST" action="PHP/add_to_cart.php">
+                        <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+                        <div class="mb-3">
+                            <p class="product-price">Price: $<?php echo number_format($product['price'], 2); ?></p>
+                        </div>
+                        <div class="container pb-0">
+                            <label for="quantity" class="form-label">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="<?php echo htmlspecialchars($product['stock']); ?>" value="1" class="form-control" required>
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </form>
+                <?php else: ?>
+                    <p class="text-danger product-p">Out of stock</p>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 
@@ -128,13 +132,13 @@ if ($is_logged_in) {
                         <span class="badge bg-info text-dark">Your review</span>
                     <?php endif; ?>
                 </h5>
-                <p>Rating: <?php echo str_repeat('★', intval($review['rating'])) . str_repeat('☆', 5 - intval($review['rating'])); ?></p>
+                <p class="rating">Rating: <?php echo str_repeat('★', intval($review['rating'])) . str_repeat('☆', 5 - intval($review['rating'])); ?></p>
                 <p><?php echo htmlspecialchars($review['comment']); ?></p>
                 <small><?php echo date('F j, Y', strtotime($review['created_at'])); ?></small>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <p>No reviews yet.</p>
+        <p class="product-p">No reviews yet.</p>
     <?php endif; ?>
 
     <?php if ($is_logged_in && $has_purchased && !$has_reviewed): ?>
