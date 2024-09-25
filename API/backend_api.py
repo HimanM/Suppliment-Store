@@ -11,6 +11,7 @@ from email.mime.text import MIMEText
 from dotenv import load_dotenv
 import threading
 import time
+from datetime import datetime
 
 
 
@@ -127,9 +128,56 @@ def get_user_emails():
 
     return emails
 
+# Function to check reminders
+def check_reminders():
+    try:
+        # Connect to the database
+        conn = dbConnection()
+        cursor = conn.cursor(dictionary=True)
+
+        # SQL query to fetch due reminders
+        query = """
+        SELECT hs.title, hs.description, hs.reminder_time, u.email 
+        FROM health_schedule hs
+        JOIN schedule_reminders sr ON hs.id = sr.schedule_id
+        JOIN users u ON hs.user_id = u.id
+        WHERE sr.reminder_day = DAYNAME(NOW()) AND DATE_FORMAT(hs.reminder_time, '%H:%i') = DATE_FORMAT(NOW(), '%H:%i')
+        """
+        
+        cursor.execute(query)
+        reminders = cursor.fetchall()
+        for reminder in reminders:
+            # Compose the reminder message
+            subject = f"Reminder: {reminder['title']}"
+            message = f"{reminder['description']}\n\nReminder Time: {reminder['reminder_time']}"
+            
+            print("Reminder Found\n"+message)
+            sendEmail(reminder['email'],subject,message)
+            # send_reminder_email(reminder['email'], subject, message)
+
+        cursor.close()
+        conn.close()
+    
+    except mysql.connector.Error as err:
+        print(f"Database error: {err}")
+
+def run_reminder_checker(interval=55):
+    print("Reminder Sender Started")
+    while True:
+        check_reminders()  # Check reminders at every interval
+        time.sleep(interval)  # Wait for the defined interval (in seconds)
+
+def run_flask():
+    print("Flask Started")
+    app.run(debug = True)
+
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    
+    reminder_thread = threading.Thread(target=run_reminder_checker)
+    reminder_thread.start()
+    run_flask()
+    
 
 
 

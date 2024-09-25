@@ -27,7 +27,7 @@
 <?php include 'top_nav.php'; ?>
 
 <!-- Hero Section -->
-<section class="hero">
+    <section class="hero">
         <div class="container">
             <h1>Welcome to Your Ultimate Supplement Store</h1>
             <p>Premium products to support your health and wellness journey</p>

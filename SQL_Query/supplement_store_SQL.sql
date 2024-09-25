@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 07, 2024 at 02:13 AM
+-- Generation Time: Sep 25, 2024 at 11:37 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -12,12 +12,11 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-CREATE DATABASE supplement_store;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-USE supplement_store;
+
 --
 -- Database: `supplement_store`
 --
@@ -37,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`,`product_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -64,8 +63,8 @@ CREATE TABLE IF NOT EXISTS `content` (
 --
 
 INSERT INTO `content` (`id`, `title`, `image_url`, `body`, `author_id`, `type`, `created_at`, `updated_at`) VALUES
-(2, 'How to Choose the Right Multivitamin', NULL, 'When selecting a multivitamin, consider...', 3, 'blog_post', '2024-09-05 23:40:24', '2024-09-09 00:37:12'),
-(3, 'Benefits of Omega-3 Fatty Acids', NULL, 'Omega-3s are crucial for heart and brain health...', 3, 'blog_post', '2024-09-05 23:40:24', '2024-09-05 23:40:24'),
+(2, 'How to Choose the Right Multivitamin', '71EPsTan5AL.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi sapien, dictum in imperdiet in, dapibus non libero. Quisque et purus vel turpis maximus venenatis. Integer vel euismod augue, non tempus sapien. Aliquam vitae magna nibh. Donec ut tempus risus. Sed posuere dignissim luctus. Sed vehicula libero non ipsum condimentum, a rutrum felis faucibus. Donec sagittis, felis ut fringilla elementum, odio lorem fermentum ipsum, at porttitor lorem enim quis urna. Nam mattis tellus purus, sit amet vulputate risus rutrum feugiat. Nullam hendrerit purus vitae lectus mattis, vitae viverra enim pharetra. Proin nec mi nisi.\n\nCras vitae odio fermentum enim lobortis tincidunt. Nullam dictum ipsum libero, sit amet dignissim tellus eleifend sit amet. Proin erat nibh, porttitor quis lorem ac, iaculis ullamcorper sapien. Phasellus posuere blandit neque, in facilisis ipsum porta eu. Etiam eu mollis justo, nec aliquam magna. Fusce in erat nulla. Mauris nec ante sed massa blandit tincidunt. Praesent eget pulvinar lorem, ac ultrices lectus. Quisque lobortis eget enim vestibulum aliquam.', 3, 'blog_post', '2024-09-05 23:40:24', '2024-09-25 08:25:25'),
+(3, 'Benefits of Omega-3 Fatty Acids', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi sapien, dictum in imperdiet in, dapibus non libero. Quisque et purus vel turpis maximus venenatis. Integer vel euismod augue, non tempus sapien. Aliquam vitae magna nibh. Donec ut tempus risus. Sed posuere dignissim luctus. Sed vehicula libero non ipsum condimentum, a rutrum felis faucibus. Donec sagittis, felis ut fringilla elementum, odio lorem fermentum ipsum, at porttitor lorem enim quis urna. Nam mattis tellus purus, sit amet vulputate risus rutrum feugiat. Nullam hendrerit purus vitae lectus mattis, vitae viverra enim pharetra. Proin nec mi nisi.\n\nCras vitae odio fermentum enim lobortis tincidunt. Nullam dictum ipsum libero, sit amet dignissim tellus eleifend sit amet. Proin erat nibh, porttitor quis lorem ac, iaculis ullamcorper sapien. Phasellus posuere blandit neque, in facilisis ipsum porta eu. Etiam eu mollis justo, nec aliquam magna. Fusce in erat nulla. Mauris nec ante sed massa blandit tincidunt. Praesent eget pulvinar lorem, ac ultrices lectus. Quisque lobortis eget enim vestibulum aliquam.', 3, 'blog_post', '2024-09-05 23:40:24', '2024-09-21 06:11:47'),
 (5, 'test 2 ', '', 'admib no 7', 7, 'guide', '2024-09-09 00:42:01', '2024-09-09 00:42:01');
 
 -- --------------------------------------------------------
@@ -90,14 +89,43 @@ CREATE TABLE IF NOT EXISTS `disputes` (
   KEY `user_id` (`user_id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `disputes`
 --
 
 INSERT INTO `disputes` (`id`, `user_id`, `dispute_type`, `order_id`, `product_id`, `message`, `attachment`, `status`, `created_at`, `updated_at`) VALUES
+(11, 5, 'product', 0, 2, 'dispute ', NULL, 'pending', '2024-09-22 11:08:38', '2024-09-22 11:08:38'),
 (9, 5, 'order', 4, 0, 'i have a problem about this order', NULL, 'resolved', '2024-09-09 07:01:08', '2024-09-09 07:34:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `health_schedule`
+--
+
+DROP TABLE IF EXISTS `health_schedule`;
+CREATE TABLE IF NOT EXISTS `health_schedule` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `schedule_type` enum('supplement','workout','meal') NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text,
+  `reminder_time` time DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `health_schedule`
+--
+
+INSERT INTO `health_schedule` (`id`, `user_id`, `schedule_type`, `title`, `description`, `reminder_time`, `created_at`, `updated_at`) VALUES
+(3, 5, 'meal', 'asdas', 'asdasd', '19:53:00', '2024-09-25 11:21:20', '2024-09-25 11:21:20'),
+(6, 5, 'supplement', 'test', 'test', '19:01:00', '2024-09-25 11:28:26', '2024-09-25 11:28:26');
 
 -- --------------------------------------------------------
 
@@ -118,8 +146,8 @@ CREATE TABLE IF NOT EXISTS `inventory` (
 --
 
 INSERT INTO `inventory` (`product_id`, `stock`, `last_updated`) VALUES
-(1, 99, '2024-09-09 05:07:03'),
-(2, 199, '2024-09-07 01:31:10'),
+(1, 9, '2024-09-21 14:52:40'),
+(2, 197, '2024-09-25 08:26:49'),
 (3, 150, '2024-09-05 23:40:24'),
 (4, 80, '2024-09-05 23:40:24');
 
@@ -139,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`),
   KEY `sender_id` (`sender_id`),
   KEY `receiver_id` (`receiver_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `messages`
@@ -149,13 +177,9 @@ INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `sent_at`) 
 (1, 5, 3, 'Hi, could you suggest a good protein supplement for beginners?', '2024-09-05 23:40:24'),
 (2, 3, 5, 'I recommend starting with whey protein, it’s great for beginners and pros alike.', '2024-09-05 23:40:24'),
 (3, 5, 3, 'ok thanks', '2024-09-08 05:18:09'),
-(4, 7, 0, 'hello', '2024-09-09 01:07:12'),
-(5, 7, 5, 'hi', '2024-09-09 01:07:30'),
-(6, 5, 3, 'hello test message', '2024-09-09 03:05:19'),
-(7, 7, 5, 'hello again from admin', '2024-09-09 03:10:37'),
-(8, 7, 5, 'hello again from admin', '2024-09-09 03:11:21'),
-(9, 8, 3, 'hello', '2024-09-09 03:24:28'),
-(10, 7, 8, 'hello doe', '2024-09-09 03:24:50');
+(29, 8, 3, 'Hi', '2024-09-22 12:28:58'),
+(30, 5, 3, 'hello', '2024-09-22 12:40:31'),
+(28, 7, 5, 'If you have more questions please ask away : )', '2024-09-22 12:26:57');
 
 -- --------------------------------------------------------
 
@@ -172,7 +196,21 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `user_id`, `message`, `is_read`, `created_at`) VALUES
+(29, 5, 'You Have A New Message', 0, '2024-09-22 11:47:59'),
+(30, 0, 'You Have A New Message', 0, '2024-09-22 12:22:53'),
+(31, 5, 'Order Placed - Order #11', 0, '2024-09-25 08:26:51'),
+(27, 5, 'Order Placed - Order #9', 1, '2024-09-21 09:17:41'),
+(28, 5, 'Order Placed - Order #10', 1, '2024-09-21 14:41:21'),
+(25, 5, 'Order Placed - Order #7', 1, '2024-09-21 09:15:43'),
+(26, 5, 'Order Placed - Order #8', 1, '2024-09-21 09:15:45'),
+(24, 7, 'The product \'Whey Protein\' (ID: 1) is low on inventory. Currently, only 9 left.', 1, '2024-09-15 13:01:45');
 
 -- --------------------------------------------------------
 
@@ -193,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `payment_status` enum('pending','paid','failed') DEFAULT 'pending',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `orders`
@@ -205,7 +243,11 @@ INSERT INTO `orders` (`id`, `user_id`, `total`, `status`, `created_at`, `updated
 (3, 2, 15.49, 'delivered', '2024-09-05 23:40:24', '2024-09-05 23:40:24', '', '', 'pending'),
 (4, 5, 15.49, 'shipped', '2024-09-06 07:53:08', '2024-09-09 06:49:33', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', 'paid'),
 (5, 5, 15.49, 'shipped', '2024-09-07 01:31:10', '2024-09-07 01:33:08', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', 'paid'),
-(6, 7, 29.99, 'pending', '2024-09-09 01:22:07', '2024-09-09 01:22:07', 'some addr', 'some addr', 'paid');
+(6, 7, 29.99, 'pending', '2024-09-09 01:22:07', '2024-09-09 01:22:07', 'some addr', 'some addr', 'paid'),
+(7, 5, 105.46, 'cancelled', '2024-09-21 09:15:41', '2024-09-21 14:52:30', 'asdasd', 'asdasd', 'paid'),
+(11, 5, 30.98, 'pending', '2024-09-25 08:26:49', '2024-09-25 08:26:49', 'random adress', 'random adress', 'paid'),
+(9, 5, 29.99, 'cancelled', '2024-09-21 09:17:39', '2024-09-21 14:51:27', 'asdasd', 'asdasd', 'paid'),
+(10, 5, 29.99, 'cancelled', '2024-09-21 14:41:19', '2024-09-21 14:52:40', 'asd', 'asd', 'paid');
 
 -- --------------------------------------------------------
 
@@ -223,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `order_items`
@@ -235,7 +277,12 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) 
 (3, 3, 3, 1, 12.99),
 (4, 4, 2, 1, 15.49),
 (5, 5, 2, 1, 15.49),
-(6, 6, 1, 1, 29.99);
+(6, 6, 1, 1, 29.99),
+(7, 7, 1, 3, 29.99),
+(8, 7, 2, 1, 15.49),
+(9, 9, 1, 1, 29.99),
+(10, 10, 1, 1, 29.99),
+(11, 11, 2, 2, 15.49);
 
 -- --------------------------------------------------------
 
@@ -264,10 +311,10 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `detailed_description`, `price`, `category`, `image_url`, `created_at`, `updated_at`, `brand`, `rating`) VALUES
-(1, 'Whey Protein', 'High-quality whey protein powder for muscle recovery.', 'detailed description', 29.99, 'Protein', 'pfp.png', '2024-09-05 23:40:24', '2024-09-09 05:07:03', 'brand1', 5.00),
-(2, 'Multivitamin', 'Daily multivitamin supplement for overall health.', NULL, 15.49, 'Vitamins', 'multivitamin.jpg', '2024-09-05 23:40:24', '2024-09-07 01:41:58', 'brand1', 2.50),
-(3, 'Omega-3 Fish Oil', 'Omega-3 fish oil capsules to support heart health.', NULL, 12.99, 'Oils', 'omega3_fish_oil.jpg', '2024-09-05 23:40:24', '2024-09-07 00:49:07', 'brand2', 5.00),
-(4, 'Creatine Monohydrate', 'Creatine for enhanced performance and strength.', NULL, 19.99, 'Performance', 'creatine_monohydrate.jpg', '2024-09-05 23:40:24', '2024-09-06 05:22:41', 'brand2', 0.00);
+(1, 'Whey Protein', 'High-quality whey protein powder for muscle recovery.', 'detailed description', 29.99, 'Protein', 'whey.png', '2024-09-05 23:40:24', '2024-09-21 06:49:28', 'brand1', 5.00),
+(2, 'Multivitamin', 'Daily multivitamin supplement for overall health.', NULL, 15.49, 'Vitamins', 'vitamin.png', '2024-09-05 23:40:24', '2024-09-25 08:41:13', 'brand1', 4.00),
+(3, 'Omega-3 Fish Oil', 'Omega-3 fish oil capsules to support heart health.', NULL, 12.99, 'Oils', '.png', '2024-09-05 23:40:24', '2024-09-21 06:43:08', 'brand2', 5.00),
+(4, 'Creatine Monohydrate', 'Creatine for enhanced performance and strength.', NULL, 19.99, 'Performance', '.png', '2024-09-05 23:40:24', '2024-09-21 06:43:12', 'brand2', 0.00);
 
 -- --------------------------------------------------------
 
@@ -344,10 +391,53 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `user_id`, `product_id`, `rating`, `comment`, `created_at`) VALUES
-(1, 1, 1, 5, 'Great product, excellent for muscle recovery!', '2024-09-05 23:40:24'),
-(2, 2, 2, 4, 'Good daily multivitamin, but a bit pricey.', '2024-09-05 23:40:24'),
-(3, 1, 3, 5, 'Fish oil really helped with my heart health.', '2024-09-05 23:40:24'),
-(6, 5, 2, 1, 'test', '2024-09-07 01:41:50');
+(1, 8, 1, 5, 'Great product, excellent for muscle recovery!', '2024-09-05 23:40:24'),
+(2, 3, 2, 4, 'Good daily multivitamin, but a bit pricey.', '2024-09-05 23:40:24'),
+(3, 3, 3, 5, 'Fish oil really helped with my heart health.', '2024-09-05 23:40:24'),
+(7, 5, 3, 5, 'Very Good Product', '2024-09-25 08:41:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule_reminders`
+--
+
+DROP TABLE IF EXISTS `schedule_reminders`;
+CREATE TABLE IF NOT EXISTS `schedule_reminders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `schedule_id` int DEFAULT NULL,
+  `reminder_day` enum('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `schedule_id` (`schedule_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `schedule_reminders`
+--
+
+INSERT INTO `schedule_reminders` (`id`, `schedule_id`, `reminder_day`) VALUES
+(1, 1, 'Monday'),
+(2, 1, 'Tuesday'),
+(3, 1, 'Wednesday'),
+(4, 1, 'Thursday'),
+(5, 1, 'Friday'),
+(6, 1, 'Saturday'),
+(7, 1, 'Sunday'),
+(8, 2, 'Tuesday'),
+(9, 2, 'Wednesday'),
+(15, 3, 'Wednesday'),
+(14, 3, 'Tuesday'),
+(13, 3, 'Monday'),
+(16, 3, 'Thursday'),
+(17, 3, 'Friday'),
+(18, 3, 'Saturday'),
+(19, 3, 'Sunday'),
+(20, 4, 'Saturday'),
+(21, 4, 'Sunday'),
+(22, 5, 'Saturday'),
+(23, 5, 'Sunday'),
+(27, 6, 'Thursday'),
+(26, 6, 'Tuesday');
 
 -- --------------------------------------------------------
 
@@ -375,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `role`, `password`, `created_at`, `offer_notifications`) VALUES
-(8, 'john_doe', 'john doe', 'john.doe@example.com', 'nutritional_expert', '$2y$10$Up7x0tr3ucSc0f7D1zEs8.tP/IeSwthDLjj//0n2oUyeLR7V16ob2', '2024-09-09 03:24:11', 'yes'),
+(8, 'john_doe', 'john doe', 'john.doe@example.com', 'registered', '$2y$10$Up7x0tr3ucSc0f7D1zEs8.tP/IeSwthDLjj//0n2oUyeLR7V16ob2', '2024-09-09 03:24:11', 'yes'),
 (3, 'jane_smith', 'Jane Smith', 'jane.smith@example.com', 'nutritional_expert', 'hashed_password_3', '2024-09-05 23:40:24', 'no'),
 (5, 'Himan', 'Himan Manduja', 'hghimanmanduja@gmail.com', 'registered', '$2y$10$PErG.7yD4BZSLk47TZmuVu2ASQrR1wxvVeODipyAXXNsPs5MOQ7Bm', '2024-09-06 00:44:38', 'no'),
 (7, 'admin', 'admin', 'admin@admin.com', 'admin', '$2y$10$LRYBh75259kMxLj/cWmITOLSSIygGyIjWMcArByZ/yi3cEVEUohfa', '2024-09-09 00:29:57', 'no');
@@ -384,4 +474,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
