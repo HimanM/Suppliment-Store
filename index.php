@@ -41,31 +41,31 @@
         <div class="row">
             <div class="col-md-4 product-card">
                 <div class="card">
-                    <img src="https://via.placeholder.com/400x200" alt="Product 1" class="card-img-top product-image">
+                    <img src="images/vitamin.png" alt="Product 1" class="card-img-top product-image">
                     <div class="card-body">
                         <h5 class="card-title">Vitamins</h5>
                         <p class="card-text">Boost your immune system with our essential vitamins.</p>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+                        <a href="http://localhost/Suppliment%20Store/products.php?category=Vitamins" class="btn btn-primary">Buy Now</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 product-card">
                 <div class="card">
-                    <img src="https://via.placeholder.com/400x200" alt="Product 2" class="card-img-top product-image">
+                    <img src="images/protein.png" alt="Product 2" class="card-img-top product-image">
                     <div class="card-body">
                         <h5 class="card-title">Protein Powders</h5>
                         <p class="card-text">High-quality protein powders for muscle growth and recovery.</p>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+                        <a href="http://localhost/Suppliment%20Store/products.php?category=Protein" class="btn btn-primary">Buy Now</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 product-card">
                 <div class="card">
-                    <img src="https://via.placeholder.com/400x200" alt="Product 3" class="card-img-top product-image">
+                    <img src="images/oil.png" alt="Product 3" class="card-img-top product-image">
                     <div class="card-body">
                         <h5 class="card-title">Fish Oils</h5>
                         <p class="card-text">Omega-3 fish oils for cardiovascular health and joint support.</p>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+                        <a href="http://localhost/Suppliment%20Store/products.php?category=Oils" class="btn btn-primary">Buy Now</a>
                     </div>
                 </div>
             </div>
