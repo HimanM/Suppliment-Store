@@ -31,3 +31,6 @@ body{
 .product-card {
     margin-bottom: 2rem;
 }
+.card-title, .card-text{
+    color: black;
+}
