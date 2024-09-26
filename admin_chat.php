@@ -21,7 +21,7 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
     <title>Admin Chat Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="CSS/login_styles.css"><!-- Add your CSS file here -->
+    <link rel="stylesheet" href="CSS/master.css"><!-- Add your CSS file here -->
     <link rel="stylesheet" href="CSS/admin_chat_styles.css">
     <script src="JS/admin_chat.js" defer></script>
 </head>

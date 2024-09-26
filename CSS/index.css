@@ -4,28 +4,19 @@ body{
 
 .hero {
     position: relative; 
-    background-image: url('../images/hero.png');
-    background-size: cover;
-    background-position: center;
-    max-height: 600px;
-    max-width: 1920px;
+    height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     text-align: center;
     overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-.hero::before {
-    content: ""; /* Required for the pseudo-element */
-    position: absolute; /* Position it absolutely within .hero */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8); /* Adjust the alpha value for darkness */
-    z-index: 1; /* Make sure it appears on top of the background */
+.btn-primary{
+    width: auto;
 }
 
 .hero > * {

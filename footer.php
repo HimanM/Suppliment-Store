@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="text-center">
+<footer class="text-center footer">
     <div class="container mt-0 container-fluid">
         <p class="mb-1">&copy; 2024 Supplement Store. All rights reserved.</p>
         <p>

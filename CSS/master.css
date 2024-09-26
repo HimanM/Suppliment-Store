@@ -164,13 +164,21 @@ p {
     border: 1px solid #c3e6cb;
 }
 
-
 footer {
     background-color: #f8f9fa;
     padding: 1.5rem 0;
     text-align: center;
     padding: 1em;
     margin-top: auto; /* This pushes the footer to the bottom */
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+a.text-muted{
+    color: white !important; 
 }
 
 /* Notification Item Styles */
@@ -248,13 +256,23 @@ footer {
     margin-bottom: 10px;
 }
 
+/* Fonts */
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.main-title{
+    font-family: "Bebas Neue", sans-serif;
+}
 
 
 
-
-
-
-
+/* White Font */
+.wf{
+    color: white;
+}
 
 /* Glass Morphism Styling */
 .glass-card {
@@ -266,6 +284,13 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
+.glass-card-no-border {
+    background: rgba(255, 255, 255, 0.15); /* Transparent white background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-radius: 15px; /* Smooth rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
 
 .glass-card img {
     border-radius: 10px;
@@ -297,7 +322,10 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.4); /* Slightly more visible border */
 }
 
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+h1, h2, h3, h4, h5{
+    font-family: "Bebas Neue", Helvetica, sans-serif;
+}
 /* when applying glass effect uncomment below  */
 
 /* .glass-card .h1, h2, h3, h4, h5, p {
