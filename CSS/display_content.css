@@ -7,11 +7,14 @@
     position: relative;
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
     transition: transform 0.3s ease;
-    backdrop-filter: blur(10px);
     border-radius: 10px;
     border: 1px solid white;
-    background: rgba(255, 255, 255, );
     height: 375px;
+    /* Uncomment these to add glass effect for content articles */
+
+    /* background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); */
 }
 
 .card-body{

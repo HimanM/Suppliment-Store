@@ -41,7 +41,7 @@ while ($row = $result->fetch_assoc()) {
 <body>
     <?php include 'top_nav.php'; ?>
     <div class="container mt-5">
-        <div class="container glass-card mt-2 p-2 mb-5">
+        <div class="container mt-2 p-2 mb-5">
 		<h2 class="mb-3 m-2">Articles</h2>
             <div id="carouselExampleControls" class="carousel">
                 <div class="carousel-inner">
@@ -94,7 +94,7 @@ while ($row = $result->fetch_assoc()) {
 
 
 		<!-- 2nd -->
-        <div class="container glass-card mt-2 p-2 mb-5">
+        <div class="container mt-2 p-2 mb-5">
 		<h2 class="mb-3 m-2">Guides</h2>
             <div id="carouselExampleControls2" class="carousel">
                 <div class="carousel-inner">
@@ -145,7 +145,7 @@ while ($row = $result->fetch_assoc()) {
 
 
 		<!-- 3rd -->
-		<div class="container glass-card mt-2 p-2 mb-5">
+		<div class="container mt-2 p-2 mb-5">
 		<h2 class="mb-3 m-2">Blog Posts</h2>
             <div id="carouselExampleControls3" class="carousel">
                 <div class="carousel-inner">

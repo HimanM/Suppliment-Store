@@ -31,10 +31,14 @@
         <div class="container">
             <h1>Welcome to Your Ultimate Supplement Store</h1>
             <p>Premium products to support your health and wellness journey</p>
+            <!-- Background image in index.css -->
             <a href="products.php" class="btn btn-primary btn-lg">Shop Now</a>
         </div>
     </section>
 
+    <section class="container my-5">
+        <br>
+    </section>
     <!-- Featured Products -->
     <section class="container my-5">
         <h2 class="text-center mb-4">Featured Products</h2>

@@ -221,6 +221,38 @@ footer {
     background-color: #c82333; /* Darker red on hover */
 }
 
+/* Login Section 2 */
+
+.login-sub-btn {
+    color: #007bff; /* Bootstrap primary color */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-sub-btn:hover {
+    color: #0056b3; /* Darker blue for hover effect */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+.login-sub-btn:focus {
+    outline: none; /* Remove outline on focus */
+}
+
+.login-text {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
 
 
 
@@ -233,6 +265,7 @@ footer {
     border-radius: 15px; /* Smooth rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
+
 
 .glass-card img {
     border-radius: 10px;
@@ -265,35 +298,12 @@ footer {
 }
 
 
-/* Login Section 2 */
+/* when applying glass effect uncomment below  */
 
-.login-sub-btn {
-    color: #007bff; /* Bootstrap primary color */
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-size: 14px;
-    text-decoration: underline;
-    cursor: pointer;
-}
+/* .glass-card .h1, h2, h3, h4, h5, p {
+    color: #ffffff;
+} */
 
-.login-sub-btn:hover {
-    color: #0056b3; /* Darker blue for hover effect */
-    text-decoration: none; /* Remove underline on hover */
-}
-
-.login-sub-btn:focus {
-    outline: none; /* Remove outline on focus */
-}
-
-.login-text {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-
-/* Testing  */
 /* .form-control, .form-select {
     background: rgba(255, 255, 255, 0.15); 
     backdrop-filter: blur(5px); 

@@ -3,11 +3,11 @@ body{
 }
 
 .hero {
-    position: relative; /* Make sure the hero is positioned relative */
+    position: relative; 
     background-image: url('../images/hero.png');
     background-size: cover;
     background-position: center;
-    height: 600px;
+    max-height: 600px;
     max-width: 1920px;
     display: flex;
     align-items: center;
