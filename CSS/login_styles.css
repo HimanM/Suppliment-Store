@@ -3,12 +3,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* background-image: url("../images/background.jpg");
+    background-image: url("../images/background.jpg");
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
-    background-attachment: fixed;  */
-    background-color: #f4f4f4;
+    background-attachment: fixed; 
+    /* background-color: #f4f4f4; */
     display: flex; /* Equivalent to d-flex */
     flex-direction: column; /* Equivalent to flex-column */
     height: 100vh; /* Equivalent to vh-100 */

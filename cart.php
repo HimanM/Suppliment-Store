@@ -48,7 +48,7 @@ while ($row = $result->fetch_assoc()) {
   <div class="container py-5">
     <div class="row d-flex justify-content-center my-4">
       <div class="col-md-8">
-        <div class="card mb-4">
+        <div class="card mb-4 glass-card">
           <div class="card-header py-3">
             <?php if (empty($cart_items)): ?>
               <h5 id="empty_msg" class="mb-0">Your cart is currently empty.</h5>
@@ -100,7 +100,7 @@ while ($row = $result->fetch_assoc()) {
         </div>
 
 
-        <div class="card mb-4 mb-lg-0">
+        <div class="card mb-4 mb-lg-0 glass-card">
           <div class="card-body">
             <p><strong>We accept</strong></p>
             <img class="me-2" width="45px"
@@ -122,7 +122,7 @@ while ($row = $result->fetch_assoc()) {
       </div>
       <?php if (!empty($cart_items)): ?>
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card mb-4 glass-card">
                 <div class="card-header py-3">
                     <h5 class="mb-0">Summary</h5>
                 </div>

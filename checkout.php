@@ -207,7 +207,7 @@ while ($row = $result->fetch_assoc()) {
           <hr class="mb-4">
         </div>
         
-        <div class="d-grid gap-2">
+        <div class="d-grid gap-2 mb-5">
           <button class="btn btn-primary" type="submit">
             Continue to Checkout
           </button>
