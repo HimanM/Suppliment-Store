@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><strong>Type:</strong> <?= htmlspecialchars($dispute['dispute_type']) ?></p>
             <p><strong>Message:</strong> <?= htmlspecialchars($dispute['message']) ?></p>
             <?php if ($dispute['attachment']): ?>
-                <p><strong>Attachment:</strong> <a href="<?= htmlspecialchars($dispute['attachment']) ?>" target="_blank">View Attachment</a></p>
+                <p><strong>Attachment:</strong> <a href="images\disputeDocs\<?= htmlspecialchars($dispute['attachment']) ?>" target="_blank">View Attachment</a></p>
             <?php endif; ?>
             <p><strong>Status:</strong> <?= htmlspecialchars($dispute['status']) ?></p>
         </div>

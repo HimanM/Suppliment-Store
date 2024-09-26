@@ -19,12 +19,27 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Check URL for success message
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
+
+    function getQueryParams() {
+        let params = {};
+        const queryString = window.location.search;
+        if (queryString) {
+            const pairs = queryString.substring(1).split("&");
+            pairs.forEach(pair => {
+                const [key, value] = pair.split("=");
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            });
+        }
+        return params;
+    }
+
+    const params = getQueryParams();
+    if (params.success === 'true'){
+        console.log('Triggered');
         messageBox.style.display = 'block';
         setTimeout(() => {
             messageBox.style.display = 'none';
         }, 3000);
     }
+
 });

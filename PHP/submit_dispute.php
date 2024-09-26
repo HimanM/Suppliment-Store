@@ -29,5 +29,6 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ississ", $user_id, $disputeType, $orderId, $productId, $message, $attachment);
 $stmt->execute();
 
+echo 'Dispute successfully submitted!';
 header('Location: ../disputes.php?success=true');
 ?>

@@ -46,6 +46,7 @@ while ($row = $result_products->fetch_assoc()) {
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/chat.css">
     <link rel="stylesheet" href="CSS/disputes_styles.css">
+    <script src="JS/dispute_scripts.js"></script>
     
 </head>
 <body>
@@ -110,7 +111,6 @@ while ($row = $result_products->fetch_assoc()) {
 <?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="JS/dispute_scripts.js"></script>
 <script src="JS/chat_script.js"></script>
 <script src="JS/login_script.js"></script>
 </body>

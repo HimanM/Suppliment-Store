@@ -9,6 +9,7 @@
     min-width: 300px;
     text-align: center;
 }
+
 #message-box.success {
     background-color: green;
     color: white;
