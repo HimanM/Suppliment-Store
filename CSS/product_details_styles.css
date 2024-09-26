@@ -13,8 +13,7 @@
 
 /* Product name */
 .product-name {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 40px;
     margin-bottom: 10px;
 }
 
@@ -29,7 +28,7 @@
 .product-description,
 .product-detailed-description {
     font-size: 16px;
-    color: #555;
+    color: #f2f2f2;
     margin-bottom: 10px;
 }
 .product-description-container{
@@ -74,7 +73,7 @@
 }
 /* Reviews Section */
 .review {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.6); 
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -88,6 +87,7 @@
 }
 
 .review p {
+    font-family: 'monst-i';
     font-size: 16px;
     color: #555;
     text-align: start;
@@ -95,7 +95,7 @@
 
 .review small {
     font-size: 12px;
-    color: #999;
+    color: #000000;
 }
 
 /* Custom styling for review rating stars */
@@ -130,6 +130,21 @@
 /* Custom class for globally styled p tags to avoid conflicts */
 .product-p {
     font-size: 16px;
-    color: #333;
+    color: #f2f2f2;
     text-align: start;
+}
+
+.form-control,.form-select {
+    background: rgba(255, 255, 255, 0.6); /* Lighter transparency for input fields */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+/* Input Focus Effect */
+.form-control:focus ,.form-select:focus {
+    background: rgba(255, 255, 255, 0.9); /* Solid background on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
 }

@@ -98,7 +98,7 @@
     <div class="container mt-5 p-2 glass-card">
         <div class="container order-details">
             <h1 class="text-center mb-4">Order Confirmation</h1>
-            <p class="lead">Thank you for your purchase! Your order details are below:</p>
+            <p class="lead wf">Thank you for your purchase! Your order details are below:</p>
 
             <h2 class="mb-3">Order #<?php echo $order['id']; ?></h2>
             
@@ -125,7 +125,7 @@
         
         <?php include 'PHP/product_recommend.php'; ?>
         
-        <p class="lead">We will notify you once your order is processed and shipped.</p>
+        <p class="lead wf">We will notify you once your order is processed and shipped.</p>
         
         <a href="index.php" class="btn btn-primary mt-3">Continue Shopping</a>
     </div>

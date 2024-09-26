@@ -1,6 +1,8 @@
 /* Base styles for the body */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'monst', Helvetica, sans-serif;
+    font-weight: 500;
+    font-style: normal;
     margin: 0;
     padding: 0;
     background-image: url("../images/background.jpg");
@@ -15,6 +17,11 @@ body {
     margin: 0; /* Ensure no default margin is applied */
 }
 
+
+
+.aw{
+    width: auto !important;
+}
 /* Main content blur effect */
 .main-content {
     transition: filter 0.3s ease-in-out;
@@ -186,6 +193,7 @@ a.text-muted{
     margin: 0px;
     border: none;
     padding: 0;
+    background-color: rgba(255, 255, 255, 0); 
 }
 
 .notification-item {
@@ -252,28 +260,56 @@ a.text-muted{
 
 .login-text {
     font-size: 16px;
-    color: #333;
+    color: #F2F2F2;
     margin-bottom: 10px;
 }
 
+
+/* --------------------------------------------------------------------------------------------------- */
 /* Fonts */
-.bebas-neue-regular {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url(Fonts/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'monst-i';
+    src: url(Fonts/Montserrat-Italic-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'monst';
+    src: url(Fonts/Montserrat-VariableFont_wght.ttf);
 }
 
 .main-title{
     font-family: "Bebas Neue", sans-serif;
+    font-size: xx-large;
 }
-
-
 
 /* White Font */
 .wf{
-    color: white;
+    color: #F2F2F2 !important;
 }
 
+.bf{
+    color: #000 !important;
+}
+
+/* Header Fonts */
+h1, h2, h3, h4, h5{
+    font-family: "Bebas Neue", Helvetica, sans-serif;
+    color: #F2F2F2;
+}
+
+.btn{
+    font-family: 'monst', Helvetica, sans-serif !important;
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* --------------------------------------------------------------------------------------------------- */
 /* Glass Morphism Styling */
 .glass-card {
     background: rgba(255, 255, 255, 0.15); /* Transparent white background */
@@ -289,7 +325,16 @@ a.text-muted{
     backdrop-filter: blur(10px); /* Blur effect */
     -webkit-backdrop-filter: blur(10px); /* For Safari */
     border-radius: 15px; /* Smooth rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+    color: #F2F2F2;
+}
+
+.glass-card-no-blur {
+    background: rgba(0, 0, 0, 0.48); /* Transparent white background */
+    border-radius: 15px; /* Smooth rounded corners */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #F2F2F2;
 }
 
 .glass-card img {
@@ -322,10 +367,7 @@ a.text-muted{
     border: 1px solid rgba(255, 255, 255, 0.4); /* Slightly more visible border */
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-h1, h2, h3, h4, h5{
-    font-family: "Bebas Neue", Helvetica, sans-serif;
-}
+
 /* when applying glass effect uncomment below  */
 
 /* .glass-card .h1, h2, h3, h4, h5, p {

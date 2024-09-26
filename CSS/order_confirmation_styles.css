@@ -2,6 +2,7 @@
 .order-detail {
     margin-bottom: 10px;
     text-align: start; /* Override global p tag settings */
+    color: #f2f2f2;
 }
 
 .lead {

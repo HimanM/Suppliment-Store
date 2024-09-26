@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="form-check mb-3">
                     <input type="checkbox" class="form-check-input" id="offer_notifications" name="offer_notifications" <?php echo ($user['offer_notifications'] == 'yes') ? 'checked' : ''; ?>>
-                    <label class="form-check-label" for="offer_notifications">Receive news and offers</label>
+                    <label class="form-check-label wf" for="offer_notifications">Receive news and offers</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
             </form>

@@ -10,11 +10,10 @@
     border-radius: 10px;
     border: 1px solid white;
     height: 375px;
-    /* Uncomment these to add glass effect for content articles */
-
-    /* background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px); 
-    -webkit-backdrop-filter: blur(10px); */
+    -webkit-backdrop-filter: blur(10px);
+    color: #f2f2f2;
 }
 
 .card-body{

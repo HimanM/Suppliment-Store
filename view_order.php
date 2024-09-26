@@ -64,7 +64,7 @@ if (!empty($orders)) {
         <?php else: ?>
             <?php foreach ($orders as $order): ?>
                 <div class="col-md-6 mb-4">
-                    <div class="card fixed-height-card">
+                    <div class="card fixed-height-card glass-card-no-blur">
                         <div class="card-body">
                             <h5 class="card-title">Order #<?php echo $order['id']; ?></h5>
                             <hr class="my-4">

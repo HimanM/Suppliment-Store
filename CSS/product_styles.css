@@ -1,5 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
 }
 
@@ -38,9 +37,9 @@ body {
     padding: 20px; /* Increased padding for better spacing */
     margin: 15px;
     width: calc(25% - 30px); /* 4 cards per row on larger screens */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15); /* Enhanced shadow for depth */
     text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
     max-height: 560px;
 }
@@ -48,7 +47,7 @@ body {
 /* Hover effect for product cards */
 .product-card:hover {
     transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* Deeper shadow on hover */
 }
 
 /* Active effect for product cards */
@@ -67,14 +66,21 @@ body {
 .product-card h3 {
     font-size: 1.5em; /* Larger font size for title */
     margin: 10px 0;
-    color: #333; /* Darker color for better readability */
+    color: #F2F2F2; /* Darker color for better readability */
+}
+
+.rating{
+    color: #F2F2F2;
 }
 
 /* Styling for product descriptions and prices */
 .product-card p {
     font-size: 1em;
+    font-family: 'monst', Helvetica, sans-serif;
+    font-weight: 500;
+    font-style: normal;
     margin: 5px 0;
-    color: #555; /* Slightly lighter color for text */
+    color: #F2F2F2; /* Slightly lighter color for text */
 }
 
 /* Styling for add to cart form */

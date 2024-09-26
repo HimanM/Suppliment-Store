@@ -18,9 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/chat.css">
     <link rel="stylesheet" href="CSS/index.css">
@@ -35,7 +32,7 @@
             <h1>Welcome to Your Ultimate Supplement Store</h1>
             <p>Premium products to support your health and wellness journey</p>
             <!-- Background image in index.css -->
-            <a href="products.php" class="btn btn-primary btn-lg">Shop Now</a>
+            <a href="products.php" class="btn btn-primary btn-lg aw">Shop Now</a>
         </div>
     </section>
 
@@ -82,7 +79,7 @@
     <!-- Testimonials -->
     <section class="bg-light py-5">
         <div class="container">
-            <h2 class="text-center mb-4">What Our Customers Say</h2>
+            <h2 class="text-center mb-4 bf">What Our Customers Say</h2>
             <div class="row">
                 <div class="col-md-4">
                     <blockquote class="blockquote text-center">

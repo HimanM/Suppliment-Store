@@ -53,21 +53,23 @@ while ($row = $result_products->fetch_assoc()) {
 <div class="container mt-5">
     <div class="container mb-4 p-4 glass-card">
         <h2>Submit a Dispute</h2>
-
         <!-- Success message box -->
         <div id="message-box" class="success">Dispute successfully submitted!</div>
         <div id="dispute-form">
             <form action="PHP/submit_dispute.php" method="POST" enctype="multipart/form-data">
                 <!-- Dispute Type -->
-                <div class="form-group">
+                <div class="form-group my-3">
                     <label>Dispute Type</label><br>
-                    <input type="radio" name="dispute_type" value="general" checked> General <br>
-                    <input type="radio" name="dispute_type" value="order"> Order <br>
-                    <input type="radio" name="dispute_type" value="product"> Product
+                    <input type="radio" name="dispute_type" value="general" checked>
+                    <label for="general">General</label><br>
+                    <input type="radio" name="dispute_type" value="order">
+                    <label for="order">Order</label><br>
+                    <input type="radio" name="dispute_type" value="product">
+                    <label for="product">Product</label>
                 </div>
 
                 <!-- Order Dropdown (hidden by default) -->
-                <div class="form-group" id="order-dropdown" style="display:none;">
+                <div class="form-group mt-3" id="order-dropdown" style="display:none;">
                     <label>Select Order</label>
                     <select name="order_id" class="form-control">
                         <option value="">Select Order</option>
@@ -78,7 +80,7 @@ while ($row = $result_products->fetch_assoc()) {
                 </div>
 
                 <!-- Product Dropdown (hidden by default) -->
-                <div class="form-group" id="product-dropdown" style="display:none;">
+                <div class="form-group mt-3" id="product-dropdown" style="display:none;">
                     <label>Select Product</label>
                     <select name="product_id" class="form-control">
                         <option value="">Select Product</option>

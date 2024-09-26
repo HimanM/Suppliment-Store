@@ -15,10 +15,6 @@ body{
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.btn-primary{
-    width: auto;
-}
-
 .hero > * {
     position: relative; /* Ensure the text is above the overlay */
     z-index: 2; /* Higher z-index than the overlay */

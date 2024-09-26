@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-xl">
     <a class="navbar-brand main-title" href="index.php">Supplement Store</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,7 +129,7 @@
 <!-- Login Modal -->
 
 <div id="loginModal" class="login-modal">
-    <div class="login-container">
+    <div class="login-container glass-card">
         <div id="message-box" class="message-box" style="display: none;"></div>
         <span id="closeBtn" class="close">&times;</span>
 

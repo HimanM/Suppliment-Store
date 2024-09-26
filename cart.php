@@ -80,14 +80,14 @@ while ($row = $result->fetch_assoc()) {
                 <!-- Quantity -->
                 <div class="d-flex mb-4" style="max-width: 300px">
                   <div data-mdb-input-init class="form-outline">
-                    <label class="form-label" for="form1">Quantity</label>
+                    <label class="form-label wf" for="form1">Quantity</label>
                     <input id="form1" min="1" name="quantity" value="<?php echo $item['quantity']; ?>" type="number" class="quantity form-control" max="10" />
                   </div>
                 </div>
                 <!-- Quantity -->
 
                 <!-- Price -->
-                <p class="text-end" id="item-price">
+                <p class="text-end wf" id="item-price">
                   <strong>$<?php echo $item['price']; ?></strong>
                 </p>
                 <!-- Price -->
@@ -101,20 +101,12 @@ while ($row = $result->fetch_assoc()) {
 
 
         <div class="card mb-4 mb-lg-0 glass-card">
-          <div class="card-body">
-            <p><strong>We accept</strong></p>
-            <img class="me-2" width="45px"
-              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-              alt="Visa" />
-            <img class="me-2" width="45px"
-              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-              alt="American Express" />
-            <img class="me-2" width="45px"
-              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-              alt="Mastercard" />
-            <img class="me-2" width="45px"
-              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
-              alt="PayPal acceptance mark" />
+        <p class="wf mt-3"><strong>We accept</strong></p>
+          <div class="card-body d-flex justify-content-center" id= paymentMethods>
+            <img class="me-2" width="60px" src="images\assets\visa.svg" alt="Visa" />
+            <img class="me-2" width="60px" src="images\assets\amex.svg" alt="American Express" />
+            <img class="me-2" width="60px" src="images\assets\mastercard.svg" alt="Mastercard" />
+            <img class="me-2" width="60px" src="images\assets\PayPal.svg" alt="PayPal acceptance mark" />
           </div>
         </div>
 

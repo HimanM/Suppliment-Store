@@ -55,7 +55,7 @@ while ($row = $result->fetch_assoc()) {
 
         <div class="col-md-4 order-2">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class=text-muted>Your Cart</span>
+            <span class="text-muted wf">Your Cart</span>
             <span class="badge rounded-pill bg-secondary"><?php echo count($cart_items); ?></span>
           </h4>
           
@@ -72,7 +72,7 @@ while ($row = $result->fetch_assoc()) {
               <?php endforeach; ?>
             </div>
 
-            <div class="card-footer d-flex justify-content-between">
+            <div class="card-footer mt-4 d-flex justify-content-between wf">
               <span>Total (USD)</span>
               <strong><?php echo number_format($total, 2); ?></strong>
             </div>

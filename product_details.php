@@ -79,91 +79,93 @@ if ($is_logged_in) {
 <?php include 'top_nav.php'; ?>
 
 <div class="container mt-5">
-    <div class="row">
-        <!-- Product Image -->
-        <div class="col-md-4">
-            <img src="images/uploads/<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="align-self-center img-fluid product-image">  
-            <p class="product-p">Rating: <?php echo str_repeat('★', intval($product['rating'])) . str_repeat('☆', 5 - intval($product['rating'])); ?></p>
-        </div>
-
-        <!-- Product Details -->
-        <div class="col-md-8">
-            <h2 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h2>
-            <div class="container product-description-container">
-                <?php if (!empty($product['description'])): ?>
-                    <p class="product-description">Description: <?php echo htmlspecialchars($product['description']); ?></p>
-                <?php endif; ?>
-                <?php if (!empty($product['detailed_description'])): ?>
-                    <p class="product-detailed-description" style="text-align:start">Details: <?php echo htmlspecialchars($product['detailed_description']); ?></p>
-                <?php endif; ?>
+    <div class="container glass-card">
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-md-4">
+                <img src="images/uploads/<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="align-self-center img-fluid product-image">  
+                <p class="product-p">Rating: <?php echo str_repeat('★', intval($product['rating'])) . str_repeat('☆', 5 - intval($product['rating'])); ?></p>
             </div>
-            <hr>
-            <!-- Add to Cart Form -->
-            <div class="container add-to-cart">
-                <?php if ($product['stock'] > 0): ?>
-                    <form id="add-to-cart-form" method="POST" action="PHP/add_to_cart.php">
-                        <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
-                        <div class="mb-3">
-                            <p class="product-price">Price: $<?php echo number_format($product['price'], 2); ?></p>
-                        </div>
-                        <div class="container pb-0">
-                            <label for="quantity" class="form-label">Quantity:</label>
-                            <input type="number" id="quantity" name="quantity" min="1" max="<?php echo htmlspecialchars($product['stock']); ?>" value="1" class="form-control" required>
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </div>
-                    </form>
-                <?php else: ?>
-                    <p class="text-danger product-p">Out of stock</p>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
 
-    <hr>
-
-    <!-- Reviews Section -->
-    <h3>Reviews:</h3>
-    <?php if ($reviews): ?>
-        <?php foreach ($reviews as $review): ?>
-            <div class="review mb-4">
-                <h5>
-                <?php echo htmlspecialchars(substr($review['username'], 0, 4) . str_repeat('*', strlen($review['username']) - 4)); ?>
-                    <?php if ($is_logged_in && $review['user_id'] == $user_id): ?>
-                        <span class="badge bg-info text-dark">Your review</span>
+            <!-- Product Details -->
+            <div class="col-md-8">
+                <h2 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h2>
+                <div class="container product-description-container">
+                    <?php if (!empty($product['description'])): ?>
+                        <p class="product-description">Description: <?php echo htmlspecialchars($product['description']); ?></p>
                     <?php endif; ?>
-                </h5>
-                <p class="rating">Rating: <?php echo str_repeat('★', intval($review['rating'])) . str_repeat('☆', 5 - intval($review['rating'])); ?></p>
-                <p><?php echo htmlspecialchars($review['comment']); ?></p>
-                <small><?php echo date('F j, Y', strtotime($review['created_at'])); ?></small>
+                    <?php if (!empty($product['detailed_description'])): ?>
+                        <p class="product-detailed-description" style="text-align:start">Details: <?php echo htmlspecialchars($product['detailed_description']); ?></p>
+                    <?php endif; ?>
+                </div>
+                <hr>
+                <!-- Add to Cart Form -->
+                <div class="container add-to-cart">
+                    <?php if ($product['stock'] > 0): ?>
+                        <form id="add-to-cart-form" method="POST" action="PHP/add_to_cart.php">
+                            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+                            <div class="mb-3">
+                                <p class="product-price">Price: $<?php echo number_format($product['price'], 2); ?></p>
+                            </div>
+                            <div class="container pb-0">
+                                <label for="quantity" class="form-label wf">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" max="<?php echo htmlspecialchars($product['stock']); ?>" value="1" class="form-control" required>
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </form>
+                    <?php else: ?>
+                        <p class="text-danger product-p">Out of stock</p>
+                    <?php endif; ?>
+                </div>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p class="product-p">No reviews yet.</p>
-    <?php endif; ?>
+        </div>
 
-    <?php if ($is_logged_in && $has_purchased && !$has_reviewed): ?>
         <hr>
-        <h3>Leave a Review:</h3>
-        <form id="review-form" method="POST" action="PHP/submit_review.php">
-            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
-            <div class="mb-3">
-                <label for="rating" class="form-label">Rating:</label>
-                <select id="rating" name="rating" class="form-select" required>
-                    <option value="">Select Rating</option>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="comment" class="form-label">Comment:</label>
-                <textarea id="comment" name="comment" class="form-control" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Review</button>
-        </form>
-    <?php endif; ?>
+
+        <!-- Reviews Section -->
+        <h3>Reviews:</h3>
+        <?php if ($reviews): ?>
+            <?php foreach ($reviews as $review): ?>
+                <div class="review mb-4">
+                    <h5>
+                    <?php echo htmlspecialchars(substr($review['username'], 0, 4) . str_repeat('*', strlen($review['username']) - 4)); ?>
+                        <?php if ($is_logged_in && $review['user_id'] == $user_id): ?>
+                            <span class="badge bg-info text-dark">Your review</span>
+                        <?php endif; ?>
+                    </h5>
+                    <p class="rating">Rating: <?php echo str_repeat('★', intval($review['rating'])) . str_repeat('☆', 5 - intval($review['rating'])); ?></p>
+                    <p><?php echo htmlspecialchars($review['comment']); ?></p>
+                    <small><?php echo date('F j, Y', strtotime($review['created_at'])); ?></small>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="product-p">No reviews yet.</p>
+        <?php endif; ?>
+
+        <?php if ($is_logged_in && $has_purchased && !$has_reviewed): ?>
+            <hr>
+            <h3>Leave a Review:</h3>
+            <form id="review-form" method="POST" action="PHP/submit_review.php">
+                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+                <div class="mb-3">
+                    <label for="rating" class="form-label wf">Rating:</label>
+                    <select id="rating" name="rating" class="form-select" required>
+                        <option value="">Select Rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="comment" class="form-label wf">Comment:</label>
+                    <textarea id="comment" name="comment" class="form-control" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+        <?php endif; ?>
+    </div>
 </div>
 <?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
