@@ -9,6 +9,10 @@ body {
     background-size: cover; 
     background-attachment: fixed;  */
     background-color: #f4f4f4;
+    display: flex; /* Equivalent to d-flex */
+    flex-direction: column; /* Equivalent to flex-column */
+    height: 100vh; /* Equivalent to vh-100 */
+    margin: 0; /* Ensure no default margin is applied */
 }
 
 /* Main content blur effect */
@@ -164,6 +168,9 @@ p {
 footer {
     background-color: #f8f9fa;
     padding: 1.5rem 0;
+    text-align: center;
+    padding: 1em;
+    margin-top: auto; /* This pushes the footer to the bottom */
 }
 
 /* Notification Item Styles */

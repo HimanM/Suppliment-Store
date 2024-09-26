@@ -75,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-primary">Send Emails</button>
         </form>
     </div>
+    <?php include 'footer.php'; ?>
     <script>
         // Optionally, hide the success message after a few seconds
         setTimeout(function() {

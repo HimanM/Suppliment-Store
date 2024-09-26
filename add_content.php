@@ -144,6 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit"><?= $isEdit ? 'Update Content' : 'Add Content' ?></button>
         </form>
     </div>
+    <?php include 'footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="JS/login_script.js"></script>

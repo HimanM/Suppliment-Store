@@ -39,7 +39,6 @@ while ($row = $result->fetch_assoc()) {
 </head>
 <body>
     <?php include 'top_nav.php'; ?>
-
     <div class="container mt-5">
         <h2>Articles</h2>
         <div class="row">
@@ -95,6 +94,9 @@ while ($row = $result->fetch_assoc()) {
             <?php endforeach; ?>
         </div>
     </div>
+
+    <?php include 'footer.php'; ?>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="JS/login_script.js"></script>

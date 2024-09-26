@@ -27,53 +27,56 @@ include 'PHP/db_config.php';
 <?php include 'top_nav.php'; ?>
 
 <div class="container mt-5">
+
     <h2>Manage Your Health Schedule</h2>
-    
-    <form id="scheduleForm">
-        <input type="hidden" id="scheduleId" name="scheduleId" value="">
-        
-        <div class="form-group">
-            <label for="scheduleType">Schedule Type</label>
-            <select class="form-control" id="scheduleType" name="scheduleType" required>
-                <option value="workout">Workout</option>
-                <option value="meal">Meal Plan</option>
-                <option value="supplement">Supplement Intake</option>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" required></textarea>
-        </div>
-        
-        <div class="form-group">
-            <label for="reminderTime">Reminder Time</label>
-            <input type="time" class="form-control" id="reminderTime" name="reminderTime" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="reminderDays">Reminder Days</label>
-            <select multiple class="form-control" id="reminderDays" name="reminderDays[]" required>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-                <option value="Saturday">Saturday</option>
-                <option value="Sunday">Sunday</option>
-            </select>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Add Schedule</button>
-    </form>
-    
-    <h3 class="mt-5">Existing Schedules</h3>
-    <ul id="scheduleList" class="list-group"></ul>
+    <div class="container p-4 m-4 glass-card">
+        <form id="scheduleForm">
+            <input type="hidden" id="scheduleId" name="scheduleId" value="">
+            
+            <div class="form-group">
+                <label for="scheduleType">Schedule Type</label>
+                <select class="form-control" id="scheduleType" name="scheduleType" required>
+                    <option value="workout">Workout</option>
+                    <option value="meal">Meal Plan</option>
+                    <option value="supplement">Supplement Intake</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="reminderTime">Reminder Time</label>
+                <input type="time" class="form-control" id="reminderTime" name="reminderTime" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="reminderDays">Reminder Days</label>
+                <select multiple class="form-control" id="reminderDays" name="reminderDays[]" required>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add Schedule</button>
+        </form>
+    </div>
+    <div class="container p-4 m-4 glass-card">
+        <h3 class="mb-3">Existing Schedules</h3>
+        <ul id="scheduleList" class="list-group"></ul>
+    </div>
 </div>
 <?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
