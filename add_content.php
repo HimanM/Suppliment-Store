@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <h2><?= $isEdit ? 'Edit Content' : 'Add Content' ?></h2>
+    <h2 class= "mt-4"><?= $isEdit ? 'Edit Content' : 'Add Content' ?></h2>
     <div class="content-form-container">
         <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) . ($isEdit ? '?id=' . $contentId : '') ?>" method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($title) ?>" required><br><br>

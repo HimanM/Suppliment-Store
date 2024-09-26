@@ -1,3 +1,7 @@
+body{
+    height: auto;
+}
+
 .hero {
     position: relative; /* Make sure the hero is positioned relative */
     background-image: url('../images/hero.png');
@@ -10,7 +14,7 @@
     justify-content: center;
     color: white;
     text-align: center;
-    overflow: hidden; /* To hide any overflow of the overlay */
+    overflow: hidden;
 }
 
 .hero::before {

@@ -1,6 +1,6 @@
 <!-- Footer -->
 <footer class="text-center">
-    <div class="container">
+    <div class="container mt-0 container-fluid">
         <p class="mb-1">&copy; 2024 Supplement Store. All rights reserved.</p>
         <p>
             <a href="#" class="text-muted">Privacy Policy</a> | 

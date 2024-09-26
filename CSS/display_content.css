@@ -1,69 +1,62 @@
+.carousel-inner {
+    padding: 1em;
+}
 
 .card {
-    margin-bottom: 20px;
-}
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-.container {
-    margin-top: 50px;
-}
-
-/* General styles for the card component */
-.card {
-    margin-bottom: 20px; /* Space between cards */
+    margin: 0 0.5em;
+    position: relative;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
     transition: transform 0.3s ease;
-    max-height: 200px;
     backdrop-filter: blur(10px);
     border-radius: 10px;
     border: 1px solid white;
     background: rgba(255, 255, 255, );
+    height: 375px;
 }
 
+.card-body{
+    position: absolute;
+    bottom: 0;
+    width: 100%
+}
 /* Hover effect for card */
 .card:hover {
     transform: translateY(-5px); /* Slight lift effect on hover */
 }
 
-/* Adjusting the card image */
-.card-img-top {
-    height: 200px; /* Fixed height for image */
-    width: 200px;
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: #e1e1e1;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+@media (min-width: 768px) {
+.carousel-item {
+        margin-right: 0;
+        flex: 0 0 33.333333%;
+        display: block;
+}
+.carousel-inner {
+    display: flex;
+}
+}
+.card .img-wrapper {
     padding: 10px;
     object-fit: cover; /* Cover the area without distortion */
+    height: 200px; /* Fixed height for image */
+    max-width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-self: center;
 }
-
-/* Container styling */
-.container {
-    margin-top: 50px; /* Space above the container */
+.card img {
+    max-height: 100%;
 }
-
-/* Responsive adjustments for the card body */
-.card-body {
-    display: flex; /* Use flexbox for card content alignment */
-    flex-direction: column; /* Stack children vertically */
-    justify-content: space-between; /* Space between title and button */
+@media (max-width: 767px) {
+.card .img-wrapper {
+    height: 17em;
 }
-
-/* Adjust button styles */
-.btn-primary {
-    margin-top: auto; /* Push button to the bottom of the card */
-}
-
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-    .col-md-4 {
-        flex: 0 0 100%; /* Full width on smaller screens */
-        max-width: 100%; /* Ensure full width */
-    }
-}
-
-@media (min-width: 769px) and (max-width: 992px) {
-    .col-md-4 {
-        flex: 0 0 48%; /* Two cards per row */
-        max-width: 48%; /* Limit width for two columns */
-    }
 }
