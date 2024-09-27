@@ -5,6 +5,7 @@
     $fullName = $_POST['fullname'];
     $return_url = isset($_POST['return_url']) ? $_POST['return_url'] : '../index.php';
     $email = $_POST['email'];
+    $password_r = $_POST['password'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
     // // Check if username already exists
@@ -17,7 +18,7 @@
     if ($stmt->num_rows > 0) {
         // Username exists, redirect with error
         header("Location: $return_url?success=false&error=username_taken");
-        echo("username taken");
+        echo "username taken";
         exit();
     } 
 

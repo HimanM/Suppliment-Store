@@ -87,15 +87,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email']; ?>" required>
+                    <input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="<?php echo $user['email']; ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="current_password" class="form-label">Current Password (to change password):</label>
-                    <input type="password" class="form-control" id="current_password" name="current_password">
+                    <input type="password" class="form-control" id="current_password" name="current_password" pattern=".{8,}">
                 </div>
                 <div class="mb-3">
                     <label for="new_password" class="form-label">New Password:</label>
-                    <input type="password" class="form-control" id="new_password" name="new_password">
+                    <input type="password" class="form-control" id="new_password" name="new_password" pattern=".{8,}">
                 </div>
                 <div class="form-check mb-3">
                     <input type="checkbox" class="form-check-input" id="offer_notifications" name="offer_notifications" <?php echo ($user['offer_notifications'] == 'yes') ? 'checked' : ''; ?>>
