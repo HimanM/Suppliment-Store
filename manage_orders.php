@@ -123,7 +123,7 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
                     <tr>
                         <th>Order ID</th>
                         <th>User ID</th>
-                        <th>Total</th>
+                        <th>Total (LKR)</th>
                         <th>Status</th>
                         <th>Created At</th>
                         <th>Updated At</th>

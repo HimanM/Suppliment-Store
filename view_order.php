@@ -71,7 +71,7 @@ if (!empty($orders)) {
                             <div class="container">
                                 <p class = "order-info"><strong>Status:</strong> <?php echo $order['status']; ?></p>
                                 <p class = "order-info"><strong>Payment Status:</strong> <?php echo $order['payment_status']; ?></p>
-                                <p class = "order-info"><strong>Total:</strong> $<?php echo number_format($order['total'], 2); ?></p>
+                                <p class = "order-info"><strong>Total:</strong> LKR <?php echo number_format($order['total'], 2); ?></p>
                                 <p class = "order-info"><strong>Shipping Address:</strong> <?php echo $order['shipping_address']; ?></p>
                                 <p class = "order-info"><strong>Billing Address:</strong> <?php echo $order['billing_address']; ?></p>
                             </div>

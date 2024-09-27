@@ -103,7 +103,7 @@
             <h2 class="mb-3">Order #<?php echo $order['id']; ?></h2>
             
             <p class="order-detail"><strong>Order Date:</strong> <?php echo $order['created_at']; ?></p>
-            <p class="order-detail"><strong>Total:</strong> $<?php echo number_format($order['total'], 2); ?></p>
+            <p class="order-detail"><strong>Total:</strong> LKR: <?php echo number_format($order['total'], 2); ?></p>
             <p class="order-detail"><strong>Shipping Address:</strong> <?php echo htmlspecialchars($order['shipping_address']); ?></p>
             <p class="order-detail"><strong>Billing Address:</strong> <?php echo htmlspecialchars($order['billing_address']); ?></p>
             <p class="order-detail"><strong>Payment Status:</strong> <?php echo ucfirst($order['payment_status']); ?></p>
@@ -117,7 +117,7 @@
                     <li class="list-group-item">
                         <?php echo htmlspecialchars($item['name']); ?> 
                         (Quantity: <?php echo $item['quantity']; ?>) 
-                        - $<?php echo number_format($item['price'], 2); ?>
+                        - LKR <?php echo number_format($item['price'], 2); ?>
                     </li>
                 <?php endwhile; ?>
             </ul>

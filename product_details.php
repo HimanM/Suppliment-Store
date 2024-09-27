@@ -105,7 +105,7 @@ if ($is_logged_in) {
                         <form id="add-to-cart-form" method="POST" action="PHP/add_to_cart.php">
                             <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
                             <div class="mb-3">
-                                <p class="product-price">Price: $<?php echo number_format($product['price'], 2); ?></p>
+                                <p class="product-price">Price: LKR <?php echo number_format($product['price'], 2); ?></p>
                             </div>
                             <div class="container pb-0">
                                 <label for="quantity" class="form-label wf">Quantity:</label>

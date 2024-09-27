@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <textarea class="form-control" id="detailed_description" name="detailed_description"><?= htmlspecialchars($product['detailed_description']) ?></textarea> <!-- Optional -->
             </div>
             <div class="mb-3">
-                <label for="price" class="form-label">Price</label>
+                <label for="price" class="form-label">Price (LKR)</label>
                 <input type="number" class="form-control" id="price" name="price" value="<?= htmlspecialchars($product['price']) ?>" required>
             </div>
             <div class="mb-3">

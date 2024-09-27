@@ -67,13 +67,13 @@ while ($row = $result->fetch_assoc()) {
                     <h6 class="my-1 mx-1"><?php echo $item['name']; ?></h6>
                     <small class="text-muted mx-1">Quantity: <?php echo $item['quantity']; ?></small>
                   </div>
-                  <span class="text-muted my-1 mx-1">Price: $<?php echo number_format($item['price'], 2); ?></span>
+                  <span class="text-muted my-1 mx-1">Price: Rs:<?php echo number_format($item['price'], 2); ?></span>
                 </li>
               <?php endforeach; ?>
             </div>
 
             <div class="card-footer mt-4 d-flex justify-content-between wf">
-              <span>Total (USD)</span>
+              <span>Total (LKR)</span>
               <strong><?php echo number_format($total, 2); ?></strong>
             </div>
           </div>

@@ -88,7 +88,7 @@ while ($row = $result->fetch_assoc()) {
 
                 <!-- Price -->
                 <p class="text-end wf" id="item-price">
-                  <strong>$<?php echo $item['price']; ?></strong>
+                  <strong>Rs: <?php echo $item['price']; ?></strong>
                 </p>
                 <!-- Price -->
               </div>
@@ -132,7 +132,7 @@ while ($row = $result->fetch_assoc()) {
                         </strong>
                         </div>
                         <div class="cart-total">
-                            <span><strong>$<?php echo number_format($total, 2); ?></strong></span>
+                            <span><strong>Rs: <?php echo number_format($total, 2); ?></strong></span>
                         </div> 
                     </li>
                     </ul>
