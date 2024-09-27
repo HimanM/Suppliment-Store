@@ -24,27 +24,22 @@ $disputes = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <title>Pending Disputes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/disputes_overview.css">
-
-    <style>
-        .scrollable-container {
-            max-height: 600px;
-            overflow-y: auto;
-        }
-    </style>
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
     <div class="container mt-4">
         <h2>Pending Disputes</h2>
-        <div class="scrollable-container">
+        <div class="scrollable-container glass-card my-4 p-2">
             <?php if (count($disputes) > 0): ?>
                 <?php foreach ($disputes as $dispute): ?>
                     <div class="mb-3">
                         <h4><?= htmlspecialchars($dispute['dispute_type']) ?></h4>
                         <p><?= htmlspecialchars(substr($dispute['message'], 0, 100)) ?>...</p>
                         <a href="dispute_detail.php?id=<?= $dispute['id'] ?>" class="btn btn-primary">View Details</a>
+                        <hr>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>

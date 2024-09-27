@@ -20,24 +20,24 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <title>Admin Chat Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="CSS/master.css"><!-- Add your CSS file here -->
     <link rel="stylesheet" href="CSS/admin_chat_styles.css">
     <script src="JS/admin_chat.js" defer></script>
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card chat-app">
+                <div class="card chat-app glass-card-no-blur">
                     <div id="plist" class="people-list">
                         <ul class="list-unstyled chat-list mt-2 mb-0">
                             <?php foreach ($users as $user): ?>
                                 <li class="clearfix user-link" data-user-id="<?= $user['id'] ?>" data-username="<?= $user['username'] ?>">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                                     <div class="about">
-                                        <div class="name"><?= $user['username'] ?></div>                                   
+                                        <div class="name"><h5><?= $user['username'] ?></h5></div>                                   
                                     </div>
                                 </li>
                             <?php endforeach; ?>
@@ -51,7 +51,7 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
                                         <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                                     </a>
                                     <div class="chat-about">
-                                        <h6 class="m-b-0" id="userName"></h6>
+                                        <h5 class="m-b-0" id="userName"></h5>
                                         <button id="closeChat" class="btn btn-danger">Close Chat</button>
                                     </div>
                                 </div>

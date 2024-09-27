@@ -94,6 +94,7 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <title>Manage Orders</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/manage_orders.css">
     <script>
@@ -103,12 +104,6 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
             }
         }
     </script>
-    <style>
-        .scrollable-table {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-    </style>
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
@@ -123,7 +118,7 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
         <?php endif; ?>
 
         <div class="scrollable-table">
-            <table class="table table-bordered">
+            <table class="table table-bordered glass-card-no-blur my-4">
                 <thead>
                     <tr>
                         <th>Order ID</th>
@@ -164,10 +159,12 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
                                 <td><?= htmlspecialchars($order['billing_address']) ?></td>
                                 <td><?= htmlspecialchars($order['payment_status']) ?></td>
                                 <td>
+                                    <div>
                                     <?php if ($order['payment_status'] === 'paid'): ?>
-                                        <button type="submit" name="update_order" class="btn btn-primary" onclick="confirmAction('Are you sure you want to save these changes?', this.form)">Save Changes</button>
+                                        <button type="submit" name="update_order" class="btn btn-primary deletebtn mb-2" onclick="confirmAction('Are you sure you want to save these changes?', this.form)">Save Changes</button>
                                     <?php endif; ?>
-                                    <button type="submit" name="delete_order" class="btn btn-danger" onclick="confirmAction('Are you sure you want to delete this order?', this.form)">Delete</button>
+                                    <button type="submit" name="delete_order" class="btn btn-danger updatebtn" onclick="confirmAction('Are you sure you want to delete this order?', this.form)">Delete</button>
+                                    </div>
                                 </td>
                             </form>
                         </tr>

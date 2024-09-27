@@ -83,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Dispute Detail</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/dispute_detail.css">
 
@@ -107,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <div class="container mt-4">
+    <div class="container my-4 glass-card p-2">
         <h2>Dispute Details</h2>
         <!-- Display success message if email was sent -->
         <?php if ($mail_sent): ?>
@@ -115,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 Email has been sent successfully!
             </div>
         <?php endif; ?>
-        <div class="mb-3">
+        <div class="m-3">
             <p><strong>Type:</strong> <?= htmlspecialchars($dispute['dispute_type']) ?></p>
             <p><strong>Message:</strong> <?= htmlspecialchars($dispute['message']) ?></p>
             <?php if ($dispute['attachment']): ?>

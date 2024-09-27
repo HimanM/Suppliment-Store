@@ -24,7 +24,7 @@ $contentHTML = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $contentHTML .= "
-            <div class='card content-item' id='content-{$row['id']}' style='width: 18rem;'>
+            <div class='card content-item glass-card' id='content-{$row['id']}' style='width: 18rem;'>
                 <img class='card-img-top' src='images/content/{$row['image_url']}' alt='{$row['title']}' style='height: 150px; object-fit: cover;'>
                 <div class='card-body'>
                     <h5 class='card-title'>{$row['title']}</h5>

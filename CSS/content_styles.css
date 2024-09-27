@@ -27,7 +27,7 @@
     height: 100px; /* Fixed height for the scrollable area */
     overflow-y: auto; /* Allows vertical scrolling */
     padding: 10px; /* Padding for content */
-    background-color: #f9f9f9; /* Light background color */
+    color: #f2f2f2;
     border: 1px solid #ddd; /* Border for distinction */
     border-radius: 5px; /* Rounded corners */
 }
@@ -52,17 +52,13 @@
     color: red; /* Color for error messages */
 }
 
-
-/* General styling for the body */
-body {
-    font-family: Arial, sans-serif; /* Consistent font for the entire page */
-    background-color: #f4f4f4; /* Light background color */
+.card-body{
+    color: #f2f2f2;
 }
-
 /* Styling for the heading */
 h2 {
     margin-top: 20px; /* Space above the heading */
-    color: #333; /* Darker color for the heading */
+    color: #f2f2f2; /* Darker color for the heading */
 }
 
 /* Button styling for the Add New Content button */
@@ -83,6 +79,7 @@ button:hover {
 /* Label styling */
 label {
     font-weight: bold; /* Bold font for the label */
+    color: #f2f2f2;
 }
 
 /* Select box styling */

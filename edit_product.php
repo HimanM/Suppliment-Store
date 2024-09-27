@@ -94,13 +94,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title><?= $is_editing ? 'Edit' : 'Add' ?> Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/edit_product.css">
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <div class="container mt-4">
-        <h2><?= $is_editing ? 'Edit' : 'Add' ?> Product</h2>
+    <div class="container mt-4 glass-card py-4">
+        <h1 class ='mb-4'><?= $is_editing ? 'Edit' : 'Add' ?> Product</h1>
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="name" class="form-label">Product Name</label>
@@ -134,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="image" class="form-label">Product Image</label>
                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
             </div>
-            <button type="submit" class="btn btn-primary"><?= $is_editing ? 'Update' : 'Add' ?> Product</button>
+            <button type="submit" class="mt-4 btn btn-primary"><?= $is_editing ? 'Update' : 'Add' ?> Product</button>
         </form>
     </div>
     <?php include 'footer.php'; ?>

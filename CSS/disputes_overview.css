@@ -3,3 +3,16 @@
     max-height: 600px;
     overflow-y: auto;
 }
+
+p{
+    color: #f2f2f2;
+    text-align: start;
+}
+
+.btn{
+    width: auto;
+}
+
+hr{
+    color: #ffffff;
+}

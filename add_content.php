@@ -118,13 +118,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title><?= $isEdit ? 'Edit Content' : 'Add Content' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/add_content_styles.css">
 </head>
 <body>
 <?php include 'top_nav.php'; ?>
-    <h2 class= "mt-4"><?= $isEdit ? 'Edit Content' : 'Add Content' ?></h2>
-    <div class="content-form-container">
+    <h1 class= "mt-4"><?= $isEdit ? 'Edit Content' : 'Add Content' ?></h1>
+    <div class="content-form-container glass-card-no-blur">
         <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) . ($isEdit ? '?id=' . $contentId : '') ?>" method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($title) ?>" required><br><br>
             <textarea name="body" placeholder="Content Body" required><?= htmlspecialchars($body) ?></textarea><br><br>

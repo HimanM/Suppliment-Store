@@ -1,4 +1,35 @@
 .scrollable-table {
-    max-height: 400px;
+    height: 100%;
     overflow-y: auto;
+}
+
+.btn {
+    width: auto;
+}
+
+.btn-danger{
+    padding: 10px;
+}
+.table-container{
+    height: 80vh;
+}
+
+th{
+    color: #f2f2f2;
+}
+
+/* Form Inputs */
+.form-control, .form-select {
+    background: rgba(255, 255, 255, 0.6); /* Lighter transparency for input fields */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+/* Input Focus Effect */
+.form-control:focus ,.form-select:focus{
+    background: rgba(255, 255, 255, 0.9); /* Solid background on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
 }

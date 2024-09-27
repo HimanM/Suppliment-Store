@@ -56,3 +56,23 @@ input[type="file"] {
     border-radius: 5px;
 }
 
+.form-control {
+    background: rgba(255, 255, 255, 0.6); /* Lighter transparency for input fields */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+/* Input Focus Effect */
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.9); /* Solid background on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
+}
+
+.form-group label, 
+.form-label,
+.form-group input[type="radio"] {
+    color: #f2f2f2; 
+}

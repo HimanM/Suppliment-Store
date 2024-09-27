@@ -22,3 +22,9 @@
     background-color: rgb(255, 255, 255);
     transition: background 0.3s ease;
 }
+
+.form-group label, 
+.form-label,
+.form-group input[type="radio"] {
+    color: #f2f2f2; 
+}
