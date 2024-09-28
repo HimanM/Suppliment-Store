@@ -12,10 +12,10 @@ $message = "";
 
 // Fetch user data
 $sql = "SELECT * FROM users WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$user = $stmt->get_result()->fetch_assoc();
+$fetch_stmt = $conn->prepare($sql);
+$fetch_stmt->bind_param("i", $user_id);
+$fetch_stmt->execute();
+$user = $fetch_stmt->get_result()->fetch_assoc();
 
 // Update profile
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,33 +26,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if password is being changed
     if (!empty($_POST['new_password'])) {
         $current_password = $_POST['current_password'];
-        $new_password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
-        
+        $conf_password = $_POST['conf_password'];
+        $new_password = $_POST['new_password'];
+
+        // Hash the new password
+        $hashed_new_password = password_hash($new_password, PASSWORD_DEFAULT);        
         // Verify the current password
-        if (password_verify($current_password, $user['password'])) {
+        if (password_verify($current_password, $user['password']) && $conf_password === $new_password) {
             // Update password and other fields
             $update_sql = "UPDATE users SET full_name = ?, email = ?, password = ?, offer_notifications = ? WHERE id = ?";
             $stmt = $conn->prepare($update_sql);
-            $stmt->bind_param("ssssi", $name, $email, $new_password, $offer_notifications, $user_id);
+            $stmt->bind_param("ssssi", $name, $email, $hashed_new_password, $offer_notifications, $user_id);
         } else {
-            $message = "Incorrect current password!";
+            if($conf_password !== $new_password){
+                $message = "New password and confirmation do not match!";
+            }
+            else{
+                $message = "Incorrect current password!";
+            } 
         }
+
     } else {
         // Update without changing the password
-        $update_sql = "UPDATE users SET full_name  = ?, email = ?, offer_notifications = ? WHERE id = ?";
+        $update_sql = "UPDATE users SET full_name = ?, email = ?, offer_notifications = ? WHERE id = ?";
         $stmt = $conn->prepare($update_sql);
         $stmt->bind_param("sssi", $name, $email, $offer_notifications, $user_id);
     }
 
-    if ($stmt->execute()) {
+    if (isset($stmt) && $stmt->execute()) {
         $message = "Profile updated successfully!";
-        // Refresh user data
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $user = $stmt->get_result()->fetch_assoc();
     } else {
-        $message = "Failed to update profile!";
+        if(empty($message)){
+            $message = "Failed to update profile!";
+        }
     }
 }
 
@@ -87,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="<?php echo $user['email']; ?>" required>
+                    <input type="email" class="form-control" id="Pemail" name="email" value="<?php echo $user['email']; ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="current_password" class="form-label">Current Password (to change password):</label>
@@ -96,6 +106,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="mb-3">
                     <label for="new_password" class="form-label">New Password:</label>
                     <input type="password" class="form-control" id="new_password" name="new_password" pattern=".{8,}">
+                </div>
+                <div class="mb-3">
+                    <label for="conf_password" class="form-label">Confirm New Password:</label>
+                    <input type="password" class="form-control" id="conf_password" name="conf_password" pattern=".{8,}">
                 </div>
                 <div class="form-check mb-3">
                     <input type="checkbox" class="form-check-input" id="offer_notifications" name="offer_notifications" <?php echo ($user['offer_notifications'] == 'yes') ? 'checked' : ''; ?>>
