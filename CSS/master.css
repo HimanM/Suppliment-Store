@@ -216,6 +216,19 @@ footer {
     margin-top: auto; /* This pushes the footer to the bottom */
 }
 
+.footer .text-muted {
+    color: #6c757d !important;
+}
+
+.footer .fab {
+    color: rgb(255, 255, 255); 
+    transition: color 0.3s;
+}
+
+.footer .fab:hover,.footer .text-muted:hover {
+    color: #007bff; 
+}
+
 .footer {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
@@ -409,6 +422,11 @@ h1, h2, h3, h4, h5{
     border: 1px solid rgba(255, 255, 255, 0.4); /* Slightly more visible border */
 }
 
+.wf-large{
+    font-size: large;
+    text-align: start;
+    color: #F2F2F2;
+}
 
 /* when applying glass effect uncomment below  */
 

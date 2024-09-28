@@ -1,10 +1,8 @@
 <?php
     session_start();
 
-    // Check if user is logged in
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
-        //echo "Welcome, User ID: " . htmlspecialchars($user_id);
     }
 ?>
 <?php include 'PHP/handle_review.php'; ?>
