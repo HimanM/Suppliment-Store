@@ -103,7 +103,11 @@ if ($is_logged_in) {
                 <div class="container add-to-cart">
                     <?php if ($product['stock'] > 0): ?>
                         <form id="add-to-cart-form" method="POST" action="PHP/add_to_cart.php">
-                            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+                            <input type="hidden" name="product_id" value="<?php htmlspecialchars($product['id']); ?>">
+                            <?php 
+                                echo "<script>console.log('" . strval($product['id']) . "');</script>";
+                            ?>
+                            
                             <div class="mb-3">
                                 <p class="product-price">Price: LKR <?php echo number_format($product['price'], 2); ?></p>
                             </div>
@@ -146,7 +150,7 @@ if ($is_logged_in) {
             <hr>
             <h3>Leave a Review:</h3>
             <form id="review-form" method="POST" action="PHP/submit_review.php">
-                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>">
+                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id']); ?>">
                 <div class="mb-3">
                     <label for="rating" class="form-label wf">Rating:</label>
                     <select id="rating" name="rating" class="form-select" required>

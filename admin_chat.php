@@ -65,12 +65,12 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
                         <div class="chat-message clearfix d-none" id= "chatInputField">
                         <form id="chatForm">
                                 <div class="input-group mb-0">
-                                    <div class="input-group-prepend">
-                                        <button type="submit" class="input-group-text">
-                                            <i class="fa fa-send"></i>
+                                    <div class="input-group-prepend mb-3">
+                                        <button type="submit" class="input-group-text h-100">
+                                            <i class="fa fa-paper-plane"></i>
                                         </button>
                                     </div>
-                                    <input id="messageInput" type="text" class="form-control" placeholder="Enter text here...">                            
+                                    <input id="messageInput" type="text" class="form-control mx-2" placeholder="Enter text here...">                            
                                 </div>
                             </form>   
                         </div>

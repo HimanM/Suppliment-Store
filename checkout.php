@@ -79,140 +79,156 @@ while ($row = $result->fetch_assoc()) {
           </div>
         </div>
          
-        <form class="col-md-8 order-1" action="PHP/process_checkout.php" method="POST">
-        <h4 class="mb-3">Billing Address</h4>
+        <form class="col-md-8 order-1 needs-validation" action="PHP/process_checkout.php" method="POST" novalidate>
+          <h4 class="mb-3">Billing Address</h4>
           <div class="container mb-4 p-4 glass-card">
-            <div class ="row">
+            <div class="row">
               <div class="col mb-4">
-                <label for="First name"> First Name </label>
-                <input type="text" class="form-control" placeholder="First name" aria-label="First name"  required>
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="First name" aria-label="First name" required>
+                <div class="invalid-feedback">
+                  Please enter your first name.
+                </div>
               </div>
               <div class="col mb-4">
-                <label for="La\st name"> Last Name </label>
-                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"  required>
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last name" aria-label="Last name" required>
+                <div class="invalid-feedback">
+                  Please enter your last name.
+                </div>
               </div>
               <div class="mb-4">
                 <label for="email">Email (optional)</label>
-                <input type="text" class="form-control" placeholder="you@example.com" aria-label="email">
-              </div>             
-              <div class="mb-4">
-                <label for="Address">Address</label>
-                <input type="text" class="form-control" placeholder="1234 Main St" aria-label="Address" id="shipping_address" name="shipping_address"  required>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" aria-label="email">
+                <div class="invalid-feedback">
+                  Please enter a valid email.
+                </div>
               </div>
-              
               <div class="mb-4">
-                <label for="Address2">Address 2 (optional)</label>
-                <input type="text" class="form-control" placeholder="Appartment or suite" aria-label="Address2">
+                <label for="shipping_address">Address</label>
+                <input type="text" class="form-control" id="shipping_address" placeholder="1234 Main St" aria-label="Address" name="shipping_address" required>
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
+              </div>
+              <div class="mb-4">
+                <label for="address2">Address 2 (optional)</label>
+                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" aria-label="Address2">
               </div>
             </div>
           </div>
-          
+
           <div class="container mb-4 p-4 glass-card">
             <div class="row">
               <div class="col">
                 <label for="country">Country</label>
-                <select class="form-select">
-                  <option selected>Choose...</option>
+                <select class="form-select" id="country" required>
+                  <option selected disabled value="">Choose...</option>
                   <option value="1">Sri Lanka</option>
                   <option value="2">Japan</option>
-                  <option value="3">Australlia</option>
+                  <option value="3">Australia</option>
                 </select>
+                <div class="invalid-feedback">
+                  Please select a country.
+                </div>
               </div>
               <div class="col">
                 <label for="state">State</label>
-                <select class="form-select">
-                  <option selected>Choose...</option>
+                <select class="form-select" id="state" required>
+                  <option selected disabled value="">Choose...</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
+                <div class="invalid-feedback">
+                  Please select a state.
+                </div>
               </div>
               <div class="col mb-4">
                 <label for="zip">Zip Code</label>
-                <input type="text" class="form-control" aria-label="zip">
-              </div>
-              
-              <hr class="mb-4">
-              
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Shipping address is the same as my billing address
-                </label>
-              </div>
-              
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                <label class="form-check-label" for="flexCheckChecked">
-                  Save this information for next time
-                </label>
-              </div>
-              
-              <hr class="mb-4">
-              
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Credit card (Default)
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Debit card
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Paypal
-                </label>
-              </div>
-              
-              <div class="row">
-                <div class="col mb-4">
-                  <label for="Card1">
-                    Name on card
-                  </label>
-                  <input type="text" class="form-control"aria-label="card1" required>
-                  <small class="text-muted">
-                    Full name, as displayed on the card
-                  </small>
-                </div>
-                
-                <div class="col mb-4">
-                  <label for="Card2">
-                    Credit card Nummber
-                  </label>
-                  <input type="text" class="form-control" placeholder = "1234-5678-9012" aria-label="Card2" required>
+                <input type="text" class="form-control" id="zip" aria-label="zip" required>
+                <div class="invalid-feedback">
+                  Please provide a valid zip code.
                 </div>
               </div>
-              
-              <div class="row">
-                <div class="col mb-3">
-                  <label for="Card3">
-                    Expiry Date
-                  </label>
-                  <input type="text" class="form-control"aria-label="card3" required>
-                </div>
-                
-                <div class="col mb-3">
-                  <label for="Card4">
-                    CVV
-                  </label>
-                  <input type="text" class="form-control"  aria-label="Card4" required>
-                </div>
-              </div> 
             </div>
-          <hr class="mb-4">
-        </div>
-        
-        <div class="d-grid gap-2 mb-5">
-          <button class="btn btn-primary" type="submit">
-            Continue to Checkout
-          </button>
-        </div>
-      </form>
+
+            <hr class="mb-4">
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="sameAddress">
+              <label class="form-check-label" for="sameAddress">
+                Shipping address is the same as my billing address
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="saveInfo">
+              <label class="form-check-label" for="saveInfo">
+                Save this information for next time
+              </label>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" checked>
+              <label class="form-check-label" for="creditCard">
+                Credit card (Default)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard">
+              <label class="form-check-label" for="debitCard">
+                Debit card
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="paypal">
+              <label class="form-check-label" for="paypal">
+                Paypal
+              </label>
+            </div>
+
+            <div class="row">
+              <div class="col mb-4">
+                <label for="cardName">Name on card</label>
+                <input type="text" class="form-control" id="cardName" required>
+                <div class="invalid-feedback">
+                  Please enter the name on the card.
+                </div>
+              </div>
+              <div class="col mb-4">
+                <label for="cardNumber">Credit card number</label>
+                <input type="text" class="form-control" id="cardNumber" placeholder="1234-5678-9012" required>
+                <div class="invalid-feedback">
+                  Please enter a valid card number.
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col mb-3">
+                <label for="cardExpiry">Expiry Date</label>
+                <input type="text" class="form-control" id="cardExpiry" required>
+                <div class="invalid-feedback">
+                  Please enter the card expiry date.
+                </div>
+              </div>
+              <div class="col mb-3">
+                <label for="cardCVV">CVV</label>
+                <input type="text" class="form-control" id="cardCVV" required>
+                <div class="invalid-feedback">
+                  Please enter the CVV code.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 mb-5">
+            <button class="btn btn-primary" type="submit">Continue to Checkout</button>
+          </div>
+        </form>
     </div>
   </div>
     
@@ -223,6 +239,27 @@ while ($row = $result->fetch_assoc()) {
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="JS/login_script.js"></script>
   <script src="JS/chat_script.js"></script>
+  <script>
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission if form is invalid
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
+
     
   </body>
 </html>

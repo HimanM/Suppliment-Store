@@ -22,7 +22,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $cart_items = [];
-$total = 0;
+$total = 0.00;
 
 while ($row = $result->fetch_assoc()) {
     $cart_items[] = $row;
@@ -46,7 +46,7 @@ while ($row = $result->fetch_assoc()) {
 <?php include 'top_nav.php'; ?>
 <section class="h-100 gradient-custom">
   <div class="container py-5">
-    <div class="row d-flex justify-content-center my-4">
+    <div class="row d-flex justify-content-center my-4" id='cart-container'>
       <div class="col-md-8">
         <div class="card mb-4 glass-card">
           <div class="card-header py-3">
@@ -120,11 +120,11 @@ while ($row = $result->fetch_assoc()) {
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-2">
                         Shipping
                         <span>Free</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-2 mb-3">
                         <div>
                         <strong>Total</strong>
                         <strong>

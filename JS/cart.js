@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (response.status === 'success') {
                     document.querySelector(`.cart-item[data-product-id="${productId}"]`).remove();
                     updateCartTotal(); // Update total after removing item
+                    location.reload(); 
                     checkCartEmpty(); // Check if cart is empty after removal
                 } else {
                     console.error('Failed to remove item from cart');
@@ -46,12 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateCartTotal() {
         // Recalculate total and update display
-        let total = 0;
+        let total = 0.00;
         const cartItemsList = document.querySelectorAll('.cart-item');
 
         cartItemsList.forEach(item => {
             const priceElement = item.querySelector('#item-price');
-            const price = parseFloat(priceElement.innerText.replace('$', '').trim());
+            const price = parseFloat(priceElement.innerText.replace('Rs: ', '').trim());
 
             const quantityElement = item.querySelector('.quantity');
             const quantity = parseInt(quantityElement.value, 10);
@@ -61,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Update the cart total in the DOM
         if (cartItemsList.length > 0) {
-            cartTotalDiv.querySelector('strong').innerText = `$${total.toFixed(2)}`;
+            cartTotalDiv.querySelector('strong').innerText = `Rs: ${total.toFixed(2)}`;
         } else {
             // Hide the cart total and checkout button if no items are left
             cartTotalDiv.style.display = 'none';

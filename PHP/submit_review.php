@@ -24,6 +24,7 @@ $stmt_check = $conn->prepare($sql_check);
 $stmt_check->bind_param("ii", $user_id, $product_id);
 $stmt_check->execute();
 $existing_review = $stmt_check->get_result()->fetch_assoc();
+$review_exists = !empty($existing_review) ? "true" : "false";
 
 if ($existing_review) {
     echo json_encode(['status' => 'error', 'message' => 'You have already reviewed this product']);
