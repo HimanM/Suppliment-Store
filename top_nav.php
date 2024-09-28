@@ -29,6 +29,7 @@
             <a class="nav-link" href="cart.php">Cart</a>
           </li>
           <?php include 'chatbox.php'; ?>
+          <?php include 'PHP/scroll.php'; ?>
 
         <!-- Admin nav -->
         <?php elseif($_SESSION['role'] == 'admin'): ?>

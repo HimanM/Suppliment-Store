@@ -8,32 +8,32 @@ if (!$authorized) {
 
 // Handle form submission to update or delete users
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['update_user'])) {
+    if (isset($_POST['action'])) {
         $user_id = intval($_POST['user_id']);
-        $username = $_POST['username'];
-        $full_name = $_POST['full_name'];
-        $email = $_POST['email'];
-        $role = $_POST['role'];
+        
+        if ($_POST['action'] === 'update') {
+            $username = $_POST['username'];
+            $full_name = $_POST['full_name'];
+            $email = $_POST['email'];
+            $role = $_POST['role'];
 
-        // Update user details
-        $query = "UPDATE users SET username = ?, full_name = ?, email = ?, role = ? WHERE id = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("ssssi", $username, $full_name, $email, $role, $user_id);
-        $stmt->execute();
-    } elseif (isset($_POST['delete_user'])) {
-        $user_id = intval($_POST['user_id']);
-
-        // Delete user
-        $query = "DELETE FROM users WHERE id = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
+            // Update user details
+            $query = "UPDATE users SET username = ?, full_name = ?, email = ?, role = ? WHERE id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ssssi", $username, $full_name, $email, $role, $user_id);
+            $stmt->execute();
+        } elseif ($_POST['action'] === 'delete') {
+            // Delete user
+            $query = "DELETE FROM users WHERE id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+        }
+        
+        header("Location: manage_users.php");
+        exit();
     }
-
-    header("Location: manage_users.php");
-    exit();
 }
-
 // Fetch users
 $query = "SELECT id, username, full_name, email, role FROM users";
 $result = $conn->query($query);
@@ -50,11 +50,19 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="CSS/master.css">
     <link rel="stylesheet" href="CSS/manage_users.css">
     <script>
-        function confirmAction(message, form) {
-            if (confirm(message)) {
-                form.submit();
-            }
+    function setActionAndConfirm(action, form) {
+        // Set the action value based on the button clicked
+        form.action.value = action;
+
+        // Confirm the action with the user
+        const message = action === 'update' 
+            ? 'Are you sure you want to save these changes?' 
+            : 'Are you sure you want to delete this user?';
+
+        if (confirm(message)) {
+            form.submit(); // Submit the form if confirmed
         }
+    }
     </script>
 </head>
 <body>
@@ -88,8 +96,9 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
                                     </select>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="confirmAction('Are you sure you want to save these changes?', this.form)">Save Changes</button>
-                                    <button type="button" class="btn btn-danger" onclick="confirmAction('Are you sure you want to delete this user?', this.form)">Delete</button>
+                                <input type="hidden" name="action" value="">
+                                <button type="button" class="btn btn-primary" onclick="setActionAndConfirm('update', this.form)">Save Changes</button>
+                                <button type="button" class="btn btn-danger" onclick="setActionAndConfirm('delete', this.form)">Delete</button>
                                 </td>
                             </form>
                         </tr>
