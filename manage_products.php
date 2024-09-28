@@ -51,7 +51,8 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                     <td><?= htmlspecialchars($product['inventory_stock']) ?></td>
                     <td><img src="images/uploads/<?= htmlspecialchars($product['image_url']) ?>" alt="Product Image" width="50"></td>
                     <td>
-                        <a href="edit_product.php?id=<?= $product['id'] ?>" class="btn btn-primary">Edit</a>
+                        <a href="edit_product.php?id=<?= $product['id'] ?>" class="btn btn-primary btn-ctrl">Edit</a>
+                        <button class="btn btn-danger delete-btn btn-ctrl" data-id="<?= $product['id'] ?>">Delete</button>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -62,5 +63,6 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="JS/login_script.js"></script>
+    <script src="JS/delete_product.js"></script>
 </body>
 </html>

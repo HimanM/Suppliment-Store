@@ -57,15 +57,15 @@ tbody td {
 
 
 
-
-
-.scrollable-table {
-    height: 100%;
-    overflow-y: auto;
+.btn-ctrl{
+    width: 100%;
+    font-size: medium;
 }
 
-.btn {
-    width: auto;
+.scrollable-table {
+    height: 80vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
 }
 
 .btn-danger{

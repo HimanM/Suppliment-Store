@@ -155,6 +155,11 @@ body {
     margin-bottom: 0; /* Adjust the width of the input */
 }
 
+.no-items-message{
+    color: #F2F2F2;
+    font-size: xx-large;
+}
+
 @media (max-width: 768px) {
     .product-filter .col-md-3 {
         margin-bottom: 10px; /* Adds space between fields on smaller screens */

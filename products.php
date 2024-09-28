@@ -1,6 +1,14 @@
 <?php
     include 'PHP/db_config.php';
     session_start();
+
+    // Fetch unique categories
+    $category_query = "SELECT DISTINCT category FROM products";
+    $category_result = mysqli_query($conn, $category_query);
+
+    // Fetch unique brands
+    $brand_query = "SELECT DISTINCT brand FROM products";
+    $brand_result = mysqli_query($conn, $brand_query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,23 +33,29 @@
             </div>
 
             <div class="col-md-3">
-                <select id="category" class="form-select">
-                    <option value="">All Categories</option>
-                    <option value="Supplement">Supplement</option>
-                    <option value="Vitamins">Vitamins</option>
-                    <option value="Protein">Protein</option>
-                    <option value="Oils">Oils</option>
-                    <!-- Add more categories as needed -->
-                </select>
+            <select id="category" class="form-select">
+                <option value="">All Categories</option>
+                <?php
+                if (mysqli_num_rows($category_result) > 0) {
+                    while ($row = mysqli_fetch_assoc($category_result)) {
+                        echo '<option value="' . $row['category'] . '">' . $row['category'] . '</option>';
+                    }
+                }
+                ?>
+            </select>
             </div>
 
             <div class="col-md-3">
-                <select id="brand" class="form-select">
-                    <option value="">All Brands</option>
-                    <option value="brand1">Brand 1</option>
-                    <option value="brand2">Brand 2</option>
-                    <!-- Add more brands as needed -->
-                </select>
+            <select id="brand" class="form-select">
+                <option value="">All Brands</option>
+                <?php
+                if (mysqli_num_rows($brand_result) > 0) {
+                    while ($row = mysqli_fetch_assoc($brand_result)) {
+                        echo '<option value="' . $row['brand'] . '">' . $row['brand'] . '</option>';
+                    }
+                }
+                ?>
+            </select>
             </div>
 
             <div class="col-md-3">
