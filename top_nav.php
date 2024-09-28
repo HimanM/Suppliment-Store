@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-xl">
+  <?php include 'PHP/scroll.php'; ?>
     <a class="navbar-brand main-title" href="index.php">Supplement Store</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,7 +9,7 @@
     <?php if (isset($_SESSION['user_id'])): ?>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link" aria-current="page" href="index.php">Home</a>
         </li>
 
         <!-- User nav -->
@@ -29,8 +30,6 @@
             <a class="nav-link" href="cart.php">Cart</a>
           </li>
           <?php include 'chatbox.php'; ?>
-          <?php include 'PHP/scroll.php'; ?>
-
         <!-- Admin nav -->
         <?php elseif($_SESSION['role'] == 'admin'): ?>
           <li class="nav-item">
@@ -71,7 +70,7 @@
     <?php else: ?>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="products.php">Products</a>
@@ -90,7 +89,7 @@
 
         <div class="dropdown">
             <button class="btn btn-outline-secondary position-relative" id="notificationIcon">
-                <i class="far fa-envelope fa-lg mb-1"></i>
+                <i class="far fa-envelope mb-1"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     0
                 </span>

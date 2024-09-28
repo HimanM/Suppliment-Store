@@ -4,7 +4,7 @@ include 'PHP/api_handler.php'; // Include the API handler script
 include 'PHP/set_notification.php';
 
 if (!$authorized) {
-    echo "Unauthorized access";
+    http_response_code(401);
     exit();
 }
 

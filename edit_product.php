@@ -2,7 +2,7 @@
 include 'PHP/check_role_admin.php';
 
 if (!$authorized) {
-    echo "Unauthorized access";
+    http_response_code(401);
     exit();
 }
 

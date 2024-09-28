@@ -1,9 +1,9 @@
 <?php
 
-include 'PHP/check_role.php';
+include 'PHP/check_role_admin.php';
 include 'PHP/set_notification.php';
 if (!$authorized) {
-    echo "Unauthorized access";
+    http_response_code(401);
     exit();
 }
 
