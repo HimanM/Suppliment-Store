@@ -108,6 +108,9 @@
             <?php elseif ($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert'):?>
               <li><a class="dropdown-item" href="view_content.php">Edit Content</a></li>
               <li><a class="dropdown-item" href="admin_chat.php">Recommend/Chat</a></li>
+              <?php if ($_SESSION['role'] == 'nutritional_expert'):?>
+                <li><a class="dropdown-item" href="view_order.php">Orders</a></li>
+              <?php endif; ?>
             <?php endif; ?>
             
             <li><hr class="dropdown-divider"></li>

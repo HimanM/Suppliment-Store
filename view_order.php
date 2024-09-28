@@ -60,7 +60,7 @@ if (!empty($orders)) {
     <h1 class="text-center mb-4">Your Orders</h1>
     <div class="row">
         <?php if (empty($orders)): ?>
-            <p class="text-center">You have no orders.</p>
+            <p class="text-center wf">You have no orders.</p>
         <?php else: ?>
             <?php foreach ($orders as $order): ?>
                 <div class="col-md-6 mb-4">
