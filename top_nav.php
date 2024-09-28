@@ -24,7 +24,7 @@
             <a class="nav-link" href="products.php">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="about_us.php">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cart.php">Cart</a>
@@ -60,7 +60,7 @@
             <a class="nav-link" href="products.php">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="about_us.php">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cart.php">Cart</a>
@@ -79,7 +79,7 @@
           <a class="nav-link" href="display_content.php">Information</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="about_us.php">Contact</a>
         </li>
       </ul>
     <?php endif; ?>
@@ -106,7 +106,6 @@
           <li><a class="dropdown-item" href="profile.php">Profile</a></li>
             <?php if (!($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert')):?>
               <li><a class="dropdown-item" href="disputes.php">Dispute Report</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
               <li><a class="dropdown-item" href="view_order.php">Orders</a></li>
 
             <?php elseif ($_SESSION['role']=='admin' || $_SESSION['role'] == 'nutritional_expert'):?>
