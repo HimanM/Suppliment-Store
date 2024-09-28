@@ -6,6 +6,7 @@
     $return_url = isset($_POST['return_url']) ? $_POST['return_url'] : '../index.php';
     $email = $_POST['email'];
     $password_r = $_POST['password'];
+    $conf_password_r = $_POST['conf_password'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
     // // Check if username already exists
@@ -14,7 +15,11 @@
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
-
+    if($conf_password_r !== $password_r){
+        header("Location: $return_url?success=false&error=password_mismatch");
+        echo "password_mismatch";
+        exit();
+    }
     if ($stmt->num_rows > 0) {
         // Username exists, redirect with error
         header("Location: $return_url?success=false&error=username_taken");

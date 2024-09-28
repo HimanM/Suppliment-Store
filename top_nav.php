@@ -151,6 +151,7 @@
                 <input type="text" name="fullname" class="form-control" placeholder="Full Name" required>
                 <input type="email" id="email" name="email" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" pattern=".{8,}" required>
+                <input type="password" id="conf_password" name="conf_password" class="form-control" placeholder="Confirm Password" pattern=".{8,}" required>
                 <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                 <button type="submit" class="btn-primary">Register</button>
             </form>

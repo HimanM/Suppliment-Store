@@ -204,10 +204,13 @@ document.addEventListener("DOMContentLoaded", function() {
             displayMessage('Incorrect password. Please try again.', 'error');
         } else if (params.error === 'email_not_found') {
             displayMessage('No user found with this email.', 'error');
-        }
-        else if (params.error === 'username_taken') {
+        }else if (params.error === 'username_taken') {
             displayMessage('Username is taken', 'error');
+        }else if (params.error === 'password_mismatch') {
+            displayMessage('Password Mismatch', 'error');
         }
+        
+        
     } else if (params.success === 'true') {
         if (params.message === 'register_success') {
             displayMessage('Registration successful!', 'success');
