@@ -13,6 +13,7 @@ body {
     background-repeat: no-repeat; 
     background-size: cover; 
     background-attachment: fixed; 
+    animation: changeBackground 60s infinite;
     /* background-color: #f4f4f4; */
     display: flex; /* Equivalent to d-flex */
     flex-direction: column; /* Equivalent to flex-column */
@@ -20,6 +21,15 @@ body {
     margin: 0; /* Ensure no default margin is applied */
 }
 
+/* Keyframes for background transition */
+@keyframes changeBackground {
+    0% {
+        background-image: url("../images/background.jpg"); /* First image */
+    }
+    50% {
+        background-image: url("../images/background2.jpg"); /* Switch to second background */
+    }
+}
 
 
 .aw{
@@ -173,6 +183,30 @@ p {
     color: #155724;
     border: 1px solid #c3e6cb;
 }
+
+/* Scroll Button */
+.scroll-top-btn {
+    right: 20px;
+    cursor: pointer;
+    position: fixed; /* Always fixed in relation to the viewport */
+    bottom: 80px; /* Distance from the bottom of the viewport */
+    z-index: 99; /* Ensures it stays on top of other content */
+    border: 1px solid rgba(255, 255, 255, 0.37);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 20px;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(5px); /* Slight blur */
+    -webkit-backdrop-filter: blur(5px);
+}
+#scrollTopBtn{
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+
 
 footer {
     background-color: #f8f9fa;
@@ -407,25 +441,3 @@ h1, h2, h3, h4, h5{
     border: 1px solid rgba(255, 255, 255, 0.4); 
 } */
 
-/* Scroll Button */
-.scroll-top-btn {
-    right: 20px;
-    cursor: pointer;
-    position: fixed; /* Always fixed in relation to the viewport */
-    bottom: 80px; /* Distance from the bottom of the viewport */
-    z-index: 99; /* Ensures it stays on top of other content */
-    border: 1px solid rgba(255, 255, 255, 0.37);
-    border-radius: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-    font-size: 20px;
-    transition: opacity 0.3s;
-    backdrop-filter: blur(5px); /* Slight blur */
-    -webkit-backdrop-filter: blur(5px);
-}
-#scrollTopBtn{
-    padding: 10px;
-    border: none;
-    background-color: transparent;
-    color: white;
-}
