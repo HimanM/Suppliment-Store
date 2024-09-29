@@ -21,7 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Notification Sections
     const notificationIcon = document.getElementById('notificationIcon');
     const notificationDropdown = document.getElementById('notificationDropdown');
-
+    
+    //Register Buttons 
+    const verification_btn = document.getElementById('send-verification-btn');
+    const verify_code_btn = document.getElementById('verifyCodeBtn');
+    const password_form = document.getElementById('password-form');
 
     fetch('PHP/check_login_status.php')
         .then(response => response.json())
@@ -208,7 +212,12 @@ document.addEventListener("DOMContentLoaded", function() {
             displayMessage('Username is taken', 'error');
         }else if (params.error === 'password_mismatch') {
             displayMessage('Password Mismatch', 'error');
+        }else if (params.error === 'email_not_found') {
+            displayMessage('Email Not Found', 'error');
+        }else if (params.error === 'user_not_verified') {
+            displayMessage('Not Verified', 'error');
         }
+
         
         
     } else if (params.success === 'true') {
@@ -222,34 +231,68 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
+    // Registration
+    verification_btn.onclick = function(e){
+        console.log('clicked');
+        e.preventDefault();
+        
+        var username = document.getElementById('username').value;
+        var fullname = document.getElementById('fullname').value;
+        var email = document.getElementById('verify_email').value;
+        // Make AJAX request to register.php to handle registration
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'PHP/register.php', true);
+        console.log('Open');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                if (xhr.responseText === 'email_sent') {
+                    alert('Verification email sent. Please check your inbox.');
+                    document.getElementById('register-form').style.display = 'none';  // Hide registration form
+                    document.getElementById('hidden-email').value = email;  // Save email for verification
+                    document.getElementById('verification-form').style.display = 'block';  // Show verification form
+                } else if (xhr.responseText === 'duplicate_entry') {
+                    alert('Email or username already exists.');
+                } else if (xhr.responseText === 'email_error') {
+                    alert('There was an error sending the email. Please try again.');
+                } else {
+                    alert('Error: ' + xhr.responseText);
+                }
+            }
+        };
+    
+        xhr.send('username=' + encodeURIComponent(username) + '&fullname=' + encodeURIComponent(fullname) + '&email=' + encodeURIComponent(email));
+    }
+
+    verify_code_btn.onclick = function(e){
+        e.preventDefault();
+        var verificationCode = document.getElementById('verification_code').value;
+        var email = document.getElementById('hidden-email').value;
+
+        // Send verification code for validation
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'PHP/verify_registration.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200 && xhr.responseText === 'code_verified') {
+                alert('Verification successful! Now set your password.');
+
+                // Show password form fields
+                document.getElementById('password-form').style.display = 'block';
+                document.getElementById('verification-form').style.display = 'none';
+
+                // Set password fields as required
+                document.getElementById('password').setAttribute('required', true);
+                document.getElementById('conf_password').setAttribute('required', true);
+            } else {
+                alert('Invalid verification code');
+            }
+        };
+        xhr.send('verification_code=' + encodeURIComponent(verificationCode) + '&email=' + encodeURIComponent(email));
+        }
     
 });
 
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-    // Prevent form submission to perform validation
-    event.preventDefault();
-
-    // Get the form elements
-    var email = document.getElementById('email').value.trim();
-    var password = document.getElementById('password').value.trim();
-
-
-    // Email validation using a simple regex
-    var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address.");
-        return;
-    }
-
-    // Password length validation (minimum 8 characters)
-    if (password.length < 8) {
-        alert("Password must be at least 8 characters long.");
-        return;
-    }
-
-    // If all validations pass, submit the form
-    this.submit();
-});
 
 // Show the button when the user scrolls down 100px from the top of the document
 window.onscroll = function() {
@@ -272,3 +315,22 @@ function scrollToTop() {
         behavior: "smooth"
     });
 }
+
+
+password_form.addEventListener('submit', function(event) {
+    console.log("password form clicked");
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Get the password and confirm password values
+    const password = document.getElementById('password').value;
+    const confPassword = document.getElementById('conf_password').value;
+
+    // Check if passwords match
+    if (password !== confPassword) {
+        alert('Password mismatch. Please make sure both passwords match.');
+    } else {
+        // If passwords match, submit the form
+        this.submit();
+    }
+});

@@ -7,7 +7,7 @@
         $return_url = isset($_POST['return_url']) ? $_POST['return_url'] : '../index.php';
 
         // Query to find the user by email or username
-        $stmt = $conn->prepare("SELECT id, username, email, password, role FROM users WHERE username=? OR email=?");
+        $stmt = $conn->prepare("SELECT id, username, email, password, role, is_verified FROM users WHERE username=? OR email=?");
         $stmt->bind_param("ss", $emailOrUsername, $emailOrUsername);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -16,6 +16,12 @@
             // Fetch the user data
             $user = $result->fetch_assoc();
 
+            // Check if the user is verified
+            if ($user['is_verified'] !== 'yes') {
+                header("Location: $return_url?success=false&error=user_not_verified");
+                exit();
+            }
+            
             // Verify the password
             if (password_verify($password, $user['password'])) {
                 // Start session and redirect to dashboard or home page

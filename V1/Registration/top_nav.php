@@ -149,30 +149,15 @@
         <!-- Register Section -->
         <div id="register-section" class="form-section" style="display: none;">
             <h2>Register</h2>
-            <form id="register-form">
-              <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
-              <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name" required>
-              <input type="email" id="verify_email" name="email" class="form-control" placeholder="Email" required>
-              <button id="send-verification-btn" class="btn-primary">Send Verification</button>
-          </form>
-
-            <!-- After sending verification -->
-            <!-- Verification Form -->
-          <form id="verification-form" style="display: none;">
-              <h4>Enter Verification Code</h4>
-              <input type="text" id="verification_code" class="form-control" placeholder="Verification Code" required>
-              <button id="verifyCodeBtn" class="btn-primary">Verify Code</button>
-          </form>
-
-          <!-- Password Form -->
-          <form id="password-form" action="PHP/set_password.php" method="POST" style="display: none;">
-              <h4>Enter Password</h4>
-              <input type="hidden" id="hidden-email" name="email"> 
-              <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
-              <input type="password" id="password" name="password" class="form-control" placeholder="New Password">
-              <input type="password" id="conf_password" name="conf_password" class="form-control" placeholder="Confirm Password">
-              <button type="submit" class="btn-primary">Set Password</button>
-          </form>
+            <form action="PHP/register.php" method="POST">
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+                <input type="text" name="fullname" class="form-control" placeholder="Full Name" required>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" pattern=".{8,}" required>
+                <input type="password" id="conf_password" name="conf_password" class="form-control" placeholder="Confirm Password" pattern=".{8,}" required>
+                <input type="hidden" name="return_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                <button type="submit" class="btn-primary">Register</button>
+            </form>
             <hr class="my-4">
             <p class="login-text">Already have an account? <button class="btn btn-link login-sub-btn" id="show-login-from-register">Login</button></p>
         </div>
