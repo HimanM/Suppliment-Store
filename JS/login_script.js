@@ -94,6 +94,23 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     };
 
+    password_form.addEventListener('submit', function(event) {
+        console.log("password form clicked");
+        // Prevent the default form submission
+        event.preventDefault();
+    
+        // Get the password and confirm password values
+        const password = document.getElementById('password').value;
+        const confPassword = document.getElementById('conf_password').value;
+    
+        // Check if passwords match
+        if (password !== confPassword) {
+            alert('Password mismatch. Please make sure both passwords match.');
+        } else {
+            // If passwords match, submit the form
+            this.submit();
+        }
+    });
     
     // Show the login modal and blur the background content
     loginBtn.onclick = function() {
@@ -316,21 +333,3 @@ function scrollToTop() {
     });
 }
 
-
-password_form.addEventListener('submit', function(event) {
-    console.log("password form clicked");
-    // Prevent the default form submission
-    event.preventDefault();
-
-    // Get the password and confirm password values
-    const password = document.getElementById('password').value;
-    const confPassword = document.getElementById('conf_password').value;
-
-    // Check if passwords match
-    if (password !== confPassword) {
-        alert('Password mismatch. Please make sure both passwords match.');
-    } else {
-        // If passwords match, submit the form
-        this.submit();
-    }
-});

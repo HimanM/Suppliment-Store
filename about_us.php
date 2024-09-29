@@ -65,6 +65,9 @@
 <section class="contact-us py-5 glass-card-no-blbr">
     <div class="container">
         <h2 class="text-center mb-4">Contact Us</h2>
+        <div id="message-container" style="display: none; color: green;">
+            Message sent successfully!
+        </div>
         <div class="glass-card p-4">
             <h3>Get in Touch</h3>
             <p  class = "wf-large" >If you have any questions or need further information, feel free to reach out to us:</p>
@@ -77,15 +80,15 @@
             <form id="contactForm" method="POST" action="PHP/contact.php">
                 <div class="mb-3">
                     <label for="name" class="form-label">Your Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Your Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="mb-3">
                     <label for="message" class="form-label">Your Message</label>
-                    <textarea class="form-control" id="message" rows="4" placeholder="Write your message here..." required></textarea>
+                    <textarea class="form-control" id="message" rows="4" name="message" placeholder="Write your message here..." required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
@@ -98,5 +101,23 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="JS/chat_script.js"></script>
 <script src="JS/login_script.js"></script>
+<script>
+    // Function to get query parameters from the URL
+    function getQueryParam(param) {
+        let params = new URLSearchParams(window.location.search);
+        return params.get(param);
+    }
+
+    // Check if the 'message' parameter is 'sent'
+    document.addEventListener("DOMContentLoaded", function() {
+        if (getQueryParam('message') === 'sent') {
+            // Show the message container
+            var messageContainer = document.getElementById('message-container');
+            if (messageContainer) {
+                messageContainer.style.display = 'block';
+            }
+        }
+    });
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 29, 2024 at 02:16 PM
+-- Generation Time: Sep 29, 2024 at 08:03 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`) VALUES
-(79, 5, 4, 2),
+(79, 5, 4, 8),
 (78, 5, 0, 1);
 
 -- --------------------------------------------------------
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`),
   KEY `sender_id` (`sender_id`),
   KEY `receiver_id` (`receiver_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `messages`
@@ -209,6 +209,7 @@ INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `sent_at`) 
 (1, 5, 3, 'Hi, could you suggest a good protein supplement for beginners?', '2024-09-05 23:40:24'),
 (2, 3, 5, 'I recommend starting with whey protein, it’s great for beginners and pros alike.', '2024-09-05 23:40:24'),
 (3, 5, 3, 'ok thanks', '2024-09-08 05:18:09'),
+(33, 7, 5, 'asdasdasd', '2024-09-29 18:55:43'),
 (29, 8, 3, 'Hi', '2024-09-22 12:28:58'),
 (30, 5, 3, 'hello', '2024-09-22 12:40:31'),
 (31, 5, 3, 'REVIEW-04: Verify only logged-in users can submit reviews.', '2024-09-28 08:40:52'),
@@ -239,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 INSERT INTO `notifications` (`id`, `user_id`, `message`, `is_read`, `created_at`) VALUES
 (39, 7, 'We closed your dispute', 0, '2024-09-28 10:01:01'),
 (37, 5, 'Order Placed - Order #14', 1, '2024-09-28 07:36:18'),
-(38, 5, 'We have sent you an email regarding the dispute.', 0, '2024-09-28 09:22:07'),
+(38, 5, 'We have sent you an email regarding the dispute.', 1, '2024-09-28 09:22:07'),
 (36, 5, 'Order Placed - Order #13', 1, '2024-09-28 07:28:19'),
 (35, 5, 'Dear Customer,\n\nYour order status has been updated to delivered.\n\nThank you for shopping with us.', 0, '2024-09-27 07:35:00'),
 (32, 5, 'Reminder set for Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday at 07:55', 1, '2024-09-25 12:23:12'),
@@ -552,7 +553,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -562,8 +563,7 @@ INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `role`, `password`,
 (21, 'newuser', 'newsuer', 'new@user.com', 'registered', '$2y$10$m34.eUACKgVubztpjs8ZK.CnTtk6kAv42UjNA27kqcIndteZwb69a', '2024-09-28 19:11:48', 'no', NULL, 'yes'),
 (3, 'jane_smith', 'Jane Test', 'jane.smith@example.com', 'nutritional_expert', '$2y$10$Up7x0tr3ucSc0f7D1zEs8.tP/IeSwthDLjj//0n2oUyeLR7V16ob2', '2024-09-05 23:40:24', 'no', NULL, 'yes'),
 (5, 'Himan', 'Himan M', 'hghimanmanduja@gmail.com', 'registered', '$2y$10$u6KQoT2RX.HVPsyvpnBYa.HLVA71YaOi9Tbt7vaoEqmmHkhQayBIm', '2024-09-06 00:44:38', 'no', NULL, 'yes'),
-(7, 'admin', 'admin', 'admin@admin.com', 'admin', '$2y$10$LRYBh75259kMxLj/cWmITOLSSIygGyIjWMcArByZ/yi3cEVEUohfa', '2024-09-09 00:29:57', 'no', NULL, 'yes'),
-(37, 'Nimesh', 'Nimesh', 'mandujahiman@gmail.com', 'unregistered', '$2y$10$UTCND/jybg79Ns9/qhvh1.S4qi/Y.Mxh.K8ybOh/UaAZJRsKPTmcK', '2024-09-29 14:12:47', 'no', NULL, 'yes');
+(7, 'admin', 'admin', 'admin@admin.com', 'admin', '$2y$10$LRYBh75259kMxLj/cWmITOLSSIygGyIjWMcArByZ/yi3cEVEUohfa', '2024-09-09 00:29:57', 'no', NULL, 'yes');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

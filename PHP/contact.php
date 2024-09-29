@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $adminEmail = "hghimanmanduja@gmail.com"; // Replace with your actual email address
     $result = send_mail_api($adminEmail, $subject, $body);
     // Call the function to send email
-    echo "<script>window.opener.showMessage('" . addslashes($result['message']) . "'); window.close();</script>";
+    header("Location: ../about_us.php?message=sent");
+    exit();
 }
 ?>
