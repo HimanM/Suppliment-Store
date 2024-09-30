@@ -1,8 +1,40 @@
+import subprocess
+import sys
+
+# Function to install a package
+def install_package(package):
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to install {package}: {e}")
+        sys.exit(1)
+
+# Attempt to import a package, and install it if not found
+def import_or_install(package_name, import_name=None):
+    try:
+        # Attempt to import the package
+        if import_name:
+            __import__(import_name)
+        else:
+            __import__(package_name)
+    except ModuleNotFoundError:
+        print(f"{package_name} not found. Installing...")
+        install_package(package_name)
+
+# List of packages to check and install
+required_packages = {
+    "mysql-connector-python": "mysql.connector",
+    "python-dotenv": "dotenv",
+    "Flask": "flask",
+    "smtplib": None,  
+}
+
+# Check and install packages
+for package, import_name in required_packages.items():
+    import_or_install(package, import_name)
+
 import mysql.connector
 import os
-import sys
-import subprocess
-# import google.generativeai as genai
 from mysql.connector import Error
 from flask import Flask, request, jsonify
 import smtplib
@@ -171,34 +203,9 @@ def run_flask():
     print("Flask Started")
     app.run(debug = True)
 
-def install_requirements():
-    # Check if 'pip' is available
-    try:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip'])
-        
-    except subprocess.CalledProcessError as e:
-        print(f"Error upgrading pip: {e}")
-        sys.exit(1)
-
-    # Install packages from requirements.txt
-    try:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', 'requirements.txt'])
-        time.sleep(2)
-
-        if os.name == 'nt':
-            # For Windows
-            os.system('cls')
-        else:
-            # For Unix-based systems (Linux, macOS)
-            os.system('clear')
-
-    except subprocess.CalledProcessError as e:
-        print(f"Error installing packages: {e}")
-        sys.exit(1)
 
 if __name__ == "__main__":
     
-    install_requirements()
     reminder_thread = threading.Thread(target=run_reminder_checker)
     reminder_thread.start()
     run_flask()
