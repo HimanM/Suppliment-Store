@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const verify_code_btn = document.getElementById('verifyCodeBtn');
     const password_form = document.getElementById('password-form');
 
+    const messageDiv = document.getElementById('message-div');
+
     fetch('PHP/check_login_status.php')
         .then(response => response.json())
         .then(data => {
@@ -257,6 +259,15 @@ document.addEventListener("DOMContentLoaded", function() {
         var fullname = document.getElementById('fullname').value;
         var email = document.getElementById('verify_email').value;
         // Make AJAX request to register.php to handle registration
+
+        // Check if any field is empty
+        if (username === '' || fullname === '' || email === '') {
+            messageDiv.innerHTML = 'All fields are required.';  // Show message if fields are empty
+            messageDiv.style.display = 'block';  // Make sure the message div is visible
+            return;  // Prevent further execution if validation fails
+        } else {
+            messageDiv.style.display = 'none';  // Hide the message div if all fields are filled
+        }
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'PHP/register.php', true);
         console.log('Open');
@@ -286,6 +297,14 @@ document.addEventListener("DOMContentLoaded", function() {
         var verificationCode = document.getElementById('verification_code').value;
         var email = document.getElementById('hidden-email').value;
 
+        // Check if any field is empty
+        if (verificationCode === '') {
+            messageDiv.innerHTML = 'Enter the verification code.';  // Show message if fields are empty
+            messageDiv.style.display = 'block';  // Make sure the message div is visible
+            return;  // Prevent further execution if validation fails
+        } else {
+            messageDiv.style.display = 'none';  // Hide the message div if all fields are filled
+        }
         // Send verification code for validation
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'PHP/verify_registration.php', true);

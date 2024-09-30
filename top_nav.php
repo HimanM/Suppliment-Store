@@ -154,7 +154,7 @@
               <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name" required>
               <input type="email" id="verify_email" name="email" class="form-control" placeholder="Email" required>
               <button id="send-verification-btn" class="btn-primary">Send Verification</button>
-          </form>
+            </form>
 
             <!-- After sending verification -->
             <!-- Verification Form -->
@@ -173,6 +173,7 @@
               <input type="password" id="conf_password" name="conf_password" class="form-control" placeholder="Confirm Password">
               <button type="submit" class="btn-primary">Set Password</button>
           </form>
+            <div id="message-div" class='mt-2' style="display: none; color: red; text-align : center;"></div>
             <hr class="my-4">
             <p class="login-text">Already have an account? <button class="btn btn-link login-sub-btn" id="show-login-from-register">Login</button></p>
         </div>
