@@ -193,7 +193,7 @@ def check_reminders():
         print(f"Database error: {err}")
 
 def run_reminder_checker(interval=55):
-    print("Reminder Sender Started")
+    print("Reminder Sender Started\n")
     while True:
         check_reminders()  # Check reminders at every interval
         time.sleep(interval)  # Wait for the defined interval (in seconds)
