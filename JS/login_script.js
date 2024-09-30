@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.open("GET", "PHP/inventory_check.php", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(xhr.responseText); // Optionally display the response
+                console.log('Inventory Check'); // Optionally display the response
             }
         };
         xhr.send();
