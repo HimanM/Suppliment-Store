@@ -113,6 +113,7 @@ if ($is_logged_in) {
                             </div>
                             <div class="container pb-0">
                                 <label for="quantity" class="form-label wf">Quantity:</label>
+                                <input type="hidden" name="product_id" value =<?php echo htmlspecialchars($product['id']); ?> > 
                                 <input type="number" id="quantity" name="quantity" min="1" max="<?php echo htmlspecialchars($product['stock']); ?>" value="1" class="form-control" required>
                                 <button type="submit" class="btn btn-primary">Add to Cart</button>
                             </div>
