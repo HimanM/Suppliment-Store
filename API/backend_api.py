@@ -53,6 +53,14 @@ load_dotenv()
 EMAIL = os.getenv("EMAIL")
 APP_PASSWORD = os.getenv("APP_PASSWORD")
 
+def dbConnection():
+    connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="supplement_store"
+        )
+    return connection
 
 app = Flask(__name__)
 
@@ -121,15 +129,6 @@ def sendEmail(email,subject,content):
     except Exception as e:
         print(f'Failed to send email. Error: {e}')
 
-
-def dbConnection():
-    connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="supplement_store"
-        )
-    return connection
 
 def get_user_emails():
     # List to store emails
