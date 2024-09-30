@@ -1,8 +1,8 @@
 import mysql.connector
-import json
-import datetime
 import os
-import google.generativeai as genai
+import sys
+import subprocess
+# import google.generativeai as genai
 from mysql.connector import Error
 from flask import Flask, request, jsonify
 import smtplib
@@ -17,7 +17,7 @@ from datetime import datetime
 
 #Configurations from .env
 load_dotenv()
-genai.configure(api_key=(os.getenv("GEMINI_API_KEY")))
+# genai.configure(api_key=(os.getenv("GEMINI_API_KEY")))
 EMAIL = os.getenv("EMAIL")
 APP_PASSWORD = os.getenv("APP_PASSWORD")
 
@@ -171,9 +171,34 @@ def run_flask():
     print("Flask Started")
     app.run(debug = True)
 
+def install_requirements():
+    # Check if 'pip' is available
+    try:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip'])
+        
+    except subprocess.CalledProcessError as e:
+        print(f"Error upgrading pip: {e}")
+        sys.exit(1)
+
+    # Install packages from requirements.txt
+    try:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', 'requirements.txt'])
+        time.sleep(2)
+
+        if os.name == 'nt':
+            # For Windows
+            os.system('cls')
+        else:
+            # For Unix-based systems (Linux, macOS)
+            os.system('clear')
+
+    except subprocess.CalledProcessError as e:
+        print(f"Error installing packages: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     
+    install_requirements()
     reminder_thread = threading.Thread(target=run_reminder_checker)
     reminder_thread.start()
     run_flask()
