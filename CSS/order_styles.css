@@ -27,3 +27,8 @@
 .order-info{
     text-align: left;
 }
+
+a.btn.btn-primary.btn-sm {
+    max-width: 80px;
+    margin: 2px;
+}

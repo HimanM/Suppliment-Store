@@ -58,7 +58,7 @@ if (!empty($orders)) {
 
 <div class="container mt-5">
     <h1 class="text-center mb-4">Your Orders</h1>
-    <div class="row">
+    <div class="row justify-content-center">
         <?php if (empty($orders)): ?>
             <p class="text-center wf">You have no orders.</p>
         <?php else: ?>
@@ -92,10 +92,10 @@ if (!empty($orders)) {
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
-                            <?php if ($order['status'] !== 'shipped' && $order['status'] !== 'cancelled'): ?>
+                            <?php if ($order['status'] !== 'delivered' && $order['status'] !== 'cancelled' && $order['status'] !== 'shipped'): ?>
                                 <button class="btn btn-danger cancel-order-btn" data-order-id="<?php echo $order['id']; ?>">Cancel Order</button>
                             <?php else: ?>
-                                <p class="text-muted">This order cannot be cancelled.</p>
+                                <p class="text-muted wf">This order cannot be cancelled.</p>
                             <?php endif; ?>
                         </div>
                     </div>
