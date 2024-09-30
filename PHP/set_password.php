@@ -23,7 +23,7 @@ else {
 
     if ($stmt->num_rows > 0) {
         // Update the password
-        $query = "UPDATE users SET password = ?, is_verified = 'yes', verification_code = NULL WHERE email = ?";
+        $query = "UPDATE users SET password = ?, is_verified = 'yes', role = 'registered', verification_code = NULL WHERE email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ss", $password, $email);
         
