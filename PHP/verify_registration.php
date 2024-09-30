@@ -3,7 +3,8 @@ include 'db_config.php'; // Database configuration file
 
 // Get the POST data from the AJAX request
 $email = $_POST['email'];
-$verification_code = $_POST['verification_code'];
+$code = $_POST['verification_code'];
+$verification_code = strtolower($code);
 
 // Check if the verification code is correct
 $query = "SELECT id FROM users WHERE email = ? AND verification_code = ?";
