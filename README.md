@@ -54,9 +54,10 @@ Welcome to the **Supplement Store** web application repository! This project aim
    - Import the SQL schema located in `/SQL_Query/supplement_store_sql.sql` into your MySQL server.
    - Edit the `/PHP/db_config.php` file with your database credentials.
 
-4. **Install necessary dependencies:**
+4. **Install necessary dependencies and run the python email script:**
    ```bash
-   npm install   # If Node.js is used for package management
+   python backend_api.py   # This will install the necessary dependencies and libraries
+                            and continue running 
    ```
 
 5. **Configure your environment:**
@@ -89,6 +90,7 @@ Once the installation is complete:
 ## 📂 **Folder Structure**
 
 ```bash
+├── API/                   # Python Script to handle Emails
 ├── CSS/                   # Custom CSS stylesheets
 ├── JS/                    # JavaScript and AJAX scripts
 ├── PHP/                   # Backend PHP scripts and APIs
