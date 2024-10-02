@@ -90,12 +90,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 
+                let fontSize = "24px"; // Default for h3
+                if (product.name.length >= 40) {
+                    fontSize = "16px"; // Resize for long names (like h5)
+                } else if (product.name.length >= 30) {
+                    fontSize = "20px"; // Resize for medium names (like h4)
+                }
                 // Create a star rating based on the product rating
                 const ratingStars = getStars(product.rating);
         
                 card.innerHTML = `
                     <img src="images/uploads/${product.image_url}" alt="${product.name}">
-                    <h3>${product.name}</h3>
+                    <h3 style="font-size: ${fontSize};">${product.name}</h3>
                     <p>${product.description}</p>
                     <p>LKR: ${product.price}</p>
                     <div class="rating">${ratingStars}</div>

@@ -58,6 +58,8 @@ body {
 /* Styling for product images */
 .product-card img {
     max-width: 100%;
+    width: 250px;
+    height: 250px;
     height: auto;
     border-radius: 8px; /* Round the image corners */
 }
@@ -68,6 +70,7 @@ body {
     margin: 10px 0;
     color: #F2F2F2; /* Darker color for better readability */
 }
+
 
 .rating{
     color: #F2F2F2;
