@@ -57,7 +57,7 @@ Welcome to the **Supplement Store** web application repository! This project aim
 4. **Install necessary dependencies and run the python email script:**
    ```bash
    python backend_api.py   # This will install the necessary dependencies and libraries
-                            and continue running 
+                           # And continue running 
    ```
 
 5. **Configure your environment:**
