@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 29, 2024 at 08:03 PM
+-- Generation Time: Oct 02, 2024 at 03:44 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -36,14 +36,15 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`,`product_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`) VALUES
-(79, 5, 4, 8),
+(96, 5, 4, 1),
+(97, 5, 5, 1),
 (78, 5, 0, 1);
 
 -- --------------------------------------------------------
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `author_id` (`author_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `content`
@@ -104,14 +105,14 @@ CREATE TABLE IF NOT EXISTS `disputes` (
   KEY `user_id` (`user_id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `disputes`
 --
 
 INSERT INTO `disputes` (`id`, `user_id`, `dispute_type`, `order_id`, `product_id`, `message`, `attachment`, `status`, `created_at`, `updated_at`) VALUES
-(19, 5, 'order', 14, 0, 'Test Dispute regrading Order 14', 'Test Dispute Image.png', 'resolved', '2024-09-28 09:55:14', '2024-09-28 10:00:59');
+(23, 54, 'order', 18, 0, 'i have a problem with this order', 'MusclePharm Combat Protein Powder.jpg', 'pending', '2024-09-30 20:44:08', '2024-09-30 20:44:08');
 
 -- --------------------------------------------------------
 
@@ -131,15 +132,14 @@ CREATE TABLE IF NOT EXISTS `health_schedule` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `health_schedule`
 --
 
 INSERT INTO `health_schedule` (`id`, `user_id`, `schedule_type`, `title`, `description`, `reminder_time`, `created_at`, `updated_at`) VALUES
-(7, 5, 'meal', 'Meal Plan Test', 'Meal Plan Test Description', '18:36:00', '2024-09-25 12:23:12', '2024-09-25 13:04:10'),
-(8, 5, 'supplement', 'Sample Suppliment Intake', 'Sample Suppliment Intake Description', '20:30:00', '2024-09-28 13:04:54', '2024-09-28 13:04:54');
+(12, 54, 'meal', 'Meal Plan ', 'Meal Plan description', '02:01:00', '2024-09-30 20:29:09', '2024-09-30 20:29:09');
 
 -- --------------------------------------------------------
 
@@ -153,22 +153,22 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   `stock` int NOT NULL,
   `last_updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `inventory`
 --
 
 INSERT INTO `inventory` (`product_id`, `stock`, `last_updated`) VALUES
-(1, 20, '2024-09-28 09:44:42'),
-(2, 197, '2024-09-25 08:26:49'),
-(4, 80, '2024-09-28 05:38:23'),
+(1, 17, '2024-09-30 20:31:34'),
+(2, 195, '2024-09-30 19:36:51'),
+(4, 79, '2024-09-30 18:56:14'),
 (5, 46, '2024-09-28 07:36:12'),
 (6, 40, '2024-09-28 04:59:39'),
 (7, 60, '2024-09-28 05:00:41'),
 (8, 66, '2024-09-28 07:36:12'),
 (9, 30, '2024-09-28 05:09:46'),
-(10, 25, '2024-09-28 05:14:31'),
+(10, 9, '2024-09-30 19:50:29'),
 (11, 55, '2024-09-28 05:15:16'),
 (12, 45, '2024-09-28 05:15:47'),
 (13, 65, '2024-09-28 05:17:47'),
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`),
   KEY `sender_id` (`sender_id`),
   KEY `receiver_id` (`receiver_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `messages`
@@ -209,12 +209,19 @@ INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `sent_at`) 
 (1, 5, 3, 'Hi, could you suggest a good protein supplement for beginners?', '2024-09-05 23:40:24'),
 (2, 3, 5, 'I recommend starting with whey protein, it’s great for beginners and pros alike.', '2024-09-05 23:40:24'),
 (3, 5, 3, 'ok thanks', '2024-09-08 05:18:09'),
+(35, 7, 48, 'asdasda', '2024-09-30 19:00:09'),
+(34, 48, 3, 'HI \n', '2024-09-30 18:57:11'),
 (33, 7, 5, 'asdasdasd', '2024-09-29 18:55:43'),
 (29, 8, 3, 'Hi', '2024-09-22 12:28:58'),
 (30, 5, 3, 'hello', '2024-09-22 12:40:31'),
 (31, 5, 3, 'REVIEW-04: Verify only logged-in users can submit reviews.', '2024-09-28 08:40:52'),
 (32, 7, 5, 'REVIEW-04: Verify only logged-in users can submit reviews. Message from Admin', '2024-09-28 08:43:45'),
-(28, 7, 5, 'If you have more questions please ask away : )', '2024-09-22 12:26:57');
+(28, 7, 5, 'If you have more questions please ask away : )', '2024-09-22 12:26:57'),
+(36, 50, 3, 'hello from HImans account 2', '2024-09-30 19:19:18'),
+(37, 7, 50, 'hello from admin', '2024-09-30 19:40:19'),
+(38, 52, 3, 'hello from Himans Account', '2024-09-30 20:05:40'),
+(39, 54, 3, 'hello im HIman what are the suppliments i should take?', '2024-09-30 20:32:35'),
+(40, 7, 54, 'hello from admin', '2024-09-30 20:33:54');
 
 -- --------------------------------------------------------
 
@@ -231,30 +238,17 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `notifications`
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `message`, `is_read`, `created_at`) VALUES
-(39, 7, 'We closed your dispute', 0, '2024-09-28 10:01:01'),
-(37, 5, 'Order Placed - Order #14', 1, '2024-09-28 07:36:18'),
-(38, 5, 'We have sent you an email regarding the dispute.', 1, '2024-09-28 09:22:07'),
-(36, 5, 'Order Placed - Order #13', 1, '2024-09-28 07:28:19'),
-(35, 5, 'Dear Customer,\n\nYour order status has been updated to delivered.\n\nThank you for shopping with us.', 0, '2024-09-27 07:35:00'),
-(32, 5, 'Reminder set for Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday at 07:55', 1, '2024-09-25 12:23:12'),
-(33, 5, 'Order Placed - Order #12', 1, '2024-09-26 21:07:26'),
-(34, 7, 'The product \'Whey Protein\' (ID: 1) is low on inventory. Currently, only 6 left.', 0, '2024-09-27 05:47:22'),
-(29, 5, 'You Have A New Message', 0, '2024-09-22 11:47:59'),
-(30, 0, 'You Have A New Message', 0, '2024-09-22 12:22:53'),
-(31, 5, 'Order Placed - Order #11', 1, '2024-09-25 08:26:51'),
-(27, 5, 'Order Placed - Order #9', 1, '2024-09-21 09:17:41'),
-(28, 5, 'Order Placed - Order #10', 1, '2024-09-21 14:41:21'),
-(25, 5, 'Order Placed - Order #7', 1, '2024-09-21 09:15:43'),
-(26, 5, 'Order Placed - Order #8', 1, '2024-09-21 09:15:45'),
-(24, 7, 'The product \'Whey Protein\' (ID: 1) is low on inventory. Currently, only 9 left.', 1, '2024-09-15 13:01:45'),
-(40, 5, 'Reminder set for Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday at 20:30', 0, '2024-09-28 13:04:54');
+(53, 7, 'The product \'Dymatize Super Mass Gainer\' (ID: 10) is low on inventory. Currently, only 9 left.', 0, '2024-09-30 20:35:46'),
+(51, 54, 'Order Placed - Order #18', 0, '2024-09-30 20:31:02'),
+(52, 54, 'You Have A New Message', 0, '2024-09-30 20:33:54'),
+(50, 54, 'Reminder set for Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday at 02:01', 0, '2024-09-30 20:29:09');
 
 -- --------------------------------------------------------
 
@@ -275,25 +269,18 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `payment_status` enum('pending','paid','failed') DEFAULT 'pending',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `total`, `status`, `created_at`, `updated_at`, `shipping_address`, `billing_address`, `payment_status`) VALUES
-(1, 1, 59.98, 'pending', '2024-09-05 23:40:24', '2024-09-05 23:40:24', '', '', 'pending'),
-(2, 1, 29.99, 'shipped', '2024-09-05 23:40:24', '2024-09-05 23:40:24', '', '', 'pending'),
-(3, 2, 15.49, 'delivered', '2024-09-05 23:40:24', '2024-09-05 23:40:24', '', '', 'pending'),
-(4, 5, 15.49, 'delivered', '2024-09-06 07:53:08', '2024-09-27 07:34:58', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', 'paid'),
-(5, 5, 15.49, 'shipped', '2024-09-07 01:31:10', '2024-09-07 01:33:08', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', '3/601, Thotupolathenna rd,Dehigasthalawa,Balangoda', 'paid'),
-(6, 7, 29.99, 'pending', '2024-09-09 01:22:07', '2024-09-09 01:22:07', 'some addr', 'some addr', 'paid'),
-(7, 5, 105.46, 'cancelled', '2024-09-21 09:15:41', '2024-09-21 14:52:30', 'asdasd', 'asdasd', 'paid'),
-(11, 5, 30.98, 'pending', '2024-09-25 08:26:49', '2024-09-25 08:26:49', 'random adress', 'random adress', 'paid'),
-(9, 5, 29.99, 'cancelled', '2024-09-21 09:17:39', '2024-09-21 14:51:27', 'asdasd', 'asdasd', 'paid'),
-(10, 5, 29.99, 'cancelled', '2024-09-21 14:41:19', '2024-09-21 14:52:40', 'asd', 'asd', 'paid'),
-(12, 5, 89.97, 'pending', '2024-09-26 21:07:24', '2024-09-26 21:07:24', 'test', 'test', 'paid'),
-(14, 5, 80000.00, 'delivered', '2024-09-28 07:36:12', '2024-09-28 07:46:06', '16/46, Lady Lavinia, 1st Templers MW, Templers Road, Mount Lavinia', '16/46, Lady Lavinia, 1st Templers MW, Templers Road, Mount Lavinia', 'paid');
+(15, 48, 5970.89, 'pending', '2024-09-30 18:56:14', '2024-09-30 18:56:14', 'asdasdasd', 'asdasdasd', 'paid'),
+(16, 50, 36123.90, 'pending', '2024-09-30 19:36:51', '2024-09-30 19:36:51', 'test name', 'test name', 'paid'),
+(17, 52, 44781.70, 'cancelled', '2024-09-30 20:07:48', '2024-09-30 20:08:19', 'Himan', 'Himan', 'paid'),
+(18, 54, 17912.68, 'cancelled', '2024-09-30 20:30:56', '2024-09-30 20:31:34', 'Himan ', 'Himan ', 'paid'),
+(14, 5, 80000.00, 'shipped', '2024-09-28 07:36:12', '2024-09-30 18:01:26', '16/46, Lady Lavinia, 1st Templers MW, Templers Road, Mount Lavinia', '16/46, Lady Lavinia, 1st Templers MW, Templers Road, Mount Lavinia', 'paid');
 
 -- --------------------------------------------------------
 
@@ -311,27 +298,19 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `order_items`
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) VALUES
-(1, 1, 1, 2, 29.99),
-(2, 2, 2, 1, 15.49),
-(3, 3, 3, 1, 12.99),
-(4, 4, 2, 1, 15.49),
-(5, 5, 2, 1, 15.49),
-(6, 6, 1, 1, 29.99),
-(7, 7, 1, 3, 29.99),
-(8, 7, 2, 1, 15.49),
-(9, 9, 1, 1, 29.99),
-(10, 10, 1, 1, 29.99),
-(11, 11, 2, 2, 15.49),
-(12, 12, 1, 3, 29.99),
+(21, 18, 1, 2, 8956.34),
+(20, 17, 1, 5, 8956.34),
+(19, 16, 2, 2, 4627.44),
+(18, 16, 1, 3, 8956.34),
 (15, 14, 5, 2, 30000.00),
-(14, 13, 8, 2, 10000.00),
+(17, 15, 4, 1, 5970.89),
 (16, 14, 8, 2, 10000.00);
 
 -- --------------------------------------------------------
@@ -354,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `brand` varchar(255) DEFAULT NULL,
   `rating` decimal(3,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `products`
@@ -363,26 +342,26 @@ CREATE TABLE IF NOT EXISTS `products` (
 INSERT INTO `products` (`id`, `name`, `description`, `detailed_description`, `price`, `category`, `image_url`, `created_at`, `updated_at`, `brand`, `rating`) VALUES
 (1, 'Whey Protein', 'High-quality whey protein powder for muscle recovery.', 'detailed description', 8956.34, 'Protein', 'whey.png', '2024-09-05 23:40:24', '2024-09-28 09:44:42', 'brand1', 5.00),
 (2, 'Multivitamin', 'Daily multivitamin supplement for overall health.', NULL, 4627.44, 'Vitamins', 'vitamin.png', '2024-09-05 23:40:24', '2024-09-28 04:56:35', 'brand1', 4.00),
-(4, 'Creatine Monohydrate', 'Creatine for enhanced performance and strength.', NULL, 5970.89, 'Performance', 'Creatine Monohydrat.jpg', '2024-09-05 23:40:24', '2024-09-28 05:38:23', 'BodyTech', 0.00),
+(4, 'Creatine Monohydrate', 'Creatine for enhanced performance and strength.', NULL, 5970.89, 'Performance', 'Creatine Monohydrate.png', '2024-09-05 23:40:24', '2024-10-02 08:31:03', 'BodyTech', 0.00),
 (5, 'Optimum Nutrition Gold Standard Whey', 'High-quality whey protein for muscle building.', 'Optimum Nutrition Gold Standard 100% Whey Protein is one of the best-selling protein powders in the world, offering a blend of whey protein isolate, concentrate, and peptides for muscle recovery and growth.', 30000.00, 'Protein', 'Optimum Nutrition Gold Standard Whey.png', '2024-09-28 04:49:17', '2024-09-28 08:29:28', 'Optimum Nutrition', 5.00),
-(6, 'MuscleTech Nitro-Tech', 'Whey protein isolate with added creatine.', 'Nitro-Tech by MuscleTech is a protein supplement designed for both athletes and bodybuilders. It contains whey protein peptides and isolate to aid in muscle growth and recovery.', 28000.00, 'Protein', 'MuscleTech Nitro-Tech.jpg', '2024-09-28 04:49:17', '2024-09-28 04:59:39', 'MuscleTech', NULL),
+(6, 'MuscleTech Nitro-Tech', 'Whey protein isolate with added creatine.', 'Nitro-Tech by MuscleTech is a protein supplement designed for both athletes and bodybuilders. It contains whey protein peptides and isolate to aid in muscle growth and recovery.', 28000.00, 'Protein', 'MuscleTech Nitro-Tech.png', '2024-09-28 04:49:17', '2024-10-02 08:10:52', 'MuscleTech', NULL),
 (7, 'GNC Mega Men Multivitamin', 'Daily multivitamin for men.', 'GNC Mega Men Multivitamin contains essential vitamins and minerals that support overall health, muscle function, and energy production.', 12000.00, 'Vitamins', 'GNC Mega Men Multivitamin.png', '2024-09-28 04:49:17', '2024-09-28 05:00:41', 'GNC', NULL),
-(8, 'Centrum Silver Women', 'Multivitamin for women over 50.', 'Centrum Silver Women is a daily multivitamin supplement specifically formulated for women aged 50 and above to support heart, brain, and eye health.', 10000.00, 'Vitamins', 'Centrum Silver Women.jpg', '2024-09-28 04:49:17', '2024-09-28 05:01:24', 'Centrum', NULL),
-(9, 'BSN True-Mass', 'Mass gainer for muscle growth.', 'BSN True-Mass is a high-calorie mass gainer designed for individuals looking to increase muscle mass, offering a balanced blend of proteins, carbs, and healthy fats.', 45000.00, 'Mass Gainer', 'BSN TrueMass.jpg', '2024-09-28 04:49:17', '2024-09-28 05:09:46', 'BSN', NULL),
-(10, 'Dymatize Super Mass Gainer', 'Calorie-dense mass gainer for building mass.', 'Dymatize Super Mass Gainer provides 1280 calories per serving, with a high amount of protein and carbs to help in rapid muscle growth and recovery.', 42000.00, 'Mass Gainer', 'Dymatize Super Mass Gainer.jpg', '2024-09-28 04:49:17', '2024-09-28 05:14:31', 'Dymatize', NULL),
-(11, 'Animal Pak Multivitamin', 'Comprehensive multivitamin for athletes.', 'Animal Pak by Universal Nutrition is a powerful multivitamin supplement that supports athletes with vitamins, minerals, antioxidants, and digestive enzymes.', 15000.00, 'Multivitamin', 'Animal Pak Multivitamin.jpg', '2024-09-28 04:49:17', '2024-09-28 05:15:16', 'Universal Nutrition', NULL),
-(12, 'MusclePharm Combat Protein Powder', 'Protein powder with a blend of 5 proteins.', 'MusclePharm Combat Protein Powder features a blend of fast and slow digesting proteins to provide a sustained release of amino acids for muscle repair.', 27000.00, 'Protein', 'MusclePharm Combat Protein Powder.jpg', '2024-09-28 04:49:17', '2024-09-28 05:15:47', 'MusclePharm', NULL),
-(13, 'Garden of Life Vitamin Code Women', 'Organic multivitamin for women.', 'Garden of Life Vitamin Code Women is a whole-food multivitamin formulated to meet the needs of active women, supporting energy, reproductive health, and immunity.', 11000.00, 'Vitamins', 'Garden of Life Vitamin Code Women.jpg', '2024-09-28 04:49:17', '2024-09-28 05:17:47', 'Garden of Life', NULL),
-(14, 'Cellucor C4 Original Pre-Workout', 'Explosive pre-workout energy supplement.', 'C4 Original by Cellucor is a popular pre-workout supplement that delivers energy, focus, and endurance with ingredients like beta-alanine and creatine nitrate.', 8000.00, 'Pre-Workout', 'Cellucor C4 Original Pre-Workout.jpg', '2024-09-28 04:49:17', '2024-09-28 09:17:09', 'Cellucor', NULL),
-(16, 'Nordic Naturals Ultimate Omega', 'High-potency omega-3 fish oil supplement.', 'Nordic Naturals Ultimate Omega is a concentrated fish oil supplement with a high dose of EPA and DHA to support heart, brain, and joint health.', 18000.00, 'Oils', 'path/to/image12.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'Nordic Naturals', NULL),
-(17, 'NOW Foods Vitamin D-3 5000 IU', 'High-potency vitamin D supplement.', 'NOW Foods Vitamin D-3 provides 5000 IU of vitamin D, which supports immune function and promotes calcium absorption for bone health.', 4200.00, 'Vitamins', 'path/to/image13.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'NOW Foods', NULL),
-(18, 'Nature Made Fish Oil 1200 mg', 'Omega-3 supplement for heart health.', 'Nature Made Fish Oil contains 1200 mg of omega-3s, providing EPA and DHA, which help support a healthy heart.', 8500.00, 'Oils', 'path/to/image14.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'Nature Made', NULL),
-(19, 'Jarrow Formulas B-Right Complex', 'Balanced B-complex for energy and metabolism.', 'Jarrow Formulas B-Right Complex is a low-odor vitamin B complex that promotes energy production and supports cardiovascular health.', 6500.00, 'Vitamins', 'path/to/image15.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'Jarrow Formulas', NULL),
-(20, 'Optimum Nutrition Amino Energy', 'Pre-workout and amino acid supplement.', 'Optimum Nutrition Amino Energy provides essential amino acids and caffeine for energy, focus, and muscle recovery.', 7200.00, 'Pre-Workout', 'path/to/image16.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'Optimum Nutrition', NULL),
-(21, 'Nature\'s Way Alive! Multivitamin', 'Daily multivitamin for overall health.', 'Nature\'s Way Alive! Multivitamin is packed with essential vitamins, minerals, and antioxidants to support overall health and well-being.', 12500.00, 'Multivitamin', 'path/to/image17.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'Nature\'s Way', NULL),
-(22, 'ON Creatine Monohydrate', 'Pure creatine monohydrate for strength and power.', 'Optimum Nutrition Creatine Monohydrate helps increase muscle strength, power, and performance during high-intensity training.', 6800.00, 'Supplements', 'path/to/image18.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'Optimum Nutrition', NULL),
-(23, 'Quest Nutrition Protein Bar', 'High-protein bar with low sugar.', 'Quest Nutrition Protein Bar is a convenient, high-protein, low-sugar snack with 20g of protein and minimal carbohydrates.', 2500.00, 'Protein', 'path/to/image19.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'Quest Nutrition', NULL),
-(24, 'Vega One Organic All-In-One Shake', 'Plant-based protein and nutrient shake.', 'Vega One Organic All-In-One Shake is a plant-based meal replacement shake that provides protein, greens, vitamins, and minerals in one serving.', 16500.00, 'Protein', 'path/to/image20.jpg', '2024-09-28 05:07:29', '2024-09-28 05:07:29', 'Vega', NULL);
+(8, 'Centrum Silver Women', 'Multivitamin for women over 50.', 'Centrum Silver Women is a daily multivitamin supplement specifically formulated for women aged 50 and above to support heart, brain, and eye health.', 10000.00, 'Vitamins', 'Centrum Silver Women.png', '2024-09-28 04:49:17', '2024-10-02 08:13:35', 'Centrum', 5.00),
+(9, 'BSN True-Mass', 'Mass gainer for muscle growth.', 'BSN True-Mass is a high-calorie mass gainer designed for individuals looking to increase muscle mass, offering a balanced blend of proteins, carbs, and healthy fats.', 45000.00, 'Mass Gainer', 'BSN TrueMass.png', '2024-09-28 04:49:17', '2024-10-02 08:14:24', 'BSN', NULL),
+(10, 'Dymatize Super Mass Gainer', 'Calorie-dense mass gainer for building mass.', 'Dymatize Super Mass Gainer provides 1280 calories per serving, with a high amount of protein and carbs to help in rapid muscle growth and recovery.', 42000.00, 'Mass Gainer', 'Dymatize Super Mass Gainer.png', '2024-09-28 04:49:17', '2024-10-02 08:15:35', 'Dymatize', NULL),
+(11, 'Animal Pak Multivitamin', 'Comprehensive multivitamin for athletes.', 'Animal Pak by Universal Nutrition is a powerful multivitamin supplement that supports athletes with vitamins, minerals, antioxidants, and digestive enzymes.', 15000.00, 'Multivitamin', 'Animal Pak Multivitamin.png', '2024-09-28 04:49:17', '2024-10-02 08:34:10', 'Universal Nutrition', NULL),
+(12, 'MusclePharm Combat Protein Powder', 'Protein powder with a blend of 5 proteins.', 'MusclePharm Combat Protein Powder features a blend of fast and slow digesting proteins to provide a sustained release of amino acids for muscle repair.', 27000.00, 'Protein', 'MusclePharm Combat Protein Powder.png', '2024-09-28 04:49:17', '2024-10-02 08:18:01', 'MusclePharm', NULL),
+(13, 'Garden of Life Vitamin Code Women', 'Organic multivitamin for women.', 'Garden of Life Vitamin Code Women is a whole-food multivitamin formulated to meet the needs of active women, supporting energy, reproductive health, and immunity.', 11000.00, 'Vitamins', 'Garden of Life Vitamin Code Women.png', '2024-09-28 04:49:17', '2024-10-02 08:19:00', 'Garden of Life', NULL),
+(14, 'Cellucor C4 Original Pre-Workout', 'Explosive pre-workout energy supplement.', 'C4 Original by Cellucor is a popular pre-workout supplement that delivers energy, focus, and endurance with ingredients like beta-alanine and creatine nitrate.', 8000.00, 'Pre-Workout', 'Cellucor C4 Original Pre-Workout.png', '2024-09-28 04:49:17', '2024-10-02 08:20:52', 'Cellucor', NULL),
+(16, 'Nordic Naturals Ultimate Omega', 'High-potency omega-3 fish oil supplement.', 'Nordic Naturals Ultimate Omega is a concentrated fish oil supplement with a high dose of EPA and DHA to support heart, brain, and joint health.', 18000.00, 'Oils', 'Nordic Naturals Ultimate Omega.png', '2024-09-28 05:07:29', '2024-10-02 08:21:37', 'Nordic Naturals', NULL),
+(17, 'NOW Foods Vitamin D-3 5000 IU', 'High-potency vitamin D supplement.', 'NOW Foods Vitamin D-3 provides 5000 IU of vitamin D, which supports immune function and promotes calcium absorption for bone health.', 4200.00, 'Vitamins', 'NOW Foods Vitamin D-3 5000 IU.png', '2024-09-28 05:07:29', '2024-10-02 08:22:21', 'NOW Foods', NULL),
+(18, 'Nature Made Fish Oil 1200 mg', 'Omega-3 supplement for heart health.', 'Nature Made Fish Oil contains 1200 mg of omega-3s, providing EPA and DHA, which help support a healthy heart.', 8500.00, 'Oils', 'Nature Made Fish Oil 1200 mg.png', '2024-09-28 05:07:29', '2024-10-02 08:23:12', 'Nature Made', NULL),
+(19, 'Jarrow Formulas B-Right Complex', 'Balanced B-complex for energy and metabolism.', 'Jarrow Formulas B-Right Complex is a low-odor vitamin B complex that promotes energy production and supports cardiovascular health.', 6500.00, 'Vitamins', 'Jarrow Formulas B-Right Complex.png', '2024-09-28 05:07:29', '2024-10-02 08:23:54', 'Jarrow Formulas', NULL),
+(20, 'Optimum Nutrition Amino Energy', 'Pre-workout and amino acid supplement.', 'Optimum Nutrition Amino Energy provides essential amino acids and caffeine for energy, focus, and muscle recovery.', 7200.00, 'Pre-Workout', 'Optimum Nutrition Amino Energy.png', '2024-09-28 05:07:29', '2024-10-02 08:24:40', 'Optimum Nutrition', NULL),
+(21, 'Nature\'s Way Alive! Multivitamin', 'Daily multivitamin for overall health.', 'Nature\'s Way Alive! Multivitamin is packed with essential vitamins, minerals, and antioxidants to support overall health and well-being.', 12500.00, 'Multivitamin', 'Nature\'s Way Alive! Multivitamin.png', '2024-09-28 05:07:29', '2024-10-02 08:25:20', 'Nature\'s Way', NULL),
+(22, 'ON Creatine Monohydrate', 'Pure creatine monohydrate for strength and power.', 'Optimum Nutrition Creatine Monohydrate helps increase muscle strength, power, and performance during high-intensity training.', 6800.00, 'Supplements', 'ON Creatine Monohydrate.png', '2024-09-28 05:07:29', '2024-10-02 08:26:05', 'Optimum Nutrition', NULL),
+(23, 'Quest Nutrition Protein Bar', 'High-protein bar with low sugar.', 'Quest Nutrition Protein Bar is a convenient, high-protein, low-sugar snack with 20g of protein and minimal carbohydrates.', 2500.00, 'Protein', 'Quest Nutrition Protein Bar.png', '2024-09-28 05:07:29', '2024-10-02 08:26:45', 'Quest Nutrition', NULL),
+(24, 'Vega One Organic All-In-One Shake', 'Plant-based protein and nutrient shake.', 'Vega One Organic All-In-One Shake is a plant-based meal replacement shake that provides protein, greens, vitamins, and minerals in one serving.', 16500.00, 'Protein', 'Vega One Organic All-In-One Shake.png', '2024-09-28 05:07:29', '2024-10-02 08:27:53', 'Vega', NULL);
 
 -- --------------------------------------------------------
 
@@ -399,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `promotions` (
   `end_date` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `promotions`
@@ -422,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `recommendations` (
   `recommended_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`,`product_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `recommendations`
@@ -443,7 +422,32 @@ INSERT INTO `recommendations` (`user_id`, `product_id`, `recommended_at`) VALUES
 (5, 24, '2024-09-28 07:28:19'),
 (5, 12, '2024-09-28 07:28:19'),
 (5, 6, '2024-09-28 07:28:19'),
-(5, 5, '2024-09-28 07:28:19');
+(5, 5, '2024-09-28 07:28:19'),
+(48, 4, '2024-09-30 18:56:18'),
+(50, 1, '2024-09-30 19:36:55'),
+(50, 5, '2024-09-30 19:36:55'),
+(50, 2, '2024-09-30 19:36:55'),
+(50, 23, '2024-09-30 19:36:55'),
+(50, 17, '2024-09-30 19:36:55'),
+(50, 19, '2024-09-30 19:36:55'),
+(50, 8, '2024-09-30 19:36:55'),
+(50, 13, '2024-09-30 19:36:55'),
+(50, 7, '2024-09-30 19:36:55'),
+(50, 24, '2024-09-30 19:36:55'),
+(50, 12, '2024-09-30 19:36:55'),
+(50, 6, '2024-09-30 19:36:55'),
+(52, 1, '2024-09-30 20:07:54'),
+(52, 5, '2024-09-30 20:07:54'),
+(52, 23, '2024-09-30 20:07:54'),
+(52, 24, '2024-09-30 20:07:54'),
+(52, 12, '2024-09-30 20:07:54'),
+(52, 6, '2024-09-30 20:07:54'),
+(54, 1, '2024-09-30 20:31:02'),
+(54, 5, '2024-09-30 20:31:02'),
+(54, 23, '2024-09-30 20:31:02'),
+(54, 24, '2024-09-30 20:31:02'),
+(54, 12, '2024-09-30 20:31:02'),
+(54, 6, '2024-09-30 20:31:02');
 
 -- --------------------------------------------------------
 
@@ -473,7 +477,8 @@ INSERT INTO `reviews` (`id`, `user_id`, `product_id`, `rating`, `comment`, `crea
 (2, 3, 2, 4, 'Good daily multivitamin, but a bit pricey.', '2024-09-05 23:40:24'),
 (3, 3, 3, 5, 'Fish oil really helped with my heart health.', '2024-09-05 23:40:24'),
 (7, 5, 3, 5, 'Very Good Product', '2024-09-25 08:41:30'),
-(9, 5, 5, 5, 'REVIEW-01: Verify user can submit a review for a purchased product.', '2024-09-28 08:29:27');
+(9, 5, 5, 5, 'REVIEW-01: Verify user can submit a review for a purchased product.', '2024-09-28 08:29:27'),
+(10, 5, 8, 5, 'great product', '2024-09-30 21:24:46');
 
 -- --------------------------------------------------------
 
@@ -488,38 +493,20 @@ CREATE TABLE IF NOT EXISTS `schedule_reminders` (
   `reminder_day` enum('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `schedule_id` (`schedule_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `schedule_reminders`
 --
 
 INSERT INTO `schedule_reminders` (`id`, `schedule_id`, `reminder_day`) VALUES
-(1, 1, 'Monday'),
-(2, 1, 'Tuesday'),
-(3, 1, 'Wednesday'),
-(4, 1, 'Thursday'),
-(5, 1, 'Friday'),
-(6, 1, 'Saturday'),
-(7, 1, 'Sunday'),
-(8, 2, 'Tuesday'),
-(9, 2, 'Wednesday'),
-(15, 3, 'Wednesday'),
-(14, 3, 'Tuesday'),
-(13, 3, 'Monday'),
-(16, 3, 'Thursday'),
-(17, 3, 'Friday'),
-(18, 3, 'Saturday'),
-(19, 3, 'Sunday'),
-(20, 4, 'Saturday'),
-(21, 4, 'Sunday'),
-(22, 5, 'Saturday'),
-(23, 5, 'Sunday'),
-(43, 6, 'Saturday'),
-(42, 6, 'Thursday'),
-(28, 7, 'Monday'),
-(29, 7, 'Tuesday'),
-(30, 7, 'Wednesday'),
+(71, 12, 'Sunday'),
+(70, 12, 'Saturday'),
+(69, 12, 'Friday'),
+(68, 12, 'Thursday'),
+(67, 12, 'Wednesday'),
+(66, 12, 'Tuesday'),
+(65, 12, 'Monday'),
 (31, 7, 'Thursday'),
 (32, 7, 'Friday'),
 (33, 7, 'Saturday'),
@@ -530,7 +517,28 @@ INSERT INTO `schedule_reminders` (`id`, `schedule_id`, `reminder_day`) VALUES
 (38, 8, 'Thursday'),
 (39, 8, 'Friday'),
 (40, 8, 'Saturday'),
-(41, 8, 'Sunday');
+(41, 8, 'Sunday'),
+(44, 9, 'Monday'),
+(45, 9, 'Tuesday'),
+(46, 9, 'Wednesday'),
+(47, 9, 'Thursday'),
+(48, 9, 'Friday'),
+(49, 9, 'Saturday'),
+(50, 9, 'Sunday'),
+(51, 10, 'Monday'),
+(52, 10, 'Tuesday'),
+(53, 10, 'Wednesday'),
+(54, 10, 'Thursday'),
+(55, 10, 'Friday'),
+(56, 10, 'Saturday'),
+(57, 10, 'Sunday'),
+(58, 11, 'Monday'),
+(59, 11, 'Tuesday'),
+(60, 11, 'Wednesday'),
+(61, 11, 'Thursday'),
+(62, 11, 'Friday'),
+(63, 11, 'Saturday'),
+(64, 11, 'Sunday');
 
 -- --------------------------------------------------------
 
@@ -553,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -563,7 +571,9 @@ INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `role`, `password`,
 (21, 'newuser', 'newsuer', 'new@user.com', 'registered', '$2y$10$m34.eUACKgVubztpjs8ZK.CnTtk6kAv42UjNA27kqcIndteZwb69a', '2024-09-28 19:11:48', 'no', NULL, 'yes'),
 (3, 'jane_smith', 'Jane Test', 'jane.smith@example.com', 'nutritional_expert', '$2y$10$Up7x0tr3ucSc0f7D1zEs8.tP/IeSwthDLjj//0n2oUyeLR7V16ob2', '2024-09-05 23:40:24', 'no', NULL, 'yes'),
 (5, 'Himan', 'Himan M', 'hghimanmanduja@gmail.com', 'registered', '$2y$10$u6KQoT2RX.HVPsyvpnBYa.HLVA71YaOi9Tbt7vaoEqmmHkhQayBIm', '2024-09-06 00:44:38', 'no', NULL, 'yes'),
-(7, 'admin', 'admin', 'admin@admin.com', 'admin', '$2y$10$LRYBh75259kMxLj/cWmITOLSSIygGyIjWMcArByZ/yi3cEVEUohfa', '2024-09-09 00:29:57', 'no', NULL, 'yes');
+(7, 'admin', 'admin', 'admin@admin.com', 'admin', '$2y$10$LRYBh75259kMxLj/cWmITOLSSIygGyIjWMcArByZ/yi3cEVEUohfa', '2024-09-09 00:29:57', 'no', NULL, 'yes'),
+(55, 'Himan Test', 'Himan Manduja', 'hghiman.manduja@gmail.com', 'registered', '$2y$10$WlaeGf01xVU4YtBVphhyC.RH.f1GtU0K/Jgf2HqdIQiXIuMk0Tc9G', '2024-10-01 08:55:19', 'no', NULL, 'yes'),
+(54, 'Himan M', 'test name', 'mandujahiman@gmail.com', 'registered', '$2y$10$MrNqBeBmFBfcRPt5HiNGqOiyW.SADNdZvSlx.KsRBQlE5Uk4Fwoua', '2024-09-30 20:27:01', 'no', NULL, 'yes');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
