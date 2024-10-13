@@ -69,7 +69,7 @@ $order_id = $order['id'];
 $order_total = number_format($order['total'], 2);
 
 $email_body = "Dear Customer,\n\nYour order #{$order_id} has been cancelled.\n\n" .
-              "Order Total: $$order_total\n\n" .
+              "Order Total: LKR: $order_total\n\n" .
               "We apologize for any inconvenience.\n\n" .
               "Best regards,\nYour Supplement Store";
 
