@@ -57,7 +57,7 @@
     // Prepare email content
     $order_items_text = "";
     while ($item = $items_result->fetch_assoc()) {
-        $order_items_text .= htmlspecialchars($item['name']) . " (Quantity: " . $item['quantity'] . ") - $" . number_format($item['price'], 2) . "\n";
+        $order_items_text .= htmlspecialchars($item['name']) . " (Quantity: " . $item['quantity'] . ") - LKR: " . number_format($item['price'], 2) . "\n";
     }
 
     $email_subject = "Order Confirmation - Order #" . $order['id'];
@@ -65,7 +65,7 @@
                 "Thank you for your purchase! Your order details are below:\n\n" .
                 "Order ID: " . $order['id'] . "\n" .
                 "Order Date: " . $order['created_at'] . "\n" .
-                "Total: $" . number_format($order['total'], 2) . "\n" .
+                "Total: LKR: " . number_format($order['total'], 2) . "\n" .
                 "Shipping Address: " . htmlspecialchars($order['shipping_address']) . "\n" .
                 "Billing Address: " . htmlspecialchars($order['billing_address']) . "\n" .
                 "Payment Status: " . ucfirst($order['payment_status']) . "\n\n" .
